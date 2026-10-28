@@ -1,0 +1,1758 @@
+<!-- 
+====================================================================================================
+ATENCIÓN: Este archivo .html DEBE guardarse en la misma carpeta donde residen físicamente 
+las carpetas 'Anexos', 'Carpeta Principal' y 'Carpeta Secundaria' para que el enrutamiento 
+funcione correctamente.
+====================================================================================================
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Descarga de Documentos Oficiales — Ejército de Bolivia</title>
+  <style>
+    /* RESET & ESTILOS BASE */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #070b10;
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      line-height: 1.5;
+    }
+
+    /* CONTENEDOR 16:9 INSTITUCIONAL WIDESCREEN */
+    .app-container {
+      width: 100%;
+      max-width: 1440px;
+      min-height: 820px;
+      background-color: #0c1219;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* BARRA SUPERIOR DE CONTROL Y BASE DE DATOS */
+    .top-bar {
+      background-color: #080d14;
+      border-bottom: 1px solid #1e293b;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .db-trigger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #fce788;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .db-trigger-btn:hover {
+      background: rgba(212, 175, 55, 0.22);
+      border-color: #d4af37;
+    }
+
+    /* AVISO DESTACADO DE UBICACIÓN FÍSICA */
+    .notice-bar {
+      background-color: #1a140a;
+      border-bottom: 1px solid #854d0e;
+      color: #fef08a;
+      font-size: 12px;
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .notice-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notice-badge {
+      background-color: #eab308;
+      color: #000;
+      font-weight: 900;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    /* CABECERA INSTITUCIONAL */
+    .header-bar {
+      background-color: #0f1722;
+      border-bottom: 1px solid #1e293b;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .shield-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      background: #080d14;
+      border: 2px solid #d4af37;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #d4af37;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+    }
+
+    .shield-badge svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .shield-badge span {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+    }
+
+    .header-titles .sub-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #d4af37;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .header-titles h1 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .header-titles p {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .fidelity-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: bold;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* BARRA DE NAVEGACIÓN POR PESTAÑAS (TABS) */
+    .tabs-nav {
+      background-color: #090e15;
+      border-bottom: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 12px;
+      user-select: none;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 16px 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      color: #f1f5f9;
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .tab-btn.active {
+      color: #d4af37;
+      border-bottom-color: #d4af37;
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+
+    .tab-badge {
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: bold;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background-color: #1e293b;
+      color: #cbd5e1;
+    }
+
+    .tab-btn.active .tab-badge {
+      background-color: rgba(212, 175, 55, 0.2);
+      color: #fce788;
+    }
+
+    /* CONTENEDOR DE PESTAÑAS */
+    .tab-pane {
+      display: none;
+      padding: 28px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* REJILLA DE BOTONES DE DESCARGA */
+    .grid-downloads {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 16px;
+    }
+
+    /* BOTÓN ESTRUCTURAL <BUTTON> DE DESCARGA DIRECTA */
+    .download-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 152px;
+      background-color: #101722;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: left;
+      color: inherit;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .download-card:hover {
+      background-color: #151f2e;
+      border-color: #d4af37;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .download-card:active {
+      transform: translateY(0);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-top-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-code {
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: #d4af37;
+      background: #080d14;
+      border: 1px solid #334155;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .status-badge {
+      font-family: monospace;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      background: #0a0f16;
+    }
+
+    .status-badge.tramitado {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .status-badge.archivado {
+      color: #60a5fa;
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card-ext {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .card-path {
+      font-family: monospace;
+      font-size: 11px;
+      color: #64748b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-bottom {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-db-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 10px;
+      color: #94a3b8;
+      font-family: monospace;
+    }
+
+    .card-db-meta strong {
+      color: #d4af37;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #d4af37;
+      color: #070b10;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .download-card:hover .btn-action {
+      background-color: #f1c40f;
+    }
+
+    .btn-action svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+    }
+
+    /* MODAL DE LA BASE DE DATOS LOCALSTORAGE */
+    .db-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .db-modal-overlay.active {
+      display: flex;
+    }
+
+    .db-modal-card {
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      background-color: #0d1520;
+      border: 1px solid #d4af37;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .db-modal-header {
+      background-color: #080d14;
+      border-bottom: 1px solid #1e293b;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .db-modal-header h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .db-modal-close {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .db-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .db-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .db-stat-box {
+      background-color: #101926;
+      border: 1px solid #1e293b;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .db-stat-box .lbl {
+      font-size: 10px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .db-stat-box .val {
+      font-size: 20px;
+      font-weight: 900;
+      color: #d4af37;
+      font-family: monospace;
+    }
+
+    .db-form-section {
+      background-color: #101926;
+      border: 1px solid #1e293b;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .db-form-section h4 {
+      font-size: 13px;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    .db-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .db-input-group label {
+      display: block;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .db-input-group input {
+      width: 100%;
+      background: #080d14;
+      border: 1px solid #334155;
+      padding: 6px 10px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 12px;
+      font-family: inherit;
+    }
+
+    .db-history-section {
+      background-color: #101926;
+      border: 1px solid #1e293b;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .db-table-wrapper {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 10px;
+      border: 1px solid #1e293b;
+      border-radius: 4px;
+    }
+
+    .db-history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      text-align: left;
+    }
+
+    .db-history-table th {
+      background-color: #080d14;
+      padding: 8px;
+      color: #94a3b8;
+      font-family: monospace;
+      position: sticky;
+      top: 0;
+    }
+
+    .db-history-table td {
+      padding: 8px;
+      border-top: 1px solid #1e293b;
+      font-family: monospace;
+    }
+
+    .db-modal-footer {
+      background-color: #080d14;
+      border-top: 1px solid #1e293b;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .db-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .db-btn-gold {
+      background-color: #d4af37;
+      color: #070b10;
+    }
+
+    .db-btn-gold:hover {
+      background-color: #f1c40f;
+    }
+
+    .db-btn-dark {
+      background-color: #1e293b;
+      color: #f1f5f9;
+      border-color: #334155;
+    }
+
+    .db-btn-red {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+
+    /* PIE DE PÁGINA */
+    .footer-bar {
+      background-color: #090e15;
+      border-top: 1px solid #1e293b;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .grid-downloads {
+        grid-template-columns: 1fr;
+      }
+      .db-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .db-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL FORMATO 16:9 INSTITUCIONAL -->
+  <div class="app-container">
+
+    <!-- BARRA SUPERIOR DE CONTROL Y BASE DE DATOS LOCALSTORAGE -->
+    <div class="top-bar">
+      <div>
+        <span>ESTADO MAYOR GENERAL — EJÉRCITO DE BOLIVIA</span>
+        <span style="margin-left: 8px; color: #d4af37;" id="top-gestion-lbl">GESTIÓN 2026</span>
+      </div>
+      <div>
+        <button class="db-trigger-btn" type="button" onclick="abrirModalDB()">
+          <span>🗄️ Base de Datos Local</span>
+          <span id="top-db-count">(0)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- AVISO VISUAL DE UBICACIÓN FÍSICA OBLIGATORIA -->
+    <div class="notice-bar">
+      <div class="notice-left">
+        <span class="notice-badge">ATENCIÓN</span>
+        <span>Este archivo .html DEBE guardarse en la misma carpeta donde residen físicamente las carpetas 'Anexos', 'Carpeta Principal' y 'Carpeta Secundaria'.</span>
+      </div>
+      <a href="javascript:void(0)" onclick="abrirModalDB()" style="color: #fde047; font-size: 11px; text-decoration: underline;">Ver Bitácora de Transacciones</a>
+    </div>
+
+    <!-- CABECERA INSTITUCIONAL -->
+    <header class="header-bar">
+      <div class="header-left">
+        <div class="shield-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>BOLIVIA</span>
+        </div>
+        <div class="header-titles">
+          <div class="sub-tag" id="disp-gran-unidad">ESTADO MAYOR GENERAL — EJÉRCITO DE BOLIVIA</div>
+          <h1 id="disp-pequena-unidad">SECCIÓN DE GÉNERO Y DERECHOS HUMANOS</h1>
+          <p>Descarga de documentos Word originales (.docx) con base de datos integrada en localStorage</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="fidelity-badge">
+          <span>●</span> BASE DE DATOS LOCALSTORAGE: PERSISTENCIA ACTIVA
+        </div>
+      </div>
+    </header>
+
+    <!-- MENÚ DE NAVEGACIÓN SUPERIOR (3 PESTAÑAS) -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="cambiarPestana('anexos', this)">
+        <span>Pestaña 1: Anexos</span>
+        <span class="tab-badge">9</span>
+      </button>
+      <button class="tab-btn" onclick="cambiarPestana('principal', this)">
+        <span>Pestaña 2: Carpeta Principal</span>
+        <span class="tab-badge">11</span>
+      </button>
+      <button class="tab-btn" onclick="cambiarPestana('secundaria', this)">
+        <span>Pestaña 3: Carpeta Secundaria</span>
+        <span class="tab-badge">6</span>
+      </button>
+    </nav>
+
+    <!-- PESTAÑA 1: ANEXOS (9 BOTONES CON data-file) -->
+    <div id="tab-anexos" class="tab-pane active">
+      <div class="grid-downloads">
+
+        <button class="download-card" type="button" data-id="anexo_a" data-code="ANEXO A" data-category="Anexos" data-file="Anexos/ANEXO A.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO A</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_a" onclick="alternarEstado('anexo_a', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">FORMULARIO ÚNICO DE DENUNCIA DE INCIDENTES DE GÉNERO Y ACOSO</div>
+            <div class="card-path">Anexos/ANEXO A.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_a">0</strong></span>
+              <span id="date-anexo_a">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_b" data-code="ANEXO B" data-category="Anexos" data-file="Anexos/ANEXO B.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO B</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_b" onclick="alternarEstado('anexo_b', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">FORMULARIO DE PARTE DE INCIDENTE DE GÉNERO</div>
+            <div class="card-path">Anexos/ANEXO B.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_b">0</strong></span>
+              <span id="date-anexo_b">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_c" data-code="ANEXO C" data-category="Anexos" data-file="Anexos/ANEXO C.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO C</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_c" onclick="alternarEstado('anexo_c', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">GUÍA DE ENTREVISTA A LA PERSONA AFECTADA</div>
+            <div class="card-path">Anexos/ANEXO C.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_c">0</strong></span>
+              <span id="date-anexo_c">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_d" data-code="ANEXO D" data-category="Anexos" data-file="Anexos/ANEXO D.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO D</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_d" onclick="alternarEstado('anexo_d', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">ACTA DE NOTIFICACIÓN Y ACEPTACIÓN DE MEDIDAS PRECAUTORIAS</div>
+            <div class="card-path">Anexos/ANEXO D.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_d">0</strong></span>
+              <span id="date-anexo_d">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_e" data-code="ANEXO E" data-category="Anexos" data-file="Anexos/ANEXO E.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO E</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_e" onclick="alternarEstado('anexo_e', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">MATRIZ DE VALORACIÓN DE RIESGO</div>
+            <div class="card-path">Anexos/ANEXO E.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_e">0</strong></span>
+              <span id="date-anexo_e">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_f" data-code="ANEXO F" data-category="Anexos" data-file="Anexos/ANEXO F.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO F</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_f" onclick="alternarEstado('anexo_f', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">OFICIO DE REMISIÓN A JURISDICCIÓN ORDINARIA (LEY 348)</div>
+            <div class="card-path">Anexos/ANEXO F.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_f">0</strong></span>
+              <span id="date-anexo_f">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_g" data-code="ANEXO G" data-category="Anexos" data-file="Anexos/ANEXO G.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO G</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_g" onclick="alternarEstado('anexo_g', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">HOJA DE RUTA DE ATENCIÓN INTEGRAL Y DERIVACIÓN</div>
+            <div class="card-path">Anexos/ANEXO G.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_g">0</strong></span>
+              <span id="date-anexo_g">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_h" data-code="ANEXO H" data-category="Anexos" data-file="Anexos/ANEXO H.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO H</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_h" onclick="alternarEstado('anexo_h', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">PLANILLA DE SEGUIMIENTO Y MONITOREO DE CASOS</div>
+            <div class="card-path">Anexos/ANEXO H.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_h">0</strong></span>
+              <span id="date-anexo_h">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="anexo_i" data-code="ANEXO I" data-category="Anexos" data-file="Anexos/ANEXO I.docx">
+          <div class="card-top">
+            <span class="card-code">ANEXO I</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-anexo_i" onclick="alternarEstado('anexo_i', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">INFORME FINAL DE CONCLUSIONES Y EVALUACIÓN DISCIPLINARIA</div>
+            <div class="card-path">Anexos/ANEXO I.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-anexo_i">0</strong></span>
+              <span id="date-anexo_i">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- PESTAÑA 2: CARPETA PRINCIPAL (11 BOTONES CON data-file) -->
+    <div id="tab-principal" class="tab-pane">
+      <div class="grid-downloads">
+
+        <button class="download-card" type="button" data-id="cp_01" data-code="001" data-category="Carpeta Principal" data-file="Carpeta Principal/001 CARATULA, INDICE Y SEPARADORES OF GEN.docx">
+          <div class="card-top">
+            <span class="card-code">001</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_01" onclick="alternarEstado('cp_01', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">001 CARATULA, INDICE Y SEPARADORES OF GEN</div>
+            <div class="card-path">Carpeta Principal/001 CARATULA, INDICE Y SEPARADORES OF GEN.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_01">0</strong></span>
+              <span id="date-cp_01">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_02" data-code="01" data-category="Carpeta Principal" data-file="Carpeta Principal/01 MISION.docx">
+          <div class="card-top">
+            <span class="card-code">01</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_02" onclick="alternarEstado('cp_02', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">01 MISION</div>
+            <div class="card-path">Carpeta Principal/01 MISION.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_02">0</strong></span>
+              <span id="date-cp_02">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_03" data-code="02" data-category="Carpeta Principal" data-file="Carpeta Principal/02 ORGANIGRAMA.docx">
+          <div class="card-top">
+            <span class="card-code">02</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_03" onclick="alternarEstado('cp_03', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">02 ORGANIGRAMA</div>
+            <div class="card-path">Carpeta Principal/02 ORGANIGRAMA.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_03">0</strong></span>
+              <span id="date-cp_03">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_04" data-code="03" data-category="Carpeta Principal" data-file="Carpeta Principal/03 ORGANIZACION.docx">
+          <div class="card-top">
+            <span class="card-code">03</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_04" onclick="alternarEstado('cp_04', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">03 ORGANIZACION</div>
+            <div class="card-path">Carpeta Principal/03 ORGANIZACION.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_04">0</strong></span>
+              <span id="date-cp_04">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_05" data-code="04" data-category="Carpeta Principal" data-file="Carpeta Principal/04 MANUAL DE FUNCIONES.docx">
+          <div class="card-top">
+            <span class="card-code">04</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_05" onclick="alternarEstado('cp_05', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">04 MANUAL DE FUNCIONES</div>
+            <div class="card-path">Carpeta Principal/04 MANUAL DE FUNCIONES.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_05">0</strong></span>
+              <span id="date-cp_05">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_06" data-code="05" data-category="Carpeta Principal" data-file="Carpeta Principal/05 NORMAS VIGENTES DE ACCION.docx">
+          <div class="card-top">
+            <span class="card-code">05</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_06" onclick="alternarEstado('cp_06', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">05 NORMAS VIGENTES DE ACCION</div>
+            <div class="card-path">Carpeta Principal/05 NORMAS VIGENTES DE ACCION.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_06">0</strong></span>
+              <span id="date-cp_06">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_07" data-code="06" data-category="Carpeta Principal" data-file="Carpeta Principal/06 Plan de actividades.docx">
+          <div class="card-top">
+            <span class="card-code">06</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_07" onclick="alternarEstado('cp_07', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">06 Plan de actividades</div>
+            <div class="card-path">Carpeta Principal/06 Plan de actividades.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_07">0</strong></span>
+              <span id="date-cp_07">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_08" data-code="07" data-category="Carpeta Principal" data-file="Carpeta Principal/07 HOJA DE FIRMAS.docx">
+          <div class="card-top">
+            <span class="card-code">07</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_08" onclick="alternarEstado('cp_08', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">07 HOJA DE FIRMAS</div>
+            <div class="card-path">Carpeta Principal/07 HOJA DE FIRMAS.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_08">0</strong></span>
+              <span id="date-cp_08">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_09" data-code="08" data-category="Carpeta Principal" data-file="Carpeta Principal/08 HOJA DE REVISION.docx">
+          <div class="card-top">
+            <span class="card-code">08</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_09" onclick="alternarEstado('cp_09', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">08 HOJA DE REVISION</div>
+            <div class="card-path">Carpeta Principal/08 HOJA DE REVISION.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_09">0</strong></span>
+              <span id="date-cp_09">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_10" data-code="09" data-category="Carpeta Principal" data-file="Carpeta Principal/guia de inspeccion DDHH y GENERO.docx">
+          <div class="card-top">
+            <span class="card-code">09</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_10" onclick="alternarEstado('cp_10', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">guia de inspeccion DDHH y GENERO</div>
+            <div class="card-path">Carpeta Principal/guia de inspeccion DDHH y GENERO.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_10">0</strong></span>
+              <span id="date-cp_10">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cp_11" data-code="10" data-category="Carpeta Principal" data-file="Carpeta Principal/INFORME DAMAS.docx">
+          <div class="card-top">
+            <span class="card-code">10</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cp_11" onclick="alternarEstado('cp_11', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">INFORME DAMAS</div>
+            <div class="card-path">Carpeta Principal/INFORME DAMAS.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cp_11">0</strong></span>
+              <span id="date-cp_11">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- PESTAÑA 3: CARPETA SECUNDARIA (6 BOTONES CON data-file) -->
+    <div id="tab-secundaria" class="tab-pane">
+      <div class="grid-downloads">
+
+        <button class="download-card" type="button" data-id="cs_01" data-code="001" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/001 Cuadro de Planes y Programas DD.HH.docx">
+          <div class="card-top">
+            <span class="card-code">001</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_01" onclick="alternarEstado('cs_01', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">001 Cuadro de Planes y Programas DD.HH.</div>
+            <div class="card-path">Carpeta Secundaria/001 Cuadro de Planes y Programas DD.HH.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_01">0</strong></span>
+              <span id="date-cs_01">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cs_02" data-code="002" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/002 Cuadro Registro de Convenios DD.HH.docx">
+          <div class="card-top">
+            <span class="card-code">002</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_02" onclick="alternarEstado('cs_02', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">002 Cuadro Registro de Convenios DD.HH.</div>
+            <div class="card-path">Carpeta Secundaria/002 Cuadro Registro de Convenios DD.HH.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_02">0</strong></span>
+              <span id="date-cs_02">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cs_03" data-code="003" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/003 Cuadro estadistico de violaciones DD.HH.docx">
+          <div class="card-top">
+            <span class="card-code">003</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_03" onclick="alternarEstado('cs_03', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">003 Cuadro estadistico de violaciones DD.HH.</div>
+            <div class="card-path">Carpeta Secundaria/003 Cuadro estadistico de violaciones DD.HH.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_03">0</strong></span>
+              <span id="date-cs_03">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cs_04" data-code="004" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/004 LIBRO REGISTRO SEMANAL.docx">
+          <div class="card-top">
+            <span class="card-code">004</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_04" onclick="alternarEstado('cs_04', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">004 LIBRO REGISTRO SEMANAL</div>
+            <div class="card-path">Carpeta Secundaria/004 LIBRO REGISTRO SEMANAL.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_04">0</strong></span>
+              <span id="date-cs_04">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cs_05" data-code="005" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/caratulas secundaria.docx">
+          <div class="card-top">
+            <span class="card-code">005</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_05" onclick="alternarEstado('cs_05', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">caratulas secundaria</div>
+            <div class="card-path">Carpeta Secundaria/caratulas secundaria.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_05">0</strong></span>
+              <span id="date-cs_05">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+        <button class="download-card" type="button" data-id="cs_06" data-code="006" data-category="Carpeta Secundaria" data-file="Carpeta Secundaria/indice secundaria.docx">
+          <div class="card-top">
+            <span class="card-code">006</span>
+            <div class="card-top-right">
+              <span class="status-badge" id="status-cs_06" onclick="alternarEstado('cs_06', event)">○ PENDIENTE</span>
+              <span class="card-ext">.DOCX ORIGINAL</span>
+            </div>
+          </div>
+          <div>
+            <div class="card-title">indice secundaria</div>
+            <div class="card-path">Carpeta Secundaria/indice secundaria.docx</div>
+          </div>
+          <div class="card-bottom">
+            <div class="card-db-meta">
+              <span>Descargas: <strong id="count-cs_06">0</strong></span>
+              <span id="date-cs_06">Sin descargar</span>
+            </div>
+            <span class="btn-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar
+            </span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- PIE INSTITUCIONAL -->
+    <footer class="footer-bar">
+      <span id="footer-unit-text">ESTADO MAYOR GENERAL — SECCIÓN DE GÉNERO Y DERECHOS HUMANOS</span>
+      <span>Base de datos en localStorage: <strong style="color: #d4af37;" id="footer-count-text">0</strong> transacciones</span>
+    </footer>
+
+  </div>
+
+  <!-- MODAL DE LA BASE DE DATOS LOCALSTORAGE -->
+  <div class="db-modal-overlay" id="db-modal">
+    <div class="db-modal-card">
+      <div class="db-modal-header">
+        <h3>🗄️ Base de Datos Local (localStorage)</h3>
+        <button class="db-modal-close" type="button" onclick="cerrarModalDB()">✕</button>
+      </div>
+
+      <div class="db-modal-body">
+        
+        <!-- Métricas Rápidas -->
+        <div class="db-stats-grid">
+          <div class="db-stat-box">
+            <span class="lbl">Total Descargas</span>
+            <span class="val" id="db-stat-total">0</span>
+          </div>
+          <div class="db-stat-box">
+            <span class="lbl">Doc. Tramitados</span>
+            <span class="val" id="db-stat-tramitados">0</span>
+          </div>
+          <div class="db-stat-box">
+            <span class="lbl">Doc. Archivados</span>
+            <span class="val" id="db-stat-archivados">0</span>
+          </div>
+          <div class="db-stat-box">
+            <span class="lbl">Gestión Activa</span>
+            <span class="val" id="db-stat-gestion">2026</span>
+          </div>
+        </div>
+
+        <!-- Formulario de Configuración Institucional -->
+        <div class="db-form-section">
+          <h4>Configuración Institucional de la Unidad (Guardada en localStorage)</h4>
+          <div class="db-form-grid">
+            <div class="db-input-group">
+              <label>Gran Unidad</label>
+              <input type="text" id="cfg-gran-unidad" value="ESTADO MAYOR GENERAL">
+            </div>
+            <div class="db-input-group">
+              <label>Sección o Repartición</label>
+              <input type="text" id="cfg-pequena-unidad" value="SECCIÓN DE GÉNERO Y DERECHOS HUMANOS">
+            </div>
+            <div class="db-input-group">
+              <label>Oficial Responsable</label>
+              <input type="text" id="cfg-responsable" value="OFICIAL DE GÉNERO Y DERECHOS HUMANOS">
+            </div>
+            <div class="db-input-group">
+              <label>Año / Gestión</label>
+              <input type="text" id="cfg-gestion" value="2026">
+            </div>
+          </div>
+          <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+            <button class="db-btn db-btn-gold" type="button" onclick="guardarConfiguracionDB()">Guardar Configuración en localStorage</button>
+          </div>
+        </div>
+
+        <!-- Bitácora de Auditoría Castrense -->
+        <div class="db-history-section">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <h4 style="margin-bottom: 0;">Bitácora de Auditoría Castrense</h4>
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;" id="db-history-count">0 registros</span>
+          </div>
+          <div class="db-table-wrapper">
+            <table class="db-history-table">
+              <thead>
+                <tr>
+                  <th>Fecha y Hora</th>
+                  <th>Código</th>
+                  <th>Documento</th>
+                  <th>Categoría</th>
+                </tr>
+              </thead>
+              <tbody id="db-history-tbody">
+                <tr>
+                  <td colspan="4" style="text-align: center; color: #94a3b8; padding: 14px;">No hay descargas registradas en esta sesión.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="db-modal-footer">
+        <div style="display: flex; gap: 8px;">
+          <button class="db-btn db-btn-dark" type="button" onclick="exportarRespaldoJSON()">Exportar Respaldo JSON</button>
+          <button class="db-btn db-btn-red" type="button" onclick="restablecerDB()">Restablecer Base de Datos</button>
+        </div>
+        <button class="db-btn db-btn-gold" type="button" onclick="cerrarModalDB()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT: NAVEGACIÓN, DESCARGA WORD Y BASE DE DATOS LOCALSTORAGE -->
+  <script>
+    var DB_KEY = 'ejercito_bolivia_db_v1';
+
+    // Base de datos por defecto
+    var db = {
+      unitData: {
+        granUnidad: 'ESTADO MAYOR GENERAL',
+        pequenaUnidad: 'SECCIÓN DE GÉNERO Y DERECHOS HUMANOS',
+        responsable: 'OFICIAL DE GÉNERO Y DERECHOS HUMANOS',
+        gestion: '2026'
+      },
+      stats: {
+        totalDownloads: 0,
+        downloadsByDoc: {},
+        lastDownloadByDoc: {}
+      },
+      auditLog: [],
+      docStatus: {}
+    };
+
+    // 1. CARGA INICIAL DE LA BASE DE DATOS LOCALSTORAGE
+    function cargarBaseDeDatos() {
+      try {
+        var guardado = localStorage.getItem(DB_KEY);
+        if (guardado) {
+          var parsed = JSON.parse(guardado);
+          db = Object.assign(db, parsed);
+        }
+      } catch (e) {
+        console.warn('Error leyendo base de datos localStorage:', e);
+      }
+      renderizarTodo();
+    }
+
+    function guardarDB() {
+      try {
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+      } catch (e) {
+        console.warn('Error guardando en localStorage:', e);
+      }
+      renderizarTodo();
+    }
+
+    // 2. ACTUALIZACIÓN VISUAL DE LA INTERFAZ CON DATOS DE LA BASE DE DATOS
+    function renderizarTodo() {
+      // Cabecera institucional
+      var dGran = document.getElementById('disp-gran-unidad');
+      var dPeq = document.getElementById('disp-pequena-unidad');
+      var tGest = document.getElementById('top-gestion-lbl');
+      var fUnit = document.getElementById('footer-unit-text');
+      var fCount = document.getElementById('footer-count-text');
+      var topCount = document.getElementById('top-db-count');
+
+      if (dGran) dGran.textContent = db.unitData.granUnidad + ' — EJÉRCITO DE BOLIVIA';
+      if (dPeq) dPeq.textContent = db.unitData.pequenaUnidad;
+      if (tGest) tGest.textContent = 'GESTIÓN ' + db.unitData.gestion;
+      if (fUnit) fUnit.textContent = db.unitData.granUnidad + ' — ' + db.unitData.pequenaUnidad + ' — ' + db.unitData.responsable;
+      if (fCount) fCount.textContent = db.stats.totalDownloads;
+      if (topCount) topCount.textContent = '(' + db.stats.totalDownloads + ')';
+
+      // Métricas modal
+      var sTot = document.getElementById('db-stat-total');
+      var sTram = document.getElementById('db-stat-tramitados');
+      var sArch = document.getElementById('db-stat-archivados');
+      var sGest = document.getElementById('db-stat-gestion');
+      var hCount = document.getElementById('db-history-count');
+
+      var tramitadosCount = 0;
+      var archivadosCount = 0;
+      for (var k in db.docStatus) {
+        if (db.docStatus[k] === 'tramitado') tramitadosCount++;
+        if (db.docStatus[k] === 'archivado') archivadosCount++;
+      }
+
+      if (sTot) sTot.textContent = db.stats.totalDownloads;
+      if (sTram) sTram.textContent = tramitadosCount;
+      if (sArch) sArch.textContent = archivadosCount;
+      if (sGest) sGest.textContent = db.unitData.gestion;
+      if (hCount) hCount.textContent = db.auditLog.length + ' registros';
+
+      // Formulario modal
+      var iGran = document.getElementById('cfg-gran-unidad');
+      var iPeq = document.getElementById('cfg-pequena-unidad');
+      var iResp = document.getElementById('cfg-responsable');
+      var iGest = document.getElementById('cfg-gestion');
+
+      if (iGran) iGran.value = db.unitData.granUnidad;
+      if (iPeq) iPeq.value = db.unitData.pequenaUnidad;
+      if (iResp) iResp.value = db.unitData.responsable;
+      if (iGest) iGest.value = db.unitData.gestion;
+
+      // Actualizar tarjetas de documento
+      var botones = document.querySelectorAll('button[data-file]');
+      botones.forEach(function(btn) {
+        var id = btn.getAttribute('data-id');
+        if (!id) return;
+
+        var countElem = document.getElementById('count-' + id);
+        var dateElem = document.getElementById('date-' + id);
+        var statusElem = document.getElementById('status-' + id);
+
+        var c = db.stats.downloadsByDoc[id] || 0;
+        var d = db.stats.lastDownloadByDoc[id] || 'Sin descargar';
+        var s = db.docStatus[id] || 'pendiente';
+
+        if (countElem) countElem.textContent = c;
+        if (dateElem) dateElem.textContent = d;
+        if (statusElem) {
+          statusElem.className = 'status-badge ' + s;
+          statusElem.textContent = s === 'tramitado' ? '✓ TRAMITADO' : s === 'archivado' ? '📁 ARCHIVADO' : '○ PENDIENTE';
+        }
+      });
+
+      // Tabla de auditoría
+      var tbody = document.getElementById('db-history-tbody');
+      if (tbody) {
+        if (db.auditLog.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8; padding: 14px;">No hay descargas registradas en esta sesión.</td></tr>';
+        } else {
+          var html = '';
+          db.auditLog.forEach(function(log) {
+            html += '<tr>' +
+              '<td style="color: #94a3b8;">' + log.timestamp + '</td>' +
+              '<td style="font-weight: bold; color: #d4af37;">' + log.code + '</td>' +
+              '<td style="color: #fff;">' + log.title + '</td>' +
+              '<td style="color: #94a3b8;">' + log.category + '</td>' +
+              '</tr>';
+          });
+          tbody.innerHTML = html;
+        }
+      }
+    }
+
+    // 3. ALTERNAR PESTAÑAS (TABS)
+    function cambiarPestana(idPestana, elementoBoton) {
+      var botones = document.querySelectorAll('.tab-btn');
+      botones.forEach(function(btn) { btn.classList.remove('active'); });
+
+      var paneles = document.querySelectorAll('.tab-pane');
+      paneles.forEach(function(pane) { pane.classList.remove('active'); });
+
+      elementoBoton.classList.add('active');
+      var panelActivo = document.getElementById('tab-' + idPestana);
+      if (panelActivo) {
+        panelActivo.classList.add('active');
+      }
+    }
+
+    // 4. DESCARGA PROGRAMÁTICA CON REGISTRO EN BASE DE DATOS LOCALSTORAGE
+    async function ejecutarDescargaSegura(boton) {
+      var rutaArchivo = boton.getAttribute('data-file');
+      var id = boton.getAttribute('data-id');
+      var code = boton.getAttribute('data-code');
+      var category = boton.getAttribute('data-category');
+      var title = boton.querySelector('.card-title')?.textContent || code;
+
+      if (!rutaArchivo) return;
+
+      var rutaSegura = encodeURI(rutaArchivo);
+      var nombreArchivo = rutaArchivo.substring(rutaArchivo.lastIndexOf('/') + 1);
+
+      try {
+        var respuesta = await fetch(rutaSegura);
+        if (!respuesta.ok) throw new Error('Servidor local no disponible');
+
+        var blobOriginal = await respuesta.blob();
+        var blobWord = new Blob([blobOriginal], {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        });
+
+        var blobUrl = URL.createObjectURL(blobWord);
+        var enlace = document.createElement('a');
+        enlace.href = blobUrl;
+        enlace.setAttribute('download', nombreArchivo);
+        enlace.style.display = 'none';
+        document.body.appendChild(enlace);
+        enlace.click();
+
+        setTimeout(function() {
+          document.body.removeChild(enlace);
+          URL.revokeObjectURL(blobUrl);
+        }, 1000);
+      } catch (err) {
+        var enlaceFallback = document.createElement('a');
+        enlaceFallback.href = rutaSegura;
+        enlaceFallback.setAttribute('download', nombreArchivo);
+        enlaceFallback.style.display = 'none';
+        document.body.appendChild(enlaceFallback);
+        enlaceFallback.click();
+
+        setTimeout(function() {
+          document.body.removeChild(enlaceFallback);
+        }, 500);
+      }
+
+      // Registro en Base de Datos LocalStorage
+      var ahora = new Date();
+      var fechaFormateada = ahora.toLocaleDateString('es-BO') + ' ' + ahora.toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
+
+      db.stats.totalDownloads = (db.stats.totalDownloads || 0) + 1;
+      db.stats.downloadsByDoc[id] = (db.stats.downloadsByDoc[id] || 0) + 1;
+      db.stats.lastDownloadByDoc[id] = fechaFormateada;
+      db.docStatus[id] = 'tramitado';
+
+      db.auditLog.unshift({
+        id: 'log_' + Date.now(),
+        docId: id,
+        code: code,
+        title: title,
+        filename: nombreArchivo,
+        category: category,
+        timestamp: fechaFormateada
+      });
+
+      if (db.auditLog.length > 100) {
+        db.auditLog = db.auditLog.slice(0, 100);
+      }
+
+      guardarDB();
+    }
+
+    // 5. ALTERNAR ESTADO MANUALMENTE (PENDIENTE / TRAMITADO / ARCHIVADO)
+    function alternarEstado(id, event) {
+      if (event) event.stopPropagation();
+      var actual = db.docStatus[id] || 'pendiente';
+      var siguiente = actual === 'pendiente' ? 'tramitado' : actual === 'tramitado' ? 'archivado' : 'pendiente';
+      db.docStatus[id] = siguiente;
+      guardarDB();
+    }
+
+    // 6. FUNCIONES DEL MODAL DE LA BASE DE DATOS
+    function abrirModalDB() {
+      document.getElementById('db-modal').classList.add('active');
+    }
+
+    function cerrarModalDB() {
+      document.getElementById('db-modal').classList.remove('active');
+    }
+
+    function guardarConfiguracionDB() {
+      db.unitData.granUnidad = document.getElementById('cfg-gran-unidad').value;
+      db.unitData.pequenaUnidad = document.getElementById('cfg-pequena-unidad').value;
+      db.unitData.responsable = document.getElementById('cfg-responsable').value;
+      db.unitData.gestion = document.getElementById('cfg-gestion').value;
+      guardarDB();
+      alert('Configuración guardada en la base de datos localStorage.');
+    }
+
+    function exportarRespaldoJSON() {
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
+      var dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", dataStr);
+      dlAnchor.setAttribute("download", "respaldo_db_gddhh_" + Date.now() + ".json");
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+    }
+
+    function restablecerDB() {
+      if (confirm('¿Desea restablecer la base de datos local? Se borrará el contador y el historial de descargas.')) {
+        localStorage.removeItem(DB_KEY);
+        location.reload();
+      }
+    }
+
+    // Inicialización al cargar el DOM
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarBaseDeDatos();
+
+      var botones = document.querySelectorAll('button[data-file]');
+      botones.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          ejecutarDescargaSegura(this);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

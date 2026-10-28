@@ -1,0 +1,6 @@
+{
+  "name": "Sistema de Descarga de Anexos - Ejército de Bolivia",
+  "description": "Plataforma institucional de alto contraste para la descarga de los 9 anexos normativos oficiales en formato Word (.doc).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
