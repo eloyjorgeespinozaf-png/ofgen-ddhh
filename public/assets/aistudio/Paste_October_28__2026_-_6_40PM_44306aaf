@@ -1,0 +1,2157 @@
+<html lang="es"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjExNjRiNzdiNDMzZDdhMDAyMWI4NjE4YjhjYTU3ZTMyZGI5MWUxMTMiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIwNjcyOTgzOTU0NDc4Mjc4MTA3OSIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjXzNiNjAxOGU1MTRkY2Q0YzBfbWFudWFsX2dlbmVyb19lamVyY2l0by5odG1sLTM0MSJ9LCJleHAiOjE3OTMyMzA3MTUsImlhdCI6MTc5MzIyNzExNSwiYWxnIjoiUlMyNTYifQ.hPGgeKChXnAgg9Xk9lSL066Mn_F7ekfINb-i1lYCNuIX7ckFRkOLz2l_pIP_pUZAD3F1hoQkO0m0TRvUmKLI6bjuPRbM5JlwCwm37z6IG1JsBUyunUYs6QjkqHqNNMa-qJbiG7lV8t9XZD6u9rFQZ7YH__CfebvBLHjd6gWXUWj7wk1jN7pRDmvABBFiwTkgpwlBAmGDdadJu6gnwFPwOEhq4WtbcHkar_tliZaI_AH8dDJLuqw2TN9l_7UzZmmScUawVJXmWzuPi-ywSoiU76oT2tottyDOorbezmmP1JJoXinqWej0rIklM-r1M_grCUVJ8GXwJMWgNjdMeLDkMA","c_3b6018e514dcd4c0_manual_genero_ejercito.html-341")</script><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function(){'use strict';var k=typeof Object.defineProperties=="function"?Object.defineProperty:function(a,b,d){if(a==Array.prototype||a==Object.prototype)return a;a[b]=d.value;return a};function m(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var d=a[b];if(d&&d.Math==Math)return d}throw Error("Cannot find global object");}var q=m(this);
+function r(a,b){if(b)a:{var d=q;a=a.split(".");for(var c=0;c<a.length-1;c++){var e=a[c];if(!(e in d))break a;d=d[e]}a=a[a.length-1];c=d[a];b=b(c);b!=c&&b!=null&&k(d,a,{configurable:!0,writable:!0,value:b})}}function t(a){function b(c){return a.next(c)}function d(c){return a.throw(c)}return new Promise(function(c,e){function f(g){g.done?c(g.value):Promise.resolve(g.value).then(b,d).then(f,e)}f(a.next())})}function u(a){return t(a())}
+r("Object.values",function(a){return a?a:function(b){var d=[],c;for(c in b)Object.prototype.hasOwnProperty.call(b,c)&&d.push(b[c]);return d}});r("Array.prototype.includes",function(a){return a?a:function(b,d){var c=this;c instanceof String&&(c=String(c));var e=c.length;d=d||0;for(d<0&&(d=Math.max(d+e,0));d<e;d++){var f=c[d];if(f===b||Object.is(f,b))return!0}return!1}});/*
+
+ MIT License
+
+ Copyright (c) 2017-2023 W.Y.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
+function v(a,b){var d=a.style;b.backgroundColor&&(d.backgroundColor=b.backgroundColor);b.width&&(d.width=`${b.width}px`);b.height&&(d.height=`${b.height}px`);var c=b.style;c!=null&&Object.keys(c).forEach(e=>{d[e]=c[e]})};var aa=(()=>{var a=0;return()=>{a+=1;return`u${`0000${(Math.random()*1679616<<0).toString(36)}`.slice(-4)}${a}`}})();function w(a){var b=[];for(let d=0,c=a.length;d<c;d++)b.push(a[d]);return b}let y=null;function z(a={}){return y?y:a.u?y=a.u:y=w(window.getComputedStyle(document.documentElement))}function A(a,b){return(a=(a.ownerDocument.defaultView||window).getComputedStyle(a).getPropertyValue(b))?parseFloat(a.replace("px","")):0}
+function B(a,b={}){var d;if(!(d=b.width)){d=A(a,"border-left-width");var c=A(a,"border-right-width");d=a.clientWidth+d+c}(b=b.height)||(b=A(a,"border-top-width"),c=A(a,"border-bottom-width"),b=a.clientHeight+b+c);return{width:d,height:b}}function C(a){return new Promise((b,d)=>{var c=new Image;c.onload=()=>{c.decode().then(()=>{requestAnimationFrame(()=>b(c))})};c.onerror=d;c.crossOrigin="anonymous";c.decoding="async";c.src=a})}
+function ba(a){return u(function*(){return Promise.resolve().then(()=>(new XMLSerializer).serializeToString(a)).then(encodeURIComponent).then(b=>`data:image/svg+xml;charset=utf-8,${b}`)})}
+function ca(a,b,d){return u(function*(){var c=document.createElementNS("http://www.w3.org/2000/svg","svg"),e=document.createElementNS("http://www.w3.org/2000/svg","foreignObject");c.setAttribute("width",`${b}`);c.setAttribute("height",`${d}`);c.setAttribute("viewBox",`0 0 ${b} ${d}`);e.setAttribute("width","100%");e.setAttribute("height","100%");e.setAttribute("x","0");e.setAttribute("y","0");e.setAttribute("externalResourcesRequired","true");c.appendChild(e);e.appendChild(a);return ba(c)})}
+var D=(a,b)=>{if(a instanceof b)return!0;a=Object.getPrototypeOf(a);return a===null?!1:a.constructor.name===b.name||D(a,b)};function da(a,b){return z(b).map(d=>{var c=a.getPropertyValue(d),e=a.getPropertyPriority(d);return`${d}: ${c}${e?" !important":""};`}).join(" ")}
+function E(a,b,d,c){a=window.getComputedStyle(a,d);var e=a.getPropertyValue("content");if(e!==""&&e!=="none"){var f=aa();try{b.className=`${b.className} ${f}`}catch(h){return}e=document.createElement("style");var g=e.appendChild;d=`.${f}:${d}`;a.cssText?(c=a.getPropertyValue("content"),c=`${a.cssText} content: '${c.replace(/'|"/g,"")}';`):c=da(a,c);g.call(e,document.createTextNode(`${d}{${c}}`));b.appendChild(e)}};function F(a){return a.search(/^(data:)/)!==-1}function G(a,b,d){return u(function*(){var c=yield fetch(a,b);if(c.status===404)throw Error(`Resource "${c.url}" not found`);var e=yield c.blob();return new Promise((f,g)=>{var h=new FileReader;h.onerror=g;h.onloadend=()=>{try{f(d({v:c,result:h.result}))}catch(l){g(l)}};h.readAsDataURL(e)})})}const H={};function ea(a,b,d){var c=a.replace(/\?.*/,"");d&&(c=a);/ttf|otf|eot|woff2?/i.test(c)&&(c=c.replace(/.*\//,""));return b?`[${b}]${c}`:c}
+function I(a,b,d){return u(function*(){var c=ea(a,b,d.F);if(H[c]!=null)return H[c];d.B&&(a+=(/\?/.test(a)?"&":"?")+(new Date).getTime());try{let f=yield G(a,d.l,({v:g,result:h})=>{b||(b=g.headers.get("Content-Type")||"");return h.split(/,/)[1]});var e=`data:${b};base64,${f}`}catch(f){e=d.o||""}return H[c]=e})};const J={R:"application/font-woff",S:"application/font-woff",O:"application/font-truetype",C:"application/vnd.ms-fontobject",J:"image/png",H:"image/jpeg",G:"image/jpeg",D:"image/gif",N:"image/tiff",M:"image/svg+xml",P:"image/webp"};function K(a){return(a=/\.([^./]*?)$/g.exec(a))?a[1]:""};function fa(a){return u(function*(){var b=a.toDataURL();return b==="data:,"?a.cloneNode(!1):C(b)})}function ha(a,b){return u(function*(){if(a.currentSrc){var d=document.createElement("canvas");let c=d.getContext("2d");d.width=a.clientWidth;d.height=a.clientHeight;c==null||c.drawImage(a,0,0,d.width,d.height);d=d.toDataURL();return C(d)}d=a.poster;d=yield I(d,J[K(d).toLowerCase()]||"",b);return C(d)})}
+function ia(a,b){return u(function*(){try{let d;if(a==null?0:(d=a.contentDocument)==null?0:d.body)return yield L(a.contentDocument.body,b,!0)}catch(d){}return a.cloneNode(!1)})}function ja(a,b){return u(function*(){return D(a,HTMLCanvasElement)?fa(a):D(a,HTMLVideoElement)?ha(a,b):D(a,HTMLIFrameElement)?ia(a,b):a.cloneNode(a.tagName!=null&&a.tagName.toUpperCase()==="SVG")})}
+function ka(a,b,d){return u(function*(){if(b.tagName!=null&&b.tagName.toUpperCase()==="SVG")return b;var c=[];if(a.tagName!=null&&a.tagName.toUpperCase()==="SLOT"&&a.assignedNodes)c=w(a.assignedNodes());else{let e;if(D(a,HTMLIFrameElement)&&((e=a.contentDocument)==null?0:e.body))c=w(a.contentDocument.body.childNodes);else{let f;c=w(((f=a.shadowRoot)!=null?f:a).childNodes)}}if(c.length===0||D(a,HTMLVideoElement))return b;yield c.reduce((e,f)=>e.then(()=>L(f,d)).then(g=>{g&&b.appendChild(g)}),Promise.resolve());
+return b})}function la(a,b,d){var c=b.style;if(c){var e=window.getComputedStyle(a);e.cssText?(c.cssText=e.cssText,c.transformOrigin=e.transformOrigin):z(d).forEach(f=>{var g=e.getPropertyValue(f);f==="font-size"&&g.endsWith("px")&&(g=`${Math.floor(parseFloat(g.substring(0,g.length-2)))-.1}px`);D(a,HTMLIFrameElement)&&f==="display"&&g==="inline"&&(g="block");f==="d"&&b.getAttribute("d")&&(g=`path(${b.getAttribute("d")})`);c.setProperty(f,g,e.getPropertyPriority(f))})}}
+function ma(a,b){D(a,HTMLSelectElement)&&(b=Array.from(b.children).find(d=>a.value===d.getAttribute("value")))&&b.setAttribute("selected","")}
+function na(a,b){return u(function*(){var d=a.querySelectorAll?a.querySelectorAll("use"):[];if(d.length===0)return a;var c={};for(var e=0;e<d.length;e++){var f=d[e].getAttribute("xlink:href");if(f){let g=document.querySelector(f);a.querySelector(f)||!g||c[f]||(c[f]=yield L(g,b,!0))}}d=Object.values(c);if(d.length){c=document.createElementNS("http://www.w3.org/1999/xhtml","svg");c.setAttribute("xmlns","http://www.w3.org/1999/xhtml");c.style.position="absolute";c.style.width="0";c.style.height="0";
+c.style.overflow="hidden";c.style.display="none";e=document.createElementNS("http://www.w3.org/1999/xhtml","defs");c.appendChild(e);for(f=0;f<d.length;f++)e.appendChild(d[f]);a.appendChild(c)}return a})}
+function L(a,b,d){return u(function*(){return d||!b.filter||b.filter(a)?Promise.resolve(a).then(c=>ja(c,b)).then(c=>ka(a,c,b)).then(c=>{D(c,Element)&&(la(a,c,b),E(a,c,":before",b),E(a,c,":after",b),D(a,HTMLTextAreaElement)&&(c.textContent=a.value),D(a,HTMLInputElement)&&c.setAttribute("value",a.value),ma(a,c));return c}).then(c=>na(c,b)):null})};const M=/url\((['"]?)([^'"]+?)\1\)/g,oa=/url\([^)]+\)\s*format\((["']?)([^"']+)\1\)/g,pa=/src:\s*(?:url\([^)]+\)\s*format\([^)]+\)[,;]\s*)+/g;function qa(a){var b=[];a.replace(M,(d,c,e)=>{b.push(e);return d});return b.filter(d=>!F(d))}
+function ra(a,b,d,c){return u(function*(){try{let e=d?(new URL(b,d||void 0)).toString():b,f;f=yield I(e,J[K(b).toLowerCase()]||"",c);return a.replace(new RegExp(`(url\\(['"]?)(${b.replace(/([.*+?^${}()|\[\]\/\\])/g,"\\$1")})(['"]?\\))`,"g"),`$1${f}$3`)}catch(e){}return a})}function sa(a,{K:b}){return b?a.replace(pa,d=>{for(;;){let [c,,e]=oa.exec(d)||[];if(!e)return"";if(e===b)return`src: ${c};`}}):a}
+function N(a,b,d){return u(function*(){if(a.search(M)===-1)return a;var c=sa(a,d);return qa(c).reduce((e,f)=>e.then(g=>ra(g,f,b,d)),Promise.resolve(c))})};function O(a,b,d){return u(function*(){var c,e=(c=b.style)==null?void 0:c.getPropertyValue(a);return e?(c=yield N(e,null,d),b.style.setProperty(a,c,b.style.getPropertyPriority(a)),!0):!1})}function ta(a,b){return u(function*(){(yield O("background",a,b))||(yield O("background-image",a,b));(yield O("mask",a,b))||(yield O("-webkit-mask",a,b))||(yield O("mask-image",a,b))||(yield O("-webkit-mask-image",a,b))})}
+function ua(a,b){return u(function*(){var d=D(a,HTMLImageElement);if(d&&!F(a.src)||D(a,SVGImageElement)&&!F(a.href.baseVal)){var c=d?a.src:a.href.baseVal,e=yield I(c,J[K(c).toLowerCase()]||"",b);yield new Promise((f,g)=>{a.onload=f;a.onerror=b.h?(...h)=>{try{f(b.h(...h))}catch(l){g(l)}}:g;a.decode&&(a.decode=f);a.loading==="lazy"&&(a.loading="eager");d?(a.srcset="",a.src=e):a.href.baseVal=e})}})}
+function va(a,b){return u(function*(){var d=w(a.childNodes).map(c=>P(c,b));yield Promise.all(d).then(()=>a)})}function P(a,b){return u(function*(){D(a,Element)&&(yield ta(a,b),yield ua(a,b),yield va(a,b))})};const Q={};function R(a){return u(function*(){var b=Q[a];if(b!=null)return b;b=yield(yield fetch(a)).text();b={url:a,cssText:b};return Q[a]=b})}function S(a,b){return u(function*(){var d=a.cssText,c=/url\(["']?([^"')]+)["']?\)/g,e=(d.match(/url\([^)]+\)/g)||[]).map(f=>u(function*(){var g=f.replace(c,"$1");g.startsWith("https://")||(g=(new URL(g,a.url)).href);return G(g,b.l,({result:h})=>{d=d.replace(f,`url(${h})`);return[f,h]})}));return Promise.all(e).then(()=>d)})}
+function T(a){if(a==null)return[];var b=[];a=a.replace(/(\/\*[\s\S]*?\*\/)/gi,"");for(var d=RegExp("((@.*?keyframes [\\s\\S]*?){([\\s\\S]*?}\\s*?)})","gi");;){var c=d.exec(a);if(c===null)break;b.push(c[0])}a=a.replace(d,"");d=/@import[\s\S]*?url\([^)]*\)[\s\S]*?;/gi;for(c=RegExp("((\\s*?(?:\\/\\*[\\s\\S]*?\\*\\/)?\\s*?@media[\\s\\S]*?){([\\s\\S]*?)}\\s*?})|(([\\s\\S]*?){([\\s\\S]*?)})","gi");;){let e=d.exec(a);if(e===null)if(e=c.exec(a),e===null)break;else d.lastIndex=c.lastIndex;else c.lastIndex=
+d.lastIndex;b.push(e[0])}return b}
+function wa(a,b){return u(function*(){var d=[],c=[];a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach((f,g)=>{if(f.type===CSSRule.IMPORT_RULE){let h=g+1;f=R(f.href).then(l=>S(l,b)).then(l=>T(l).forEach(p=>{try{e.insertRule(p,p.startsWith("@import")?h+=1:e.cssRules.length)}catch(x){}})).catch(()=>{});c.push(f)}})}catch(f){let g=a.find(h=>h.href==null)||document.styleSheets[0];e.href!=null&&c.push(R(e.href).then(h=>S(h,b)).then(h=>T(h).forEach(l=>{g.insertRule(l,g.cssRules.length)})).catch(()=>
+{}))}});return Promise.all(c).then(()=>{a.forEach(e=>{if("cssRules"in e)try{w(e.cssRules||[]).forEach(f=>{d.push(f)})}catch(f){}});return d})})}function xa(a){return a.filter(b=>b.type===CSSRule.FONT_FACE_RULE).filter(b=>b.style.getPropertyValue("src").search(M)!==-1)}function ya(a,b){return u(function*(){if(a.ownerDocument==null)throw Error("Provided element is not within a Document");var d=yield wa(w(a.ownerDocument.styleSheets),b);return xa(d)})}
+function za(a){function b(c){(c.style.fontFamily||getComputedStyle(c).fontFamily).split(",").forEach(e=>{d.add(e.trim().replace(/["']/g,""))});Array.from(c.children).forEach(e=>{e instanceof HTMLElement&&b(e)})}var d=new Set;b(a);return d}function Aa(a,b){return u(function*(){var d=yield ya(a,b),c=za(a);return(yield Promise.all(d.filter(e=>c.has(e.style.fontFamily.trim().replace(/["']/g,""))).map(e=>N(e.cssText,e.parentStyleSheet?e.parentStyleSheet.href:null,b)))).join("\n")})}
+function Ba(a,b){return u(function*(){var d=b.m!=null?b.m:b.A?null:yield Aa(a,b);if(d){let c=document.createElement("style");c.appendChild(document.createTextNode(d));a.firstChild?a.insertBefore(c,a.firstChild):a.appendChild(c)}})};function Ca(a,b={}){return u(function*(){var {width:d,height:c}=B(a,b),e=yield L(a,b,!0);yield Ba(e,b);yield P(e,b);v(e,b);return yield ca(e,d,c)})}
+function Da(a,b={}){return u(function*(){var {width:d,height:c}=B(a,b),e=yield Ca(a,b);e=yield C(e);var f=document.createElement("canvas"),g=f.getContext("2d"),h=b.I||window.devicePixelRatio||1,l=b.j||d,p=b.i||c;f.width=l*h;f.height=p*h;!b.L&&(f.width>16384||f.height>16384)&&(f.width>16384&&f.height>16384?f.width>f.height?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384):f.width>16384?(f.height*=16384/f.width,f.width=16384):(f.width*=16384/f.height,f.height=16384));
+f.style.width=`${l}`;f.style.height=`${p}`;b.backgroundColor&&(g.fillStyle=b.backgroundColor,g.fillRect(0,0,f.width,f.height));g.drawImage(e,0,0,f.width,f.height);return f})}function Ea(a,b={}){return u(function*(){return(yield Da(a,b)).toDataURL()})};const Fa=["gemini.google.com","corp.google.com","proxy.googlers.com"];function V(a){a=Number(a.replace(/px$/,""));return Number.isFinite(a)?a:0}function W(){return document.body.querySelectorAll('[class*="animate"]').length>0}function X(a,b){var d=document.createElement("canvas");d.width=a;d.height=b;return d.toDataURL("image/png")}const Y=X(1,1);
+function Z(a,b){return u(function*(){var d=Math.max(b?b.width:a.offsetWidth,1),c=Math.max(b?b.height:a.offsetHeight,1),e=HTMLCanvasElement.prototype.toDataURL;b&&(HTMLCanvasElement.prototype.toDataURL=function(f,g){var h;if(h=this.isConnected&&a.contains(this)){{let n=this.getBoundingClientRect();if(n.width===0||n.height===0)h=!1;else if(window.getComputedStyle(this).position==="fixed")h=n.bottom>0&&n.top<b.height&&n.right>0&&n.left<b.width;else{h=a.getBoundingClientRect();var l=n.top-h.top,p=n.left-
+h.left,x=n.right-h.left;h=n.bottom-h.top>b.scrollTop&&l<b.scrollTop+b.height&&x>b.scrollLeft&&p<b.scrollLeft+b.width}}h=!h}return h?"data:,":e.call(this,f,g)});try{let f=window.getComputedStyle(a),g=b?`${V(f.marginTop)-b.scrollTop}px`:void 0,h=b?`${V(f.marginLeft)-b.scrollLeft}px`:void 0,l=`${Math.max(a.offsetWidth,d)}px`,p,x=`${Math.max(a.offsetHeight,c+((p=b==null?void 0:b.scrollTop)!=null?p:0))}px`;return yield Ea(a,Object.assign({},{width:d,height:c,j:d,i:c},b?{style:{width:l,height:x,marginTop:g,
+marginLeft:h,marginBlockStart:g,marginInlineStart:h}}:{},{A:!0,filter:n=>{if(n.tagName==="IMG"){let U=n.getAttribute("src");if(!U||U.trim()===""||n.style.display==="none")return!1}return!0},o:Y,h:()=>Y}))}catch(f){return X(d,c)}finally{HTMLCanvasElement.prototype.toDataURL=e}})}
+function Ga(){return u(function*(){var a=document.body.offsetWidth,b=document.body.offsetHeight,d=document.body.cloneNode(!0);d.querySelectorAll('[class*="animate"]').forEach(c=>{c.classList.remove(...Array.from(c.classList).filter(e=>e.startsWith("animate")))});d.style.width=`${a}px`;d.style.height=`${b}px`;return d})}
+function Ha(a){return u(function*(){var b={width:window.innerWidth||document.documentElement.clientWidth||document.body.offsetWidth,height:window.innerHeight||document.documentElement.clientHeight||document.body.offsetHeight,scrollTop:window.scrollY||document.documentElement.scrollTop||document.body.scrollTop||0,scrollLeft:window.scrollX||document.documentElement.scrollLeft||document.body.scrollLeft||0},d=document.body;if(W()){let c=yield Ga();d=c;document.body.appendChild(c)}b=yield Z(d,b);W()&&
+document.body.removeChild(d);window.parent.postMessage({type:"SEND_SCREENSHOT",image:b,topOffset:0},a.origin)})}function Ia(a){return u(function*(){var b={type:"SEND_SCREENSHOT_FOR_DATA_VISUALIZATION",image:yield Z(document.body),topOffset:0};window.parent.postMessage(b,a.origin)})}window.addEventListener("message",a=>u(function*(){if(Fa.some(d=>a.origin.includes(d))){var b=a.data;b&&(b.type==="MAKE_SCREENSHOT"&&(yield Ha(a)),b.type==="MAKE_SCREENSHOT_FOR_DATA_VISUALIZATION"&&(yield Ia(a)))}}));
+})();</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.j=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.i="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function() {
+  function normalizeSlug(str) {
+    try {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^p{L}p{N}s_-]/gu, '')
+        .replace(/s+/g, '-');
+    } catch (e) {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9s_-]/g, '')
+        .replace(/s+/g, '-');
+    }
+  }
+
+  function findTargetElement(hash) {
+    if (!hash || hash === '#') {
+      return null;
+    }
+    const rawId = hash.startsWith('#') ? hash.slice(1) : hash;
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId);
+    } catch (e) {
+      // Ignore URI malformed errors.
+    }
+
+    // 1. Direct ID match (raw and decoded).
+    let target = document.getElementById(rawId) || document.getElementById(decodedId);
+    if (target) {
+      return target;
+    }
+
+    // 2. Name attribute match (<a name="...">).
+    try {
+      if (typeof CSS !== 'undefined' && CSS.escape) {
+        target =
+          document.querySelector('[name="' + CSS.escape(rawId) + '"]') ||
+          document.querySelector('[name="' + CSS.escape(decodedId) + '"]');
+      } else {
+        const namedElements = document.getElementsByName(rawId);
+        if (namedElements && namedElements.length > 0) {
+          return namedElements[0];
+        }
+      }
+    } catch (e) {
+      // Ignore querySelector syntax errors.
+    }
+    if (target) {
+      return target;
+    }
+
+    // 3. Match heading text by slug (for Markdown TOCs where headings lack explicit IDs).
+    const targetSlug = normalizeSlug(decodedId);
+    if (targetSlug) {
+      for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+        if (normalizeSlug(heading.textContent || '') === targetSlug) {
+          return heading;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const anchor = target && typeof target.closest === 'function' ? target.closest('a') : null;
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+    if (
+      !href ||
+      href.trim().toLowerCase().startsWith('javascript:') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    // Check if the link is an in-page hash / anchor link.
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetElement = findTargetElement(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+
+    // Check if the URL has the same origin/pathname but with a hash.
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.hash &&
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname
+      ) {
+        event.preventDefault();
+        const targetElement = findTargetElement(url.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+        return;
+      }
+    } catch (e) {
+      // Fall through if URL parsing fails.
+    }
+
+    // For all external or full navigation links, prevent iframe-level navigation
+    // (which breaks in AGSA WebView or sandboxed iframes) and ensure they open
+    // safely in a new tab/window.
+    if (anchor.target !== '_blank') {
+      event.preventDefault();
+      window.open(anchor.href, '_blank', 'noopener,noreferrer');
+    }
+  }, {capture: true});
+})();</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Doctrinario - Oficial de Género y DD.HH.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Merriweather:wght@400;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --army-green: #2c4c3b;
+            --army-light: #e8ecea;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .doc-content {
+            font-family: 'Merriweather', serif;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+        .doc-content h1, .doc-content h2, .doc-content h3 {
+            font-family: 'Inter', sans-serif;
+            color: var(--army-green);
+        }
+        .watermark-text {
+            color: #dc2626; /* Red for RESERVADO */
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .page-marker {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-align: center;
+            margin: 2rem 0;
+            border-bottom: 1px dashed #d1d5db;
+            padding-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            #sidebar, #top-bar, .no-print { display: none !important; }
+            #main-content { margin: 0; padding: 0; box-shadow: none; width: 100%; max-width: 100%; overflow: visible;}
+            .page-break { page-break-before: always; }
+            .doc-content { font-size: 11pt; }
+        }
+
+        /* Toast Animation */
+        .toast-enter { transform: translateY(100%); opacity: 0; }
+        .toast-enter-active { transform: translateY(0); opacity: 1; transition: all 0.3s ease-out; }
+        .toast-leave { transform: translateY(0); opacity: 1; }
+        .toast-leave-active { transform: translateY(100%); opacity: 0; transition: all 0.3s ease-in; }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-4{bottom:1rem}.right-4{right:1rem}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.col-span-2{grid-column:span 2 / span 2}.mx-auto{margin-left:auto;margin-right:auto}.my-12{margin-top:3rem;margin-bottom:3rem}.my-6{margin-top:1.5rem;margin-bottom:1.5rem}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-6{margin-left:1.5rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mb-16{margin-bottom:4rem}.mr-1{margin-right:0.25rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-24{height:6rem}.h-4{height:1rem}.h-48{height:12rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-full{height:100%}.h-screen{height:100vh}.h-10{height:2.5rem}.h-20{height:5rem}.h-8{height:2rem}.min-h-\[800px\]{min-height:800px}.w-24{width:6rem}.w-4{width:1rem}.w-48{width:12rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-72{width:18rem}.w-8{width:2rem}.w-full{width:100%}.w-1\/2{width:50%}.w-16{width:4rem}.w-20{width:5rem}.w-3\/4{width:75%}.w-32{width:8rem}.w-64{width:16rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.flex-1{flex:1 1 0%}.border-collapse{border-collapse:collapse}.-translate-x-full{--tw-translate-x:-100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.list-decimal{list-style-type:decimal}.list-none{list-style-type:none}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-4{border-width:4px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-t{border-top-width:1px}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-gray-400{--tw-border-opacity:1;border-color:rgb(156 163 175 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-black{--tw-border-opacity:1;border-color:rgb(0 0 0 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.bg-\[\#13221b\]{--tw-bg-opacity:1;background-color:rgb(19 34 27 / var(--tw-bg-opacity, 1))}.bg-\[\#1a2e24\]{--tw-bg-opacity:1;background-color:rgb(26 46 36 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-8{padding:2rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-1{padding-bottom:0.25rem}.pb-24{padding-bottom:6rem}.pl-4{padding-left:1rem}.pl-6{padding-left:1.5rem}.pl-8{padding-left:2rem}.pt-10{padding-top:2.5rem}.pt-4{padding-top:1rem}.pt-8{padding-top:2rem}.pb-2{padding-bottom:0.5rem}.pl-2{padding-left:0.5rem}.pr-4{padding-right:1rem}.pt-1{padding-top:0.25rem}.text-center{text-align:center}.text-justify{text-align:justify}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.leading-loose{line-height:2}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-\[var\(--army-green\)\]{color:var(--army-green)}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.selection\:bg-green-200 *::selection{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.selection\:text-green-900 *::selection{--tw-text-opacity:1;color:rgb(20 83 45 / var(--tw-text-opacity, 1))}.selection\:bg-green-200::selection{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.selection\:text-green-900::selection{--tw-text-opacity:1;color:rgb(20 83 45 / var(--tw-text-opacity, 1))}.hover\:bg-blue-100:hover{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\:bg-green-100:hover{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:block{display:block}.sm\:inline{display:inline}.sm\:p-16{padding:4rem}.sm\:p-8{padding:2rem}}@media (min-width: 768px){.md\:relative{position:relative}.md\:flex{display:flex}.md\:hidden{display:none}.md\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:p-12{padding:3rem}}</style></head>
+<body class="flex h-screen overflow-hidden antialiased selection:bg-green-200 selection:text-green-900">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-50 hidden opacity-0 transition-opacity duration-300 flex items-center gap-2">
+        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-message">Mensaje</span>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="w-72 bg-[#1a2e24] text-gray-300 flex flex-col h-full hidden md:flex z-20 shadow-xl transition-transform duration-300 absolute md:relative transform -translate-x-full md:translate-x-0">
+        <div class="p-5 border-b border-gray-700 bg-[#13221b] flex justify-between items-center">
+            <div>
+                <h2 class="text-white font-bold text-lg leading-tight">Manual Doctrinario</h2>
+                <p class="text-xs text-green-400 mt-1">Of. Género y DD.HH.</p>
+            </div>
+            <button id="close-sidebar" class="md:hidden text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 space-y-1 text-sm font-medium">
+            <a href="#portada" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Portada</a>
+            <a href="#admin-pages" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Páginas Administrativas</a>
+            <a href="#indice" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Índice</a>
+            
+            <div class="pt-4 pb-1 px-2 text-xs uppercase tracking-wider text-gray-500 font-bold">Contenido</div>
+            <a href="#introduccion" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Introducción</a>
+            <a href="#capitulo-1" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Capítulo I: Bases Legales</a>
+            <a href="#capitulo-2" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Capítulo II: Organización y Funciones</a>
+            <a href="#capitulo-3" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Capítulo III: Gestión Documental</a>
+            <a href="#capitulo-4" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition bg-white/20 text-white">Capítulo IV: Protocolos de Atención</a>
+            
+            <div class="pt-4 pb-1 px-2 text-xs uppercase tracking-wider text-gray-500 font-bold">Anexos</div>
+            <a href="#anexo-a" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo A: Formulario de Denuncia</a>
+            <a href="#anexo-b" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo B: Parte de Incidente</a>
+            <a href="#anexo-c" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo C: Entrevista Afectada</a>
+            <a href="#anexo-d" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo D: Entrevista Denunciada</a>
+            <a href="#anexo-e" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo E: Acta de Confidencialidad</a>
+            <a href="#anexo-f" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo F: Valoración de Riesgo</a>
+            <a href="#anexo-g" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo G: Derivación Interinstitucional</a>
+            <a href="#anexo-h" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo H: Glosario</a>
+            <a href="#anexo-i" class="nav-link block p-2 rounded hover:bg-white/10 hover:text-white transition">Anexo I: Ajustes</a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden bg-gray-100">
+        
+        <!-- Top Toolbar -->
+        <header id="top-bar" class="bg-white border-b border-gray-200 px-4 py-3 flex justify-between items-center shadow-sm z-10">
+            <div class="flex items-center gap-3">
+                <button id="open-sidebar" class="md:hidden text-gray-600 hover:text-gray-900 p-1 rounded hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <h1 class="text-gray-800 font-semibold truncate hidden sm:block">Visor de Documento Interactivo</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="copyCode()" class="flex items-center gap-2 bg-blue-50 text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded text-sm font-medium transition border border-blue-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <span class="hidden sm:inline">Copiar Código HTML</span>
+                </button>
+                <button onclick="copyText()" class="flex items-center gap-2 bg-green-50 text-green-700 hover:bg-green-100 px-3 py-1.5 rounded text-sm font-medium transition border border-green-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    <span class="hidden sm:inline">Copiar Texto</span>
+                </button>
+                <button onclick="window.print()" class="flex items-center gap-2 bg-gray-50 text-gray-700 hover:bg-gray-100 px-3 py-1.5 rounded text-sm font-medium transition border border-gray-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span class="hidden sm:inline">Imprimir</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Document Container -->
+        <div id="main-content" class="flex-1 overflow-y-auto p-4 sm:p-8 md:p-12 pb-24 scroll-smooth">
+            
+            <div id="document-text" class="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-8 sm:p-16 border border-gray-200 doc-content">
+                
+                <!-- PORTADA -->
+                <section id="portada" class="text-center page-break relative min-h-[800px] flex flex-col items-center justify-center pt-8">
+                    <div class="watermark-text text-sm mb-12">RESERVADO</div>
+                    
+                    <h3 class="font-bold text-xl uppercase text-gray-800 tracking-wide mb-2">FACULTAD DE CIENCIAS Y ARTES MILITARES TERRESTRES</h3>
+                    <h3 class="font-bold text-lg uppercase text-gray-800 tracking-wide mb-2">ESCUELA DE COMANDO Y ESTADO MAYOR DEL EJÉRCITO</h3>
+                    <h3 class="font-bold text-lg uppercase text-gray-800 tracking-wide mb-2">"MCAL. ANDRÉS DE SANTA CRUZ"</h3>
+                    <h3 class="font-bold text-lg uppercase text-gray-800 mb-10">BOLIVIA</h3>
+                    
+                    <div class="my-12 relative flex justify-center">
+                        <!-- Placeholder for the logo/crest -->
+                        <div class="w-48 h-48 rounded-full border-4 border-gray-300 flex items-center justify-center bg-gray-50 overflow-hidden shadow-inner">
+                            <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+                        </div>
+                    </div>
+                    
+                    <h1 class="font-bold text-2xl uppercase tracking-widest text-gray-900 mt-8 mb-4">PROYECTO</h1>
+                    
+                    <h1 class="font-bold text-3xl leading-snug uppercase text-[var(--army-green)] max-w-3xl mx-auto my-6">
+                        MANUAL DOCTRINARIO PARA EL<br>
+                        DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE<br>
+                        GÉNERO Y DERECHOS HUMANOS EN LAS<br>
+                        GRANDES UNIDADES DEL EJÉRCITO DE<br>
+                        BOLIVIA
+                    </h1>
+                    
+                    <h3 class="font-bold text-xl mt-16 text-gray-800">2026</h3>
+                    
+                    <div class="absolute bottom-4 w-full text-center">
+                        <div class="watermark-text text-sm">RESERVADO</div>
+                        <div class="page-marker mt-2">Página 1 - 0 (Página 1-17 en contenido)</div>
+                    </div>
+                </section>
+
+                <div class="page-marker">Página 2 (Dejada intencionalmente en blanco)</div>
+
+                <!-- PÁGINAS ADMINISTRATIVAS -->
+                <section id="admin-pages" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    
+                    <h2 class="text-xl font-bold text-center mb-6">DETALLE DE PÁGINAS EFECTIVAS</h2>
+                    <p class="text-justify mb-6">El presente DETALLE DE PÁGINAS EFECTIVAS fue actualizado al concluir la elaboración del documento, con vigencia a partir de la Revisión N° 0, septiembre de 2026.</p>
+                    
+                    <div class="overflow-x-auto mb-12">
+                        <table class="w-full border-collapse border border-gray-400 text-sm text-center">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="border border-gray-400 py-2 px-4">Página</th>
+                                    <th class="border border-gray-400 py-2 px-4">N° de Rev.</th>
+                                    <th class="border border-gray-400 py-2 px-4">Página</th>
+                                    <th class="border border-gray-400 py-2 px-4">N° de Rev.</th>
+                                    <th class="border border-gray-400 py-2 px-4">Página</th>
+                                    <th class="border border-gray-400 py-2 px-4">N° de Rev.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border border-gray-400 py-1">1</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">10</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">A-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">2</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">11</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">B-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">3</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">12</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">C-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">4</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">13</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">D-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">5</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">14</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">E-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">6</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">15</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">F-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">7</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">16</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">G-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">8</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">17</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1">H-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                                <tr><td class="border border-gray-400 py-1">9</td><td class="border border-gray-400 py-1">0</td><td class="border border-gray-400 py-1"></td><td class="border border-gray-400 py-1"></td><td class="border border-gray-400 py-1">I-1</td><td class="border border-gray-400 py-1">0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="watermark-text">RESERVADO</div>
+                    <div class="page-marker">Página 3</div>
+                    
+                    <div class="watermark-text mb-8 mt-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6">REGISTRO DE CAMBIOS REALIZADOS</h2>
+                    <p class="text-justify mb-6">El presente REGISTRO DE CAMBIOS REALIZADOS fue actualizado con las modificaciones impuestas por la Revisión N° 0, misma que considera su vigencia a partir de septiembre de 2026.</p>
+                    
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full border-collapse border border-gray-400 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="border border-gray-400 py-2 px-2">N° de Rev.</th>
+                                    <th class="border border-gray-400 py-2 px-2">Página</th>
+                                    <th class="border border-gray-400 py-2 px-2">Descripción del cambio realizado</th>
+                                    <th class="border border-gray-400 py-2 px-2">Revisada por:</th>
+                                    <th class="border border-gray-400 py-2 px-2">Acc.</th>
+                                    <th class="border border-gray-400 py-2 px-2">Mes y año</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-400 py-2 px-2 text-center">0</td>
+                                    <td class="border border-gray-400 py-2 px-2"></td>
+                                    <td class="border border-gray-400 py-2 px-2"></td>
+                                    <td class="border border-gray-400 py-2 px-2"></td>
+                                    <td class="border border-gray-400 py-2 px-2"></td>
+                                    <td class="border border-gray-400 py-2 px-2 text-center">SEP-2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm font-bold mb-2">Leyenda de Acciones (Acc.) realizadas por Página:</p>
+                    <ul class="text-sm list-none mb-4 space-y-1">
+                        <li>R = Reemplazada</li>
+                        <li>A = Adjuntada</li>
+                        <li>D = Destruida</li>
+                        <li>E = Eliminada</li>
+                        <li>S = Separada</li>
+                    </ul>
+                    <p class="text-sm text-justify italic mb-12">En la columna Revisada por, deberá constar las iniciales de los nombres y apellidos del responsable de la incorporación de los cambios aprobados por la Autoridad Militar competente.</p>
+                    
+                    <div class="watermark-text">RESERVADO</div>
+                    <div class="page-marker">Página 4</div>
+
+                    <div class="watermark-text mb-8 mt-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6">REGISTRO HISTÓRICO DE ENMIENDAS</h2>
+                    <p class="text-justify mb-6">El presente REGISTRO HISTÓRICO DE ENMIENDAS describe las páginas modificadas según el N° de revisión, luego de haberse concluido la Revisión N° 0, la cual entra en vigencia a partir de septiembre de 2026.</p>
+                    
+                    <div class="overflow-x-auto mb-12">
+                        <table class="w-full border-collapse border border-gray-400 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="border border-gray-400 py-2 px-2">Págs. Modif.</th>
+                                    <th class="border border-gray-400 py-2 px-2">N° de Rev.</th>
+                                    <th class="border border-gray-400 py-2 px-2">Documento que Aprueba las Enmiendas según N° de Revisión Tipo de N° Fecha Documento</th>
+                                    <th class="border border-gray-400 py-2 px-2">Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-400 py-2 px-2 text-center">0</td>
+                                    <td class="border border-gray-400 py-2 px-2 text-center">0</td>
+                                    <td class="border border-gray-400 py-2 px-2">Resolución de Aprobación</td>
+                                    <td class="border border-gray-400 py-2 px-2">Sin Enmiendas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="watermark-text">RESERVADO</div>
+                    <div class="page-marker">Página 5, 6</div>
+                </section>
+
+                <!-- ÍNDICE -->
+                <section id="indice" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-2xl font-bold text-center mb-8">ÍNDICE</h2>
+                    
+                    <div class="max-w-2xl mx-auto space-y-1 text-sm font-medium">
+                        <div class="flex border-b border-gray-300 pb-1 mb-2">
+                            <div class="flex-1 font-bold">Contenido</div>
+                            <div class="font-bold">Páginas</div>
+                        </div>
+                        <div class="flex"><div class="flex-1">DETALLE DE PÁGINAS EFECTIVAS</div><div></div></div>
+                        <div class="flex"><div class="flex-1">REGISTRO DE CAMBIOS REALIZADOS</div><div></div></div>
+                        <div class="flex"><div class="flex-1">REGISTRO HISTÓRICO DE ENMIENDAS</div><div></div></div>
+                        <div class="flex"><div class="flex-1">ÍNDICE</div><div>i</div></div>
+                        <div class="flex"><div class="flex-1">ÍNDICE DE TABLAS</div><div>iv</div></div>
+                        
+                        <div class="font-bold text-center mt-6 mb-2">INTRODUCCIÓN</div>
+                        <div class="flex"><div class="w-8">I.-</div><div class="flex-1">OBJETO.</div><div>1-17</div></div>
+                        <div class="flex"><div class="w-8">II.-</div><div class="flex-1">FINALIDAD.</div><div>1-17</div></div>
+                        <div class="flex"><div class="w-8">III.-</div><div class="flex-1">ALCANCE.</div><div>2-17</div></div>
+                        <div class="flex"><div class="w-8">IV.-</div><div class="flex-1">INTRODUCCIÓN.</div><div>2-17</div></div>
+
+                        <div class="font-bold text-center mt-6 mb-2">CAPÍTULO I<br>BASES LEGALES</div>
+                        <div class="flex"><div class="w-8">I.-</div><div class="flex-1">BASES LEGALES.</div><div>3-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Constitución Política del Estado Plurinacional de Bolivia (CPE)....</div><div>3-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Ley Orgánica de las Fuerzas Armadas (LOFA - Decreto Ley N° 1405).</div><div>3-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">C.-</div><div class="flex-1">Ley N° 348 ("Ley Integral para Garantizar a las Mujeres una Vida Libre de Violencia").</div><div>3-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">D.-</div><div class="flex-1">Código Penal Boliviano (Acoso Sexual Agravado - Art. 312 quater).</div><div>4-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">E.-</div><div class="flex-1">Decreto Supremo N° 2145.</div><div>4-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">F.-</div><div class="flex-1">Reglamento de Régimen Disciplinario de las FF.AA. (CJ-R-122)..</div><div>4-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">G.-</div><div class="flex-1">Directiva de las FF.AA. del Estado N° 31/15.</div><div>4-17</div></div>
+
+                        <div class="font-bold text-center mt-6 mb-2">CAPÍTULO II<br>ORGANIZACIÓN Y FUNCIONES DE LA SECCIÓN DE GÉNERO Y DD.HH.</div>
+                        <div class="flex"><div class="w-8">I.-</div><div class="flex-1 font-bold">MISIÓN Y VISIÓN DE LA/EL OFICIAL DE GÉNERO Y DD.HH.</div><div>5-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Misión.</div><div>5-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Visión.</div><div>5-17</div></div>
+                        <div class="flex"><div class="w-8">II.-</div><div class="flex-1 font-bold">PRINCIPIOS RECTORES DE ACTUACIÓN.</div><div>5-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Principio Pro Homine.</div><div>5-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Confidencialidad y Reserva Absoluta.</div><div>5-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">C.-</div><div class="flex-1">No Revictimización.</div><div>6-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">D.-</div><div class="flex-1">Debida Diligencia y Celeridad.</div><div>6-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">E.-</div><div class="flex-1">Prohibición Estricta de Conciliación.</div><div>6-17</div></div>
+                        <div class="flex"><div class="w-8">III.-</div><div class="flex-1 font-bold">ESTRUCTURA ORGÁNICO-FUNCIONAL EN LAS GRANDES UNIDADES.</div><div>6-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Grupo Consultivo (Equipo Multidisciplinario).</div><div>6-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Comisión Multidisciplinaria.</div><div>6-17</div></div>
+                        <div class="flex"><div class="w-8">IV.-</div><div class="flex-1 font-bold">FUNCIONES ESPECÍFICAS DEL CARGO.</div><div>7-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Asesoramiento Técnico al Mando.</div><div>7-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Recepción y Tramitación de Casos.</div><div>7-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">C.-</div><div class="flex-1">Fiscalización y Control Normativo.</div><div>7-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">D.-</div><div class="flex-1">Capacitación y Sensibilización.</div><div>7-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">E.-</div><div class="flex-1">Monitoreo Estadístico.</div><div>7-17</div></div>
+
+                        <div class="font-bold text-center mt-6 mb-2">CAPÍTULO III<br>SISTEMA DE GESTIÓN DOCUMENTAL Y CARPETAS</div>
+                        <div class="flex"><div class="w-8">I.-</div><div class="flex-1 font-bold">CARPETA PRINCIPAL DE LA/EL OFICIAL DE GÉNERO (RECTORÍA Y ESTRATEGIA).</div><div>8-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">CONTENIDO.</div><div>8-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">BASADO EN NORMAS LEGALES.</div><div>8-17</div></div>
+                        <div class="flex"><div class="w-8">II.-</div><div class="flex-1 font-bold">CARPETA SECUNDARIA DE LA/EL OFICIAL DE GÉNERO (OPERATIVA Y CONFIDENCIAL).</div><div>9-17</div></div>
+
+                        <div class="font-bold text-center mt-6 mb-2">CAPÍTULO IV<br>PROTOCOLOS TÉCNICO-OPERATIVOS DE ATENCIÓN Y DERIVACIÓN</div>
+                        <div class="flex"><div class="w-8">I.-</div><div class="flex-1 font-bold">PLAN DE GÉNERO DE LA GRAN UNIDAD.</div><div>10-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">Eje 1 (Prevención y Sensibilización IEC).</div><div>10-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">Eje 2 (Transversalización Doctrinal).</div><div>10-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">C.-</div><div class="flex-1">Eje 3 (Protección y Asistencia Integral).</div><div>10-17</div></div>
+                        <div class="flex"><div class="w-8">II.-</div><div class="flex-1 font-bold">VÍAS Y MODALIDADES DE DENUNCIA.</div><div>10-17</div></div>
+                        <div class="flex"><div class="w-8">III.-</div><div class="flex-1 font-bold">PROTOCOLOS DE ATENCIÓN. ACCIONES INMEDIATAS Y PARTICIPANTES ANTE DENUNCIAS</div><div>11-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">A.-</div><div class="flex-1">VÍAS Y MODALIDADES DE DENUNCIA</div><div>11-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">B.-</div><div class="flex-1">PROTOCOLO DE ACTUACIÓN ANTE CASOS DE ACOSO SEXUAL LABORAL EN INSTALACIONES MILITARES)</div><div>11-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">C.-</div><div class="flex-1">PROTOCOLO DE ACTUACIÓN ANTE DENUNCIAS DE VIOLENCIA INTRAFAMILIAR - VIF.</div><div>12-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">D.-</div><div class="flex-1">PROTOCOLO DE ACTUACIÓN ANTE CASOS DE ACOSO SEXUAL LABORAL.</div><div>13-17</div></div>
+                        <div class="flex pl-8"><div class="w-8">E.-</div><div class="flex-1">PROTOCOLOS DE ACTUACIÓN ANTE VIOLENCIA INTRAFAMILIAR (VIF).</div><div>15-17</div></div>
+                        <div class="flex"><div class="w-8">IV.-</div><div class="flex-1 font-bold">CUADRO RESUMEN DE ACTIVIDADES, PLAZOS Y PARTICIPANTES OBLIGATORIOS ANTE DENUNCIAS.</div><div>16-17</div></div>
+
+                        <div class="mt-6 space-y-2">
+                            <div class="flex"><div class="flex-1">ANEXO "A" FORMULARIO ÚNICO DE DENUNCIA DE INCIDENTES DE GÉNERO Y ACOSO.</div><div>A-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "B" FORMULARIO DE PARTE DE INCIDENTE DE GÉNERO</div><div>B-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "C" GUÍA DE ENTREVISTA A LA PERSONA AFECTADA.</div><div>C-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "D" GUÍA DE ENTREVISTA A LA PERSONA DENUNCIADA</div><div>D-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "E" ACTA DE COMPROMISO DE CONFIDENCIALIDAD, RESERVA DE INFORMACIÓN Y NO REVICTIMIZACIÓN.</div><div>E-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "F" CUESTIONARIO DE VALORACIÓN DE RIESGO VITAL EN VIOLENCIA INTRAFAMILIAR Y PLAN DE SEGURIDAD DE EMERGENCIA</div><div>F-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "G" FORMULARIO OFICIAL DE REFERENCIA Y DERIVACIÓN INTERINSTITUCIONAL</div><div>G-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "H" GLOSARIO DE TÉRMINOS</div><div>H-1</div></div>
+                            <div class="flex"><div class="flex-1">ANEXO "I" REGISTRO DE AJUSTES O CORRECCIONES SUGERIDOS</div><div>I-1</div></div>
+                        </div>
+
+                        <div class="font-bold text-center mt-12 mb-4">ÍNDICE DE TABLAS</div>
+                        <div class="flex"><div class="flex-1">Tabla 1: Cuadro resumen de actividades, plazos y participantes obligatorios ante denuncias</div><div>16-17</div></div>
+                    </div>
+                    
+                    <div class="watermark-text mt-12">RESERVADO</div>
+                    <div class="page-marker">Página i, ii, iii, iv</div>
+                </section>
+
+                <!-- INTRODUCCIÓN -->
+                <section id="introduccion" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-8 uppercase text-[var(--army-green)]">
+                        MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DERECHOS HUMANOS EN LAS GRANDES UNIDADES DEL EJÉRCITO DE BOLIVIA.
+                    </h2>
+                    
+                    <h2 class="text-lg font-bold mb-4">INTRODUCCIÓN</h2>
+                    
+                    <div class="pl-4 mb-6">
+                        <h3 class="font-bold mb-2">I.- OBJETO.</h3>
+                        <p class="text-justify mb-4">Implementar las bases teórico-doctrinarias, la estructura orgánico-funcional y los procedimientos técnico-operativos para el desempeño eficaz de la/el Oficial de Género y Derechos Humanos en las Grandes Unidades del Ejército de Bolivia, mediante una doctrina militar estandarizada que regule sus misiones, competencias, carpetas de trabajo y protocolos de atención inmediata, de manera que a tiempo de subsanar el vacío normativo identificado en la investigación, se materialice con efectividad la protección de los derechos fundamentales, la equidad de género y la erradicación de toda forma de violencia y acoso, asegurando que el asesoramiento técnico y la toma de decisiones en el Estado Mayor sea oportuno, preventivo y apegado a la ley.</p>
+                        
+                        <h3 class="font-bold mb-2">II.- FINALIDAD.</h3>
+                        <p class="text-justify mb-2">La formación de instructores, cuadros y mandos militares en género y derechos humanos es fundamental para garantizar que las Fuerzas Armadas respeten y protejan los derechos fundamentales de todas las personas en el ejercicio de sus funciones.</p>
+                        <p class="text-justify mb-2">La equidad de género y los derechos humanos son el fundamento sobre el cual se construye una institución justa, democrática y respetuosa de la dignidad humana. En un entorno donde la disciplina y la cohesión son vitales, el respeto irrestricto a los derechos humanos resulta esencial, no solo en tiempos de conflicto, sino también en las operaciones cotidianas, la instrucción y la administración del personal.</p>
+                        <p class="text-justify mb-4">Los militares, como guardianes de la seguridad y el orden constitucional de la Nación, tienen una responsabilidad institucional ineludible en la protección y promoción de los derechos humanos. El presente manual ha sido diseñado con el propósito de dotar al personal designado como Oficial de Género y Derechos Humanos en las Grandes Unidades de Combate (GG.UU.CC.) de las herramientas teóricas, normativas y técnico-operativas necesarias para asesorar al Comando, prevenir vulneraciones, tramitar denuncias con debida diligencia y consolidar el fortalecimiento institucional del Ejército de Bolivia.</p>
+                        
+                        <div class="watermark-text mt-8">RESERVADO</div>
+                        <div class="page-marker">Página 1-17</div>
+                        <div class="watermark-text mb-8">RESERVADO</div>
+
+                        <h3 class="font-bold mb-2">III.- ALCANCE.</h3>
+                        <p class="text-justify mb-4">La presente propuesta doctrinaria es de aplicación obligatoria en el ámbito global del Ejército de Bolivia y, de manera particular, en el Estado Mayor de las Grandes Unidades de Combate (Divisiones y Brigadas), Institutos Militares de formación y perfeccionamiento (ECEME, EAATE, COLMIL, EMSE), y en todas las Pequeñas Unidades dependientes a nivel nacional, tanto en tiempo de paz como en operaciones de seguridad y defensa del Estado.</p>
+                        
+                        <h3 class="font-bold mb-2">IV.- INTRODUCCIÓN.</h3>
+                        <p class="text-justify mb-4">El Ejército de Bolivia, enmarcado en el proceso de evolución institucional y en estricta sujeción al bloque de constitucionalidad, reconoce que la incorporación de la perspectiva de género y el respeto a los derechos humanos constituyen pilares estratégicos para la eficiencia operativa y la cohesión moral de la fuerza. Históricamente, la estructura castrense ha respondido a modelos tradicionales; sin embargo, el crecimiento institucional, la incorporación progresiva de la mujer en las filas como Damas Oficiales, Suboficiales, Sargentos y Soldadas, así como las exigencias del derecho internacional contemporáneo, exigen una transformación profunda en los mecanismos de asesoramiento y control interno.</p>
+                        <p class="text-justify mb-4">El diagnóstico situacional desarrollado en la presente investigación revela vacíos críticos en la doctrina actual: un 65.39% de cuadros con bajo nivel de capacitación formal especializada, un 88.46% de insuficiencia de personal certificado para ejercer el cargo de Oficial de Género, y un 73.08% de percepción ciudadana e institucional que califica los protocolos actuales como lentos o reactivos. Para superar estas deficiencias, el presente Manual establece un cuerpo doctrinario unificado que articula el positivismo jurídico, la doctrina interamericana y las mejores prácticas regionales, dotando al Ejército de un instrumento operativo moderno, expedito y seguro para el desempeño eficaz de la/el Oficial de Género y Derechos Humanos en las Grandes Unidades de Combate.</p>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página 2-17</div>
+                </section>
+
+                <!-- CAPÍTULO 1 -->
+                <section id="capitulo-1" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-2 uppercase text-[var(--army-green)]">CAPÍTULO I</h2>
+                    <h2 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">BASES LEGALES</h2>
+                    
+                    <div class="pl-4 mb-6">
+                        <h3 class="font-bold mb-2">I.- BASES LEGALES.</h3>
+                        <p class="text-justify mb-4">El Marco Normativo, en el cual se sustenta el "MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DERECHOS HUMANOS EN LAS GRANDES UNIDADES DEL EJÉRCITO DE BOLIVIA, es el siguiente:</p>
+                        
+                        <div class="pl-6 space-y-4">
+                            <div>
+                                <h4 class="font-bold inline">A.- Constitución Política del Estado Plurinacional de Bolivia (CPE).</h4>
+                                <p class="text-justify mt-1">Consagra la inviolabilidad de los derechos fundamentales y el deber del Estado de promoverlos, protegerlos y respetarlos (Art. 13). Prohíbe y sanciona toda forma de discriminación fundada en sexo, color, edad, orientación sexual, identidad de género u otras (Art. 14). Establece el derecho a la integridad física, psicológica y sexual, prohibiendo la tortura y disponiendo que el Estado adopte medidas para prevenir, eliminar y sancionar la violencia de género y generacional (Art. 15). Asimismo, dispone la aplicación preferente de los tratados internacionales de derechos humanos cuando estos reconozcan normas más favorables (Art. 256 y 410).</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold inline">B.- Ley Orgánica de las Fuerzas Armadas (LOFA - Decreto Ley N° 1405).</h4>
+                                <p class="text-justify mt-1">Define a las Fuerzas Armadas como institución fundamental y permanente del Estado, cuyo rol es constituir el baluarte de la seguridad nacional, la defensa de la patria y el sostén de la vigencia de la Constitución, los derechos y las garantías ciudadanas (Arts. 1 y 3). Faculta a la institución a organizar sistemas integrados y centros de investigación científico-tecnológica (Art. 5), sirviendo de marco para la modernización de reglamentos de personal y bienestar.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold inline">C.- Ley N° 348 ("Ley Integral para Garantizar a las Mujeres una Vida Libre de Violencia").</h4>
+                                <p class="text-justify mt-1">Establece la obligación de los Órganos del Estado y entidades públicas de adoptar, implementar y supervisar protocolos especializados de atención y protección para mujeres en situación de violencia. Su <strong>Artículo 46 prohíbe de forma terminante y categórica la conciliación</strong> en cualquier hecho de violencia que comprometa la integridad física o sexual, estableciendo responsabilidad penal y administrativa para cualquier autoridad o funcionario que pretenda promover acuerdos o encubrir agresores.</p>
+                            </div>
+
+                            <div class="watermark-text mt-8">RESERVADO</div>
+                            <div class="page-marker">Página 3-17</div>
+                            <div class="watermark-text mb-8">RESERVADO</div>
+
+                            <div>
+                                <h4 class="font-bold inline">D.- Código Penal Boliviano (Acoso Sexual Agravado - Art. 312 quater).</h4>
+                                <p class="text-justify mt-1">Tipifica el delito de acoso sexual sancionando con pena privativa de libertad de cuatro a ocho años a quien, valiéndose de su posición jerárquica, grado, cargo o poder militar, hostigue, persiga o exija actos sexuales no consentidos, agravando la pena en un tercio con inhabilitación del cargo cuando es cometido por un servidor público militar en ejercicio de funciones.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold inline">E.- Decreto Supremo N° 2145.</h4>
+                                <p class="text-justify mt-1">Reglamenta la Ley 348 disponiendo que los Ministerios de Defensa y de Gobierno implementen programas obligatorios de prevención de la violencia contra las mujeres dirigidos a miembros de las Fuerzas Armadas. Su Artículo 145 bis tipifica el incumplimiento de deberes de protección a mujeres en situación de violencia, sancionando con trabajos comunitarios e inhabilitación de uno a cuatro años al servidor público que propicie la impunidad u obstaculice la investigación.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold inline">F.- Reglamento de Régimen Disciplinario de las FF.AA. (CJ-R-122).</h4>
+                                <p class="text-justify mt-1">Tipifica como faltas graves y gravísimas contra la disciplina militar y la moral castrense el causar malos tratos físicos o psicológicos al cónyuge, hijos o subalternos, así como la inacción, omisión, tolerancia o encubrimiento de los superiores jerárquicos ante actos de acoso o violencia (Art. 23 y Art. 71).</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold inline">G.- Directiva de las FF.AA. del Estado N° 31/15.</h4>
+                                <p class="text-justify mt-1">Establece normas y lineamientos para incorporar el enfoque de género en los reglamentos militares, disponiendo organizar y fortalecer las Secciones de Género en cada Fuerza para recibir denuncias, realizar investigaciones preliminares y asesorar técnicamente a los Comandantes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página 4-17</div>
+                </section>
+
+                <!-- CAPÍTULO 2 -->
+                <section id="capitulo-2" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-2 uppercase text-[var(--army-green)]">CAPÍTULO II</h2>
+                    <h2 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">ORGANIZACIÓN Y FUNCIONES DE LA SECCIÓN DE GÉNERO Y DD.HH.</h2>
+                    
+                    <div class="pl-4 mb-6">
+                        <h3 class="font-bold mb-4">I.- MISIÓN Y VISIÓN DE LA/EL OFICIAL DE GÉNERO Y DD.HH.</h3>
+                        <div class="pl-6 space-y-4 mb-6">
+                            <div>
+                                <h4 class="font-bold inline">A.- Misión.</h4>
+                                <p class="text-justify mt-1">Asesorar de manera oportuna al Comandante de la Gran Unidad de Combate en el planeamiento, conducción y toma de decisiones táctico-operativas en todos los asuntos relativos a equidad de género y derechos humanos; fiscalizar la correcta aplicación de la normativa legal y disciplinaria; ejecutar el Plan de Género de la Gran Unidad; y tramitar, registrar y derivar con celeridad, imparcialidad y reserva las quejas y denuncias de acoso sexual, acoso laboral y violencia intrafamiliar que involucren al personal militar y civil bajo su jurisdicción.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">B.- Visión.</h4>
+                                <p class="text-justify mt-1">Constituirse en un órgano de asesoramiento técnico, prevención y fiscalización ética consolidado dentro del Estado Mayor divisionario, que promueva una cultura institucional moderna, disciplinada, inclusiva y transparente, donde mujeres y hombres de armas alcancen el pleno desarrollo profesional en igualdad de oportunidades y bajo un entorno libre de violencia y discriminación.</p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold mb-4">II.- PRINCIPIOS RECTORES DE ACTUACIÓN.</h3>
+                        <div class="pl-6 space-y-4 mb-6">
+                            <div>
+                                <h4 class="font-bold inline">A.- Principio Pro Homine.</h4>
+                                <p class="text-justify mt-1">En la interpretación y aplicación de las normas se optará siempre por la disposición que otorgue mayor protección y beneficio a la persona afectada.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">B.- Confidencialidad y Reserva Absoluta.</h4>
+                                <p class="text-justify mt-1">Toda actuación se desarrollará bajo estricta reserva de la información, protegiendo la identidad de las víctimas, denunciantes y testigos, evitando la exposición institucional indebida.</p>
+                            </div>
+                            
+                            <div class="watermark-text mt-8">RESERVADO</div>
+                            <div class="page-marker">Página 5-17</div>
+                            <div class="watermark-text mb-8">RESERVADO</div>
+
+                            <div>
+                                <h4 class="font-bold inline">C.- No Revictimización.</h4>
+                                <p class="text-justify mt-1">Se prohíbe someter a la víctima a declaraciones reiteradas, careos o interrogatorios innecesarios que revivan el trauma psíquico, consagrando la directriz de la Entrevista Única.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">D.- Debida Diligencia y Celeridad.</h4>
+                                <p class="text-justify mt-1">Las autoridades y la/el Oficial de Género intervendrán de forma pronta, ágil y sin dilaciones burocráticas, adoptando medidas precautorias urgentes en un plazo perentorio menor a 48 horas.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">E.- Prohibición Estricta de Conciliación.</h4>
+                                <p class="text-justify mt-1">En estricta aplicación del Art. 46 de la Ley 348, queda terminantemente prohibida la conciliación en hechos de violencia física, psicológica grave o agresión sexual.</p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold mb-4">III.- ESTRUCTURA ORGÁNICO-FUNCIONAL EN LAS GRANDES UNIDADES.</h3>
+                        <p class="text-justify mb-4">La Unidad de Género se integra orgánicamente en el Estado Mayor de la Gran Unidad de Combate (Divisiones y Brigadas), manteniendo dependencia directa de la Inspectoría Divisionaria y coordinación estrecha con el Jefe de Estado Mayor y las Pequeñas Unidades dependientes. Se estructura mediante dos instancias de apoyo:</p>
+                        <div class="pl-6 space-y-4 mb-6">
+                            <div>
+                                <h4 class="font-bold inline">A.- Grupo Consultivo (Equipo Multidisciplinario).</h4>
+                                <p class="text-justify mt-1">Conformado obligatoriamente a inicio de gestión mediante memorándum por el Asesor Jurídico Militar, el Oficial de Sanidad/Psicólogo, la Trabajadora Social y el Médico de guarnición (COSSMIL), para brindar contención bio-psicosocial y asesoramiento legal pericial.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">B.- Comisión Multidisciplinaria.</h4>
+                                <p class="text-justify mt-1">Convocada por el Comandante de la Gran Unidad ante incidentes complejos, integrada por el Jefe del Departamento I (Personal), el Comandante de la Unidad afectada, el Suboficial Mayor de Guarnición y la Dama Oficial de mayor jerarquía, con facultades para evaluar medidas administrativas y proponer sanciones al Tribunal de Personal.</p>
+                            </div>
+                        </div>
+
+                        <div class="watermark-text mt-8">RESERVADO</div>
+                        <div class="page-marker">Página 6-17</div>
+                        <div class="watermark-text mb-8">RESERVADO</div>
+
+                        <h3 class="font-bold mb-4">IV.- FUNCIONES ESPECÍFICAS DEL CARGO.</h3>
+                        <div class="pl-6 space-y-4">
+                            <div>
+                                <h4 class="font-bold inline">A.- Asesoramiento Técnico al Mando.</h4>
+                                <p class="text-justify mt-1">Asistir al Comandante en el planeamiento, emisión de órdenes, directivas y directrices operativas con estricta observancia del bloque constitucional de derechos humanos.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">B.- Recepción y Tramitación de Casos.</h4>
+                                <p class="text-justify mt-1">Recepcionar denuncias verbales o escritas, aperturar los expedientes en Carpeta Secundaria y coordinar medidas precautorias urgentes en un plazo menor a 48 horas.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">C.- Fiscalización y Control Normativo.</h4>
+                                <p class="text-justify mt-1">Supervisar el cumplimiento de las directrices de género en cuarteles y viviendas militares, evaluando condiciones de habitabilidad y trato igualitario.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">D.- Capacitación y Sensibilización.</h4>
+                                <p class="text-justify mt-1">Ejecutar el programa de capacitación continua, seminarios e intercambio pedagógico con institutos militares y entidades del Estado.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">E.- Monitoreo Estadístico.</h4>
+                                <p class="text-justify mt-1">Elaborar partes de incidentes, matrices de seguimiento y elevar informes periódicos al escalón superior para respaldar la mejora continua del sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página 7-17</div>
+                </section>
+
+                <!-- CAPÍTULO 3 -->
+                <section id="capitulo-3" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-2 uppercase text-[var(--army-green)]">CAPÍTULO III</h2>
+                    <h2 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">SISTEMA DE GESTIÓN DOCUMENTAL Y CARPETAS</h2>
+                    
+                    <div class="pl-4 mb-6">
+                        <h3 class="font-bold mb-2 text-justify">I.- CARPETA PRINCIPAL DE LA/EL OFICIAL DE GÉNERO (RECTORÍA Y ESTRATEGIA).</h3>
+                        <p class="text-justify mb-4">Constituye el legajo institucional de consulta técnica permanente y asesoramiento estratégico al Comandante de la Gran Unidad. Su acceso es de nivel Estado Mayor y contiene:</p>
+                        
+                        <div class="pl-6 mb-6">
+                            <h4 class="font-bold mb-2">A.- CONTENIDO.</h4>
+                            <ol class="list-decimal pl-6 space-y-1 mb-4">
+                                <li>CARÁTULA, ÍNDICE Y SEPARADORES.</li>
+                                <li>MISIÓN Y VISIÓN DE LA SECCIÓN.</li>
+                                <li>ORGANIGRAMA.</li>
+                                <li>ORGANIZACIÓN.</li>
+                                <li>MANUAL DE FUNCIONES.</li>
+                                <li>NORMAS VIGENTES DE ACCIÓN.</li>
+                                <li>PLAN DE ACTIVIDADES.</li>
+                                <li>HOJA DE FIRMAS.</li>
+                                <li>HOJA DE REVISIÓN.</li>
+                                <li>GUÍA DE INSPECCIÓN DDHH y GÉNERO.</li>
+                                <li>HOJA DE FIRMAS.</li>
+                            </ol>
+
+                            <h4 class="font-bold mb-2">B.- BASE EN NORMAS LEGALES.</h4>
+                            <div class="space-y-3 pl-4">
+                                <div>
+                                    <span class="font-bold">1.- Subsección Marco Normativo y Legal.</span>
+                                    <p class="text-justify ml-6 mt-1">Copia de la Constitución Política del Estado, Ley 348, Ley 045, Ley 243, Ley 400, D.S. 2145, LOFA y Reglamento de Régimen Disciplinario CJ-R-122.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="watermark-text mt-8">RESERVADO</div>
+                        <div class="page-marker">Página 8-17</div>
+                        <div class="watermark-text mb-8">RESERVADO</div>
+
+                        <div class="pl-6 mb-6">
+                            <div class="space-y-4 pl-4">
+                                <div>
+                                    <span class="font-bold">2.- Subsección Directivas del Escalón Superior.</span>
+                                    <p class="text-justify ml-6 mt-1">Plan de Género en el Sector Defensa, Directiva 31/15 del Comando en jefe y resoluciones del Ministerio de Defensa.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold">3.- Subsección Doctrina Internacional.</span>
+                                    <p class="text-justify ml-6 mt-1">Manual de DD.HH. para las FF.AA. (IIDH), CEDAW y Resolución 1325 del Consejo de Seguridad de la ONU.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold">4.- Subsección Planificación y Programación.</span>
+                                    <p class="text-justify ml-6 mt-1">Plan de Género de la Gran Unidad de Combate, POA de la sección y cronograma anual de talleres de sensibilización.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold">5.- Subsección Estadística General.</span>
+                                    <p class="text-justify ml-6 mt-1">Cuadros de control numérico, mapas de riesgo de las unidades dependientes y reportes consolidados elevados al escalón superior.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold mb-2 text-justify">II.- CARPETA SECUNDARIA DE LA/EL OFICIAL DE GÉNERO (OPERATIVA Y CONFIDENCIAL).</h3>
+                        <p class="text-justify mb-4">Constituye el legajo institucional de consulta técnica permanente y asesoramiento estratégico al comandante de la Gran Unidad. Su acceso es de nivel Estado Mayor y contiene:</p>
+                        
+                        <div class="pl-6 space-y-2">
+                            <p><strong>A.-</strong> CARÁTULAS CARPETA SECUNDARIA.</p>
+                            <p><strong>B.-</strong> CUADRO DE PLANES Y PROGRAMAS DE CAPACITACIÓN DE PERSONAL DE CUADROS Y TROPA EN DD.HH. - DIH.</p>
+                            <p><strong>C.-</strong> CUADRO DE REGISTRO DE CONVENIOS Y COORDINACIÓN CON OTRAS INSTITUCIONES RELACIONADAS CON LOS DD.HH.</p>
+                            <p><strong>D.-</strong> CUADRO ESTADÍSTICO DE CASOS DE VIOLACIONES DE DD.HH., FALLECIDOS Y ACCIDENTADOS.</p>
+                            <p><strong>E.-</strong> LIBRO REGISTRO SEMANAL ACTA APERTURA BUZÓN DD.HH.</p>
+                            <p><strong>F.-</strong> INFORME DAMAS.</p>
+                            <p><strong>G.-</strong> HOJA DE FIRMAS.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página 9-17</div>
+                </section>
+
+                <!-- CAPÍTULO 4 -->
+                <section id="capitulo-4" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-2 uppercase text-[var(--army-green)]">CAPÍTULO IV</h2>
+                    <h2 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">PROTOCOLOS TÉCNICO-OPERATIVOS DE ATENCIÓN Y DERIVACIÓN</h2>
+                    
+                    <div class="pl-4 mb-6">
+                        <h3 class="font-bold mb-4">I.- PLAN DE GÉNERO DE LA GRAN UNIDAD.</h3>
+                        <p class="text-justify mb-4">El Plan de Género es el instrumento técnico que programa, ejecuta y evalúa las actividades de prevención y protección en toda la jurisdicción:</p>
+                        <div class="pl-6 space-y-4 mb-6">
+                            <div>
+                                <h4 class="font-bold inline">A.- Eje 1 (Prevención y Sensibilización IEC).</h4>
+                                <p class="text-justify mt-1">Talleres mensuales de sensibilización, conferencias sobre masculinidades sanas y difusión de cartillas (Meta: 100% del personal alcanzado al año).</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">B.- Eje 2 (Transversalización Doctrinal).</h4>
+                                <p class="text-justify mt-1">Adaptación de estudios de caso tácticos, reglas de enfrentamiento (ROE) y límites de disciplina en la instrucción.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold inline">C.- Eje 3 (Protección y Asistencia Integral).</h4>
+                                <p class="text-justify mt-1">Activación estricta de protocolos, ambiente privado de atención y contención psicosocial (Meta: 100% de las denuncias atendidas en 48 horas).</p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold mb-4">II.- VÍAS Y MODALIDADES DE DENUNCIA.</h3>
+                        <p class="text-justify mb-4">Toda persona afectada (cuadros, personal civil, soldados, premilitares o cónyuges) podrá interponer denuncia mediante cuatro vías:</p>
+                        <div class="pl-6 space-y-2 mb-6">
+                            <p><strong>A.-</strong> Vía Ejecutiva Directa (Comando de Fuerza o Inspectoría General).</p>
+                            <p><strong>B.-</strong> Vía Gran Unidad Militar (ante la/el Oficial de Género o Comandante Divisionario).</p>
+                            <p><strong>C.-</strong> Vía Pequeña Unidad Militar (ante el Comandante de Regimiento/Batallón o el Enlace de Género).</p>
+                            <p><strong>D.-</strong> Vía Unidad Central de Género. La presentación podrá ser verbal o escrita.</p>
+                        </div>
+
+                        <div class="watermark-text mt-8">RESERVADO</div>
+                        <div class="page-marker">Página 10-17</div>
+                        <div class="watermark-text mb-8">RESERVADO</div>
+
+                        <h3 class="font-bold mb-4">III.- PROTOCOLOS DE ATENCIÓN. ACCIONES INMEDIATAS Y PARTICIPANTES ANTE DENUNCIAS.</h3>
+                        <div class="pl-6 space-y-6">
+                            <div>
+                                <h4 class="font-bold">A.- VÍAS Y MODALIDADES DE DENUNCIA.</h4>
+                                <p class="text-justify mt-1">Toda persona afectada (cuadros, personal civil, soldados, premilitares o cónyuges) podrá interponer su denuncia mediante cuatro vías reconocidas: Vía Ejecutiva Directa (Comando de Fuerza o Inspectoría General), Vía Gran Unidad Militar (ante la/el Oficial de Género o Comandante Divisionario), Vía Pequeña Unidad Militar (ante el Comandante de Regimiento/Batallón o el Enlace de Género), o Vía Unidad Central de Género. La presentación podrá ser verbal (formalizada en formulario en el acto) o escrita (mediante memorial o nota simple sin patrocinio de abogado).</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold">B.- PROTOCOLO DE ACTUACIÓN ANTE CASOS DE ACOSO SEXUAL LABORAL EN INSTALACIONES MILITARES).</h4>
+                                <div class="pl-4 mt-2 space-y-3">
+                                    <p class="text-justify"><strong>Nivel 1 (Leve - Verbal).</strong><br>Comprende bromas de contenido sexual, comentarios invasivos sobre el cuerpo o vestimenta, insinuaciones o peticiones reiteradas de citas.</p>
+                                    <p class="text-justify"><strong>Nivel 2 (Medio/Grave - No verbal sin contacto físico).</strong><br>Miradas lascivas persistentes, acorralamientos físicos, exhibición de pornografía, llamadas, mensajes o hostigamiento por redes sociales exigiendo reciprocidad afectiva.</p>
+                                    <p class="text-justify"><strong>Nivel 3 (Muy Grave - Físico y Coercitivo).</strong><br>Tocamientos, abrazos forzados, intentos de agresión sexual o condicionamiento de calificaciones, ascensos, comisiones, permisos o permanencia militar a cambio de favores sexuales (delito penal según Art. 312 quater del Código Penal).</p>
+                                </div>
+                                <h5 class="font-bold mt-4 mb-2 pl-4">Secuencia de Actuación Paso a Paso ante Acoso Sexual.</h5>
+                                <div class="pl-8 space-y-3">
+                                    <p class="text-justify"><strong>1.- Paso 1: Recepción y Contención (Horas 0 a 4):</strong> Recepción por la/el Oficial de Género en ambiente privado, llenado del Formulario Único (Anexo A), firma de Acta de Confidencialidad (Anexo E) y contención psicológica preliminar.</p>
+                                    
+                                    <div class="watermark-text mt-8">RESERVADO</div>
+                                    <div class="page-marker">Página 11-17</div>
+                                    <div class="watermark-text mb-8">RESERVADO</div>
+
+                                    <p class="text-justify"><strong>2.- Paso 2: Medidas Precautorias Urgentes (Plazo máximo 48 horas):</strong> Disposición obligatoria de separación de la cadena de mando entre denunciante y denunciado, reasignación temporal de turnos o guardia sin perjuicio salarial ni profesional, y notificación de prohibición absoluta de contacto e intimidación.</p>
+                                    <p class="text-justify"><strong>3.- Paso 3: Diligencias Preliminares (Días 1 a 5):</strong> Suscripción de la declaración de la víctima mediante la Guía de Entrevista (Anexo C), notificación formal al denunciado y recepción de descargos mediante la Guía de Entrevista al Denunciado (Anexo D), bajo prevención de sanción agravada por represalias.</p>
+                                    <p class="text-justify"><strong>4.- Paso 4: Convocatoria del Comité e Investigación Disciplinaria:</strong> Si el hecho constituye falta disciplinaria interna (Nivel 1 o 2), el Comité de Gran Unidad analiza pruebas documentales y testimoniales en un plazo de 10 días hábiles, emitiendo un informe con conclusiones para la sanción del Tribunal de Personal.</p>
+                                    <p class="text-justify"><strong>5.- Paso 5: Derivación Jurisdiccional Obligatoria (Si es Delito):</strong> Ante indicios del delito tipificado en el Art. 312 quater del Código Penal (Nivel 3), la/el Oficial de Género y el Asesor Jurídico remitirán los antecedentes de inmediato al Ministerio Público / FELCV mediante el Formulario Oficial de Derivación (Anexo G), brindando acompañamiento legal y contención a la víctima.</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold">C.- PROTOCOLO DE ACTUACIÓN ANTE DENUNCIAS DE VIOLENCIA INTRAFAMILIAR – VIF.</h4>
+                                <p class="text-justify mt-1">La violencia intrafamiliar en el ámbito militar reviste un riesgo extremo debido a la disciplina de mando y al acceso a armas de fuego de dotación individual. Su atención es de orden público y cumplimiento ineludible por parte de la/el Oficial de Género:</p>
+                                <div class="pl-4 mt-3 space-y-3">
+                                    <p class="text-justify"><strong>1.- Requisa e Incautación Preventiva del Arma de Fuego.</strong><br>Ante cualquier denuncia de agresión física o amenazas de violencia en la familia, la/el Oficial de Género solicitará al Comandante de Unidad la requisa y secuestro preventivo inmediato del arma de reglamento asignada al militar denunciado, la cual será depositada en armería bajo inventario estricto (Art. 18 Ley 400 y Ley 348).</p>
+
+                                    <div class="watermark-text mt-8">RESERVADO</div>
+                                    <div class="page-marker">Página 12-17</div>
+                                    <div class="watermark-text mb-8">RESERVADO</div>
+
+                                    <p class="text-justify"><strong>2.- Valoración de Riesgo Vital y Plan de Seguridad.</strong><br>Aplicación obligatoria del Cuestionario de Valoración del Riesgo (Anexo F) a cargo de psicología. Ante riesgo alto o extremo, se elabora el Plan de Seguridad de Emergencia y se coordina refugio temporal.</p>
+                                    <p class="text-justify"><strong>3.- Asistencia Médica y Legal Inmediata.</strong><br>Traslado y acompañamiento inmediato de la víctima a COSSMIL o centro de salud público para atención médica y levantamiento del Certificado Médico correspondiente.</p>
+                                    <p class="text-justify"><strong>4.- Prohibición Categórica de Conciliación.</strong><br>En estricta aplicación del Artículo 46 de la Ley 348, queda terminantemente prohibida cualquier firma de actas de conciliación o acuerdos de partes en agresiones físicas o sexuales.</p>
+                                    <p class="text-justify"><strong>5.- Medidas en Viviendas Militares Fiscales.</strong><br>Si el hecho ocurre en viviendas o cuarteles militares, se dispondrá el desalojo y retiro temporal del presunto agresor de la vivienda fiscal, garantizando la permanencia segura de la víctima y sus dependientes.</p>
+                                    <p class="text-justify"><strong>6.- Derivación Externa y Sumario Castrense.</strong><br>Remisión formal en el día al Ministerio Público / FELCV mediante oficio (Anexo G), procediendo en paralelo a la apertura de Sumario Informativo Militar por falta gravísima contra la moral militar (Art. 71 incs. g y h del Reglamento Disciplinario CJ-R-122).</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold">D.- PROTOCOLO DE ACTUACIÓN ANTE CASOS DE ACOSO SEXUAL LABORAL.</h4>
+                                <p class="text-justify mt-1">Constituye el archivo de trámite y gestión directa de casos, sujeto a rigurosas normas de contrainteligencia militar para salvaguardar la reserva de identidad. Contiene:</p>
+                                <div class="pl-4 mt-3 space-y-4">
+                                    <div>
+                                        <p class="font-bold">1.- SUBSECCIONES.</p>
+                                        <div class="pl-4 mt-1 space-y-2">
+                                            <p class="text-justify"><strong>a.- Subsección Formularios Oficiales Estandarizados.</strong><br>Talonarios de formularios únicos de denuncia, partes de incidente, guías de entrevista y fichas de valoración de riesgo.</p>
+                                            
+                                            <div class="watermark-text mt-8">RESERVADO</div>
+                                            <div class="page-marker">Página 13-17</div>
+                                            <div class="watermark-text mb-8">RESERVADO</div>
+
+                                            <p class="text-justify"><strong>b.- Subsección Expedientes en Trámite.</strong><br>Legajos individuales foliados bajo código alfanumérico estricto (ej. EXP-DIV7-VIF-001/26), con declaraciones y notas de descargo.</p>
+                                            <p class="text-justify"><strong>c.- Subsección Medidas Precautorias.</strong><br>Copias de órdenes de servicio que disponen de la separación de la cadena de mando, cambio de puesto o internación de armamento en armería.</p>
+                                            <p class="text-justify"><strong>d.- Subsección Actas de Confidencialidad.</strong><br>Compromisos jurados de reserva firmados por el personal médico, legal, administrativo y de comando que toma conocimiento del caso.</p>
+                                            <p class="text-justify"><strong>e.- Subsección Enlace Interinstitucional.</strong><br>Copias de oficios de formal derivación remitidos a la FELCV, SLIM, Ministerio Público y certificados médicos de COSSMIL.</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">2.- NIVELES.</p>
+                                        <div class="pl-4 mt-1 space-y-2">
+                                            <p class="text-justify"><strong>a.- Nivel 1 (Leve - Verbal)</strong><br>Bromas de contenido sexual, comentarios invasivos o insinuaciones reiteradas.</p>
+                                            <p class="text-justify"><strong>b.- Nivel 2 (Medio/Grave - No verbal sin contacto físico).</strong><br>Miradas lascivas persistentes, acorralamientos físicos, exhibición de pornografía o hostigamiento por redes sociales.</p>
+                                            <p class="text-justify"><strong>c.- Nivel 3 (Muy Grave - Físico y Coercitivo)</strong><br>Tocamientos, abrazos forzados o condicionamiento de calificaciones, ascensos, comisiones, permisos o destino a cambio de favores sexuales (Delito penal según Art. 312 del Código Penal).</p>
+                                            
+                                            <div class="watermark-text mt-8">RESERVADO</div>
+                                            <div class="page-marker">Página 14-17</div>
+                                            <div class="watermark-text mb-8">RESERVADO</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">3.- SECUENCIA DE ACTUACIÓN PASO A PASO:</p>
+                                        <div class="pl-4 mt-1 space-y-2">
+                                            <p class="text-justify"><strong>a.- Paso 1 (Recepción y Contención - Hrs. 0 a 4).</strong><br>Recepción en ambiente privado, llenado del Formulario Único (Anexo A) y firma de Acta de Confidencialidad (Anexo E).</p>
+                                            <p class="text-justify"><strong>b.- Paso 2 (Medidas Precautorias Urgentes - Plazo máx. 48 hrs).</strong><br>Disposición obligatoria de separación de la cadena de mando entre denunciante y denunciado, reasignación temporal de funciones y prohibición absoluta de contacto.</p>
+                                            <p class="text-justify"><strong>c.- Paso 3 (Diligencias Preliminares - Días 1 a 5).</strong><br>Declaración de la víctima (Anexo C) y recepción de descargos del denunciado (Anexo D).</p>
+                                            <p class="text-justify"><strong>d.- Paso 4 (Investigación Disciplinaria).</strong><br>Si es falta interna (Nivel 1 o 2), el Comité de Gran Unidad emite informe en 10 días hábiles para sanción del Tribunal de Personal.</p>
+                                            <p class="text-justify"><strong>e.- Paso 5 (Derivación Jurisdiccional Obligatoria).</strong><br>Ante indicios de delito (Nivel 3 / Art. 312), remisión inmediata al Ministerio Público / FELCV (Anexo G).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-bold">E.- PROTOCOLOS DE ACTUACIÓN ANTE VIOLENCIA INTRAFAMILIAR (VIF).</h4>
+                                <div class="pl-4 mt-3 space-y-3">
+                                    <p class="text-justify"><strong>1.- Requisa e Incautación Preventiva del Arma de Fuego</strong><br>Secuestro preventivo inmediato del arma de reglamento asignada al militar denunciado, depositada en armería bajo inventario (Art. 18 Ley 400 y Ley 348).</p>
+                                    <p class="text-justify"><strong>2.- Valoración de Riesgo Vital y Plan de Seguridad</strong><br>Aplicación del Cuestionario de Riesgo (Anexo F). Ante riesgo alto o extremo, se elabora un Plan de Seguridad de Emergencia.</p>
+                                    <p class="text-justify"><strong>3.- Asistencia Médica y Legal Inmediata</strong><br>Traslado a COSSMIL o centro de salud para certificado médico.</p>
+
+                                    <div class="watermark-text mt-8">RESERVADO</div>
+                                    <div class="page-marker">Página 15-17</div>
+                                    <div class="watermark-text mb-8">RESERVADO</div>
+
+                                    <p class="text-justify"><strong>4.- Prohibición Categórica de Conciliación</strong><br>En estricta aplicación del Art. 46 de la Ley 348, prohibición absoluta de conciliación.</p>
+                                    <p class="text-justify"><strong>5.- Medidas en Viviendas Militares Fiscales</strong><br>Desalojo y retiro temporal del presunto agresor de la vivienda fiscal.</p>
+                                    <p class="text-justify"><strong>6.- Derivación Externa y Sumario Castrense</strong><br>Remisión al Ministerio Público / FELCV (Anexo G) y apertura paralela de Sumario Informativo Militar (Art. 71 LOFA / CJ-R-122).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold mt-6 mb-4">IV.- CUADRO RESUMEN DE ACTIVIDADES, PLAZOS Y PARTICIPANTES OBLIGATORIOS ANTE DENUNCIAS.</h3>
+                        <p class="text-justify mb-4">La distribución de responsabilidades, plazos perentorios y formatos oficiales aplicables se establece en el siguiente cuadro:</p>
+                        
+                        <p class="font-bold text-center mb-2">Tabla 1: Cuadro resumen de actividades, plazos y participantes obligatorios ante denuncias</p>
+                        <div class="overflow-x-auto mb-6">
+                            <div class="watermark-text mt-8 hidden-print">RESERVADO</div><div class="page-marker hidden-print">Página 16-17</div><div class="watermark-text mb-8 hidden-print">RESERVADO</div><table class="w-full border-collapse border border-gray-400 text-sm">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="border border-gray-400 py-2 px-2 text-center w-8">N°</th>
+                                        <th class="border border-gray-400 py-2 px-2">ACTIVIDAD OPERATIVA</th>
+                                        <th class="border border-gray-400 py-2 px-2">RESPONSABLE</th>
+                                        <th class="border border-gray-400 py-2 px-2">PLAZO MÁXIMO</th>
+                                        <th class="border border-gray-400 py-2 px-2">FORMATO / REGISTRO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">1</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Recepción de denuncia verbal o escrita y contención</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Oficial de Género / Psicología</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">Inmediato (&lt; 2 hrs)</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Anexo "A" (Formulario de Denuncia)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">2</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Adopción de medidas precautorias y separación de mando</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Comandante de Gran Unidad / Oficial Género</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 48 horas</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Orden de Servicio / Disposición de Mando</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">3</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Requisa preventiva de armamento de dotación (Casos VIF)</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Comandante de Unidad / Furriel</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 4 horas</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Acta de Depósito en Armería (Ley 400)</td>
+                                    </tr>
+                                    
+                                    
+                                    
+                                    
+
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">4</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Notificación formal y recepción de descargos al denunciado</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Oficial de Género</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 12 horas / 5 días hábiles</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Anexo "D" (Guía de Descargo)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">5</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Valoración de riesgo vital y formulación de plan de seguridad</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Gabinete Psicológico / Trabajo Social</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 12 horas</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Anexo "F" (Ficha de Riesgo)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">6</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Derivación formal obligatoria a justicia ordinaria (delitos)</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Asesor Jurídico / Oficial de Género</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 24 horas tras parte</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Anexo "G" (Oficio de Derivación FELCV/MP)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">7</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Emisión de Informe Conclusivo e investigación disciplinaria</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Comité de Investigación / Oficial de Género</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">&lt; 10 días hábiles</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Informe Conclusivo de Estado Mayor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">8</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Elevación de parte mensual consolidado a Inspectoría</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Oficial de Género / Inspector Divisionario</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-center">Mensual (cada 30 d)</td>
+                                        <td class="border border-gray-400 py-2 px-2 text-justify">Anexo "B" (Parte Consolidado de Género)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página 17-17</div>
+                </section>
+
+                <!-- ANEXOS -->
+                
+                <!-- ANEXO A -->
+                <section id="anexo-a" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "A"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">FORMULARIO ÚNICO DE DENUNCIA DE INCIDENTES DE GÉNERO Y ACOSO</h3>
+                    
+                    <div class="border-2 border-gray-800 p-6 shadow-sm mb-6 text-sm">
+                        <div class="flex justify-between font-bold mb-4 border-b-2 border-gray-800 pb-2">
+                            <div>GRAN UNIDAD: [ <span class="w-32 inline-block border-b border-black"></span> ]</div>
+                            <div>CÓDIGO DE EXPEDIENTE: [ <span class="w-32 inline-block border-b border-black"></span> ]</div>
+                        </div>
+                        <div class="text-center font-bold mb-6">
+                            EJÉRCITO DE BOLIVIA - ESTADO MAYOR GENERAL<br>
+                            SECCIÓN DE GÉNERO Y DERECHOS HUMANOS
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-bold bg-gray-200 p-1">I. DATOS DE LA VÍCTIMA:</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2 pl-2">
+                                    <div>Grado/Cargo: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div>C.I.: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2">Nombres y Apellidos: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2">Unidad: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold bg-gray-200 p-1">II. DATOS DEL DENUNCIADO:</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2 pl-2">
+                                    <div class="col-span-2">Grado/Cargo: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2">Nombres y Apellidos: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2">Unidad: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2 flex gap-4">
+                                        Relación Jerárquica: 
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Superior</label>
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Par</label>
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Subalterno</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold bg-gray-200 p-1">III. NATURALEZA DEL HECHO:</p>
+                                <div class="mt-2 pl-2 flex flex-wrap gap-4">
+                                    <label><input type="checkbox" disabled="" class="mr-1"> Acoso Sexual</label>
+                                    <label><input type="checkbox" disabled="" class="mr-1"> Acoso Laboral</label>
+                                    <label><input type="checkbox" disabled="" class="mr-1"> Violencia Intrafamiliar</label>
+                                    <label><input type="checkbox" disabled="" class="mr-1"> Discriminación</label>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mt-4 pl-2">
+                                    <div>Fecha: <span class="w-1/2 inline-block border-b border-gray-400 text-center text-gray-400">/ /202...</span></div>
+                                    <div>Lugar: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="col-span-2">
+                                        Relación de los hechos:<br>
+                                        <div class="h-20 border-b border-gray-400 mt-4"></div>
+                                        <div class="h-8 border-b border-gray-400"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="font-bold bg-gray-200 p-1">IV. ELEMENTOS PROBATORIOS PRESENTADOS:</p>
+                                <div class="mt-2 pl-2 space-y-2">
+                                    <div><label><input type="checkbox" disabled="" class="mr-1"> Testigos (Nombres y grados):</label> <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div class="flex flex-wrap gap-4 mt-2">
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Documentos / Partes</label>
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Mensajes Electrónicos</label>
+                                        <label><input type="checkbox" disabled="" class="mr-1"> Certificados Médicos</label>
+                                    </div>
+                                    <div><label><input type="checkbox" disabled="" class="mr-1"> Otros:</label> <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold bg-gray-200 p-1">V. FIRMAS Y SOLICITUD DE MEDIDAS PRECAUTORIAS:</p>
+                                <div class="grid grid-cols-2 gap-8 mt-16 text-center">
+                                    <div>
+                                        <div class="border-t border-black w-3/4 mx-auto pt-1 font-bold">FIRMA DE LA/EL DENUNCIANTE</div>
+                                    </div>
+                                    <div>
+                                        <div class="border-t border-black w-3/4 mx-auto pt-1 font-bold">OFICIAL DE GÉNERO Y DD.HH.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página A-1</div>
+                </section>
+
+                <!-- ANEXO B -->
+                <section id="anexo-b" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "B"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">FORMULARIO DE PARTE DE INCIDENTE DE GÉNERO</h3>
+                    
+                    <div class="border-2 border-gray-800 p-6 shadow-sm mb-6 text-sm">
+                        <div class="text-center font-bold mb-4">EJÉRCITO DE BOLIVIA</div>
+                        <div class="mb-4">GRAN UNIDAD DE COMBATE: <span class="w-64 inline-block border-b border-black"></span></div>
+                        <div class="flex justify-between font-bold mb-6">
+                            <div>FECHA DE EMISIÓN: ....../...../202...</div>
+                            <div>PARTE N°: ........./202...</div>
+                        </div>
+                        
+                        <div class="space-y-4 font-bold">
+                            <div class="flex"><div class="w-16">A:</div><div class="flex-1">SEÑOR COMANDANTE DE LA GRAN UNIDAD / INSPECTOR DIVISIONARIO</div></div>
+                            <div class="flex"><div class="w-16">DE:</div><div class="flex-1">LA/EL OFICIAL DE GÉNERO Y DERECHOS HUMANOS</div></div>
+                            <div class="flex"><div class="w-16">OBJETO:</div><div class="flex-1 border-b border-black">Elevar Parte Circunstanciado de Incidente de Género.</div></div>
+                        </div>
+                        
+                        <div class="space-y-4 mt-6">
+                            <div>
+                                <p class="font-bold">1. ANTECEDENTES:</p>
+                                <p class="text-justify leading-relaxed mt-2 pl-4">A horas <span class="w-20 inline-block border-b border-black"></span> del día ......./......./202..., se recepcionó formal denuncia de <span class="w-full inline-block border-b border-black mt-2"></span> en contra de <span class="w-full inline-block border-b border-black mt-2"></span></p>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold">2. MEDIDAS PRECAUTORIAS ADOPTADAS (PLAZO 48 HORAS):</p>
+                                <div class="pl-4 mt-2 space-y-2">
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Separación inmediata de la línea de mando directo entre las partes.</label>
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Reasignación temporal de funciones de servicio / cuarto de guardia.</label>
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> <span>Requisa e internación del arma reglamentaria en el Furrielato de la Unidad (según Ley 400).</span></label>
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Notificación formal de prohibición de hostigamiento o contacto hacia la presunta víctima.</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="font-bold">3. EVALUACIÓN Y DERIVACIÓN:</p>
+                                <div class="pl-4 mt-2 space-y-2">
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Acompañamiento a COSSMIL / Centro Médico asistencial (Certificado Médico adjunto).</label>
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Remisión de antecedentes al Ministerio Público / FELCV mediante Oficio N° <span class="w-24 inline-block border-b border-black"></span>./202...</label>
+                                    <label class="flex items-start gap-2"><input type="checkbox" disabled="" class="mt-1"> Remisión a Asesoría Jurídica para inicio de Sumario Informativo Militar.</label>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-16 text-center">
+                                <div class="border-t border-black w-1/2 mx-auto pt-1 font-bold">OFICIAL DE GÉNERO Y DD.HH.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página B-1</div>
+                </section>
+
+                <!-- ANEXO C -->
+                <section id="anexo-c" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "C"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">GUÍA DE ENTREVISTA A LA PERSONA AFECTADA</h3>
+                    
+                    <div class="pl-4 mb-6">
+                        <p class="font-bold mb-2">Criterios Técnicos.</p>
+                        <p class="text-justify mb-6">Desarrollar la sesión en ambiente privado, asegurando contención emocional y evitando preguntas que juzguen o culpabilicen a la víctima (regla de no revictimización).</p>
+                        
+                        <ol class="list-decimal pl-6 space-y-4">
+                            <li class="pl-2">
+                                <p class="font-bold">Preguntas de Apertura:</p>
+                                <p>¿Cómo se siente en este momento? ¿Desea que un familiar o profesional de psicología la acompañe?</p>
+                            </li>
+                            <li class="pl-2">
+                                <p class="font-bold">Delimitación Factica:</p>
+                                <p>¿Qué palabras o actos específicos ejecutó la persona denunciada? ¿Cuándo y en qué lugares de la unidad se suscitaron?</p>
+                            </li>
+                            <li class="pl-2">
+                                <p class="font-bold">Relación de Poder y Condicionamiento:</p>
+                                <p>¿E denunciado condicionó calificaciones, ascensos, destinos, guardias o permisos a cambio de conductas de índole sexual?</p>
+                            </li>
+                            <li class="pl-2">
+                                <p class="font-bold">Seguridad:</p>
+                                <p>¿Teme por su integridad física, la de sus familiares o represalias profesionales?</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página C-1</div>
+                </section>
+
+                <!-- ANEXO D -->
+                <section id="anexo-d" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "D"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">GUÍA DE ENTREVISTA A LA PERSONA DENUNCIADA</h3>
+                    
+                    <div class="pl-4 mb-6">
+                        <p class="font-bold mb-2">Criterios Técnicos.</p>
+                        <p class="text-justify mb-6">Informar los derechos constitucionales, el principio de presunción de inocencia, el derecho a contar con defensa técnica y la prohibición estricta de represalias.</p>
+                        
+                        <ol class="list-decimal pl-6 space-y-4">
+                            <li class="pl-2">
+                                <p class="font-bold">Notificación:</p>
+                                <p>Se le informa en detalle el contenido de la denuncia radicada en su contra por presunto acoso sexual / violencia intrafamiliar.</p>
+                            </li>
+                            <li class="pl-2">
+                                <p class="font-bold">Descargo:</p>
+                                <p>¿Qué tiene que manifestar ante los hechos señalados? ¿Admite o niega las imputaciones? ¿Dispone de testigos o pruebas de descargo?</p>
+                            </li>
+                            <li class="pl-2">
+                                <p class="font-bold">Advertencia Disciplinaria:</p>
+                                <p>Se le notifica formalmente que cualquier acto de hostigamiento, intimidación o represalia directa o indirecta constituirá falta militar gravísima y motivará su aprehensión y remisión a la justicia ordinaria.</p>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página D-1</div>
+                </section>
+
+                <!-- ANEXO E -->
+                <section id="anexo-e" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "E"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">ACTA DE COMPROMISO DE CONFIDENCIALIDAD, RESERVA DE INFORMACIÓN Y NO REVICTIMIZACIÓN</h3>
+                    
+                    <div class="pl-4 mb-6">
+                        <p class="text-justify mb-6 leading-loose">
+                            En la ciudad de <span class="w-32 inline-block border-b border-black"></span> en dependencias de la Gran Unidad <span class="w-48 inline-block border-b border-black"></span> a horas <span class="w-20 inline-block border-b border-black"></span> del día ......./. ../202..., los suscritos miembros del Equipo Multidisciplinario, autoridades de mando y personal administrativo interviniente en la causa N° <span class="w-32 inline-block border-b border-black"></span>
+                        </p>
+                        
+                        <p class="font-bold text-center mb-6">DECLARAN BAJO JURAMENTO:</p>
+                        
+                        <ol class="list-decimal pl-6 space-y-4 mb-16">
+                            <li class="pl-2 text-justify">Guardar absoluto secreto y reserva sobre los hechos, testimonios y peritajes conocidos durante el procedimiento.</li>
+                            <li class="pl-2 text-justify">Asumir conocimiento de que la infidencia o filtración de datos sensibles constituye delito sancionado por el Art. 145 bis del D.S. 2145 y falta gravísima en el Reglamento de Régimen Disciplinario de las FF.AA.</li>
+                        </ol>
+                        
+                        <p class="font-bold mb-12">Firmas al pie:</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-16">
+                            <div>
+                                <div class="border-t border-black w-3/4 mx-auto pt-1 font-bold">OFICIAL DE GÉNERO</div>
+                            </div>
+                            <div>
+                                <div class="border-t border-black w-3/4 mx-auto pt-1 font-bold">ASESOR JURÍDICO</div>
+                            </div>
+                            <div>
+                                <div class="border-t border-black w-3/4 mx-auto pt-1 font-bold">PSICÓLOGO / SANIDAD</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página E-1</div>
+                </section>
+
+                <!-- ANEXO F -->
+                <section id="anexo-f" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "F"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)] max-w-2xl mx-auto">CUESTIONARIO DE VALORACIÓN DE RIESGO VITAL EN VIOLENCIA INTRAFAMILIAR Y PLAN DE SEGURIDAD DE EMERGENCIA</h3>
+                    
+                    <div class="pl-4 mb-6">
+                        <p class="font-bold mb-4">Preguntas de Despistaje Rápido (A responder por la víctima junto a Psicología / Trabajo Social):</p>
+                        
+                        <ol class="list-decimal pl-6 space-y-4 mb-8">
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿La violencia física o amenazas han aumentado en intensidad o frecuencia en el último año?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿El denunciado tiene arma de fuego reglamentaria o acceso a armamento en la unidad?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿El denunciado ha amenazado expresamente con matarla a usted o a sus hijos?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿Ha intentado ahorcarla, estrangularla o asfixiarla en alguna ocasión?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿Ejerce celos patológicos y control obsesivo de sus movimientos y comunicaciones?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿Consume bebidas alcohólicas o estupefacientes antes de agredirla?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                            <li class="pl-2 flex justify-between">
+                                <span class="pr-4">¿Cree usted firmemente que él es capaz de quitarle la vida?</span> 
+                                <span class="font-bold">[SÍ/NO]</span>
+                            </li>
+                        </ol>
+                        
+                        <p class="font-bold mb-2">Calificación:</p>
+                        <ul class="list-disc pl-8 space-y-2 mb-8">
+                            <li class="text-justify"><strong>1 a 3 respuestas "SÍ": Riesgo Moderado.</strong> (Orientación legal y seguimiento quincenal).</li>
+                            <li class="text-justify"><strong>4 a 5 respuestas "SÍ": Riesgo Alto.</strong> (Requisa de arma, alejamiento de vivienda y medidas de protección).</li>
+                            <li class="text-justify"><strong>6 o más "SÍ": RIESGO EXTREMO / FEMINICIDA.</strong> (Requisa inmediata de armas, desalojo del militar de la vivienda fiscal, internación de la víctima en casa de acogida y custodia policial de la FELCV).</li>
+                        </ul>
+                        
+                        <p class="font-bold mb-4">Plan de Seguridad de Emergencia:</p>
+                        <ul class="list-disc pl-8 space-y-2">
+                            <li>Líneas Gratuitas de Auxilio: FELCV 800-140348 | Guardia de Prevención de la Unidad.</li>
+                            <li>Lugar de Resguardo Temporal predeterminado.</li>
+                            <li>Palabra clave de auxilio acordada con hijos o vecinos.</li>
+                            <li>Bolso de emergencia listo (documentos personales, llaves, dinero, celular con crédito).</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página F-1</div>
+                </section>
+
+                <!-- ANEXO G -->
+                <section id="anexo-g" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "G"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">FORMULARIO OFICIAL DE REFERENCIA Y DERIVACIÓN INTERINSTITUCIONAL</h3>
+                    
+                    <div class="border-2 border-gray-800 p-6 shadow-sm mb-6 text-sm">
+                        <div class="text-center font-bold mb-4">EJÉRCITO DE BOLIVIA</div>
+                        <div class="mb-4">GRAN UNIDAD DE COMBATE: <span class="w-64 inline-block border-b border-black"></span></div>
+                        <div class="font-bold mb-6">OFICIO DE DERIVACIÓN INTERINSTITUCIONAL N°: ........./202...</div>
+                        
+                        <div class="space-y-1 mb-6">
+                            <p class="font-bold">AL SEÑOR:</p>
+                            <p class="font-bold">DIRECTOR DEPARTAMENTAL DE LA FUERZA ESPECIAL DE LUCHA CONTRA LA VIOLENCIA (FELCV) /</p>
+                            <p class="font-bold">REPRESENTANTE DEL MINISTERIO PÚBLICO / SERVICIO LEGAL INTEGRAL MUNICIPAL (SLIM)</p>
+                            <p class="font-bold mt-2">PRESENTE.-</p>
+                        </div>
+                        
+                        <p class="mb-4">De mi mayor consideración:</p>
+                        <p class="text-justify mb-4">En estricto cumplimiento a los Artículos 9, 21 y 46 de la Ley N° 348 y el Decreto Supremo N° 2145, remito a su autoridad los antecedentes del presunto hecho de:</p>
+                        
+                        <div class="flex flex-wrap gap-4 mb-6">
+                            <label><input type="checkbox" disabled="" class="mr-1"> Acoso Sexual Laboral (Art. 312 quater Código Penal)</label>
+                            <label><input type="checkbox" disabled="" class="mr-1"> Violencia Intrafamiliar o Doméstica</label>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <p class="font-bold">I. VÍCTIMA:</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2 pl-4">
+                                    <div>C.I.: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div>Grado/Condición: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold">II. DENUNCIADO:</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2 pl-4">
+                                    <div>Grado/Cargo: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                    <div>C.I.: <span class="w-full inline-block border-b border-gray-400 mt-1"></span></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-bold">III. MEDIDAS INTERNAS ADOPTADAS POR EL EJÉRCITO:</p>
+                                <ol class="list-decimal pl-8 mt-2 space-y-2">
+                                    <li>Separación de la línea de mando directo y cambio de puesto temporal de guardia.</li>
+                                    <li>(En VIF) Requisa e internación preventiva del arma de reglamento en la armería de la Unidad.</li>
+                                    <li>Acompañamiento a valoración médica en COSSMIL (Certificado Médico adjunto).</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <p class="text-justify mb-16">Solicito se admita la denuncia y se dicten las medidas cautelares de protección para evitar la revictimización.</p>
+                        
+                        <div class="text-center">
+                            <div class="border-t border-black w-1/2 mx-auto pt-1 font-bold">OFICIAL DE GÉNERO Y DD.HH.</div>
+                            <div class="mt-1">(Vo.Bo. COMANDANTE DE LA GRAN UNIDAD)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página G-1</div>
+                </section>
+
+                <!-- ANEXO H -->
+                <section id="anexo-h" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "H"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">GLOSARIO DE TÉRMINOS</h3>
+                    
+                    <div class="pl-4 space-y-4 mb-6">
+                        <p class="text-justify"><span class="font-bold">Acoso Sexual Laboral:</span> Conducta indeseada de carácter sexual que afecta la dignidad y el entorno laboral mediante coacción o condicionamiento jerárquico.</p>
+                        <p class="text-justify"><span class="font-bold">Debida Diligencia:</span> Obligación estatal de prevenir, investigar, sancionar y reparar con celeridad toda vulneración de derechos humanos.</p>
+                        <p class="text-justify"><span class="font-bold">No Revictimización:</span> Principio que evita someter a la víctima a trámites o declaraciones innecesarias que multipliquen su afectación psicológica.</p>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página H-1</div>
+                </section>
+
+                <!-- ANEXO I -->
+                <section id="anexo-i" class="page-break pt-10">
+                    <div class="watermark-text mb-8">RESERVADO</div>
+                    <h2 class="text-xl font-bold text-center mb-6 uppercase">ANEXO "I"</h2>
+                    <h3 class="text-lg font-bold text-center mb-8 uppercase text-[var(--army-green)]">REGISTRO DE AJUSTES O CORRECCIONES SUGERIDOS</h3>
+                    
+                    <div class="pl-4 mb-6">
+                        <p class="text-justify mb-6">La presente tabla está destinada al uso del lector y su propósito es el registro de errores encontrados o de la necesidad de realizar ajustes o correcciones a la publicación vigente.</p>
+                        
+                        <div class="overflow-x-auto mb-12">
+                            <table class="w-full border-collapse border border-gray-400 text-sm">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="border border-gray-400 py-3 px-2 w-16">Página</th>
+                                        <th class="border border-gray-400 py-3 px-2">Descripción del ajuste o corrección requerido</th>
+                                        <th class="border border-gray-400 py-3 px-2 w-32">Acción requerida</th>
+                                        <th class="border border-gray-400 py-3 px-2 w-24">Rev. por</th>
+                                        <th class="border border-gray-400 py-3 px-2 w-24">Mes y año</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border border-gray-400 h-10"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td></tr>
+                                    <tr><td class="border border-gray-400 h-10"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td></tr>
+                                    <tr><td class="border border-gray-400 h-10"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td></tr>
+                                    <tr><td class="border border-gray-400 h-10"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td><td class="border border-gray-400"></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="watermark-text mt-8">RESERVADO</div>
+                    <div class="page-marker">Página I-1, I-2</div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sidebar Toggle for Mobile
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('open-sidebar');
+        const closeBtn = document.getElementById('close-sidebar');
+
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            sidebar.classList.add('translate-x-0', 'absolute');
+            sidebar.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            setTimeout(() => {
+                if (window.innerWidth < 768) {
+                    sidebar.style.display = 'none';
+                }
+            }, 300);
+        });
+
+        // Close sidebar on link click (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                    setTimeout(() => { sidebar.style.display = 'none'; }, 300);
+                }
+            });
+        });
+
+        // Toast Notification System (NO ALERTS)
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            
+            toast.classList.remove('hidden');
+            // Trigger reflow
+            void toast.offsetWidth;
+            
+            toast.classList.remove('opacity-0', 'translate-y-full');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-full');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3000);
+        }
+
+        // Copy HTML Code Function
+        function copyCode() {
+            const htmlContent = document.documentElement.outerHTML;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(htmlContent).then(() => {
+                    showToast("¡Código HTML copiado al portapapeles exitosamente!");
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(htmlContent, "Código HTML");
+                });
+            } else {
+                fallbackCopyTextToClipboard(htmlContent, "Código HTML");
+            }
+        }
+
+        // Copy plain text content Function
+        function copyText() {
+            const docContent = document.getElementById('document-text').innerText;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(docContent).then(() => {
+                    showToast("¡Texto del documento copiado al portapapeles!");
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(docContent, "Texto del documento");
+                });
+            } else {
+                fallbackCopyTextToClipboard(docContent, "Texto del documento");
+            }
+        }
+
+        // Fallback for older browsers or non-secure contexts
+        function fallbackCopyTextToClipboard(text, typeName) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            // Prevent scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                if(successful) {
+                    showToast(`¡${typeName} copiado al portapapeles!`);
+                } else {
+                    showToast(`No se pudo copiar el ${typeName.toLowerCase()}.`, false);
+                }
+            } catch (err) {
+                showToast(`Error al intentar copiar el ${typeName.toLowerCase()}.`, false);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Smooth Scrollspy for sidebar
+        const mainContent = document.getElementById('main-content');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainContent.scrollTop >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-white/20', 'text-white');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('bg-white/20', 'text-white');
+                }
+            });
+        });
+        
+        // Handle window resize for sidebar
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                sidebar.style.display = 'flex';
+                sidebar.classList.remove('-translate-x-full', 'absolute');
+            } else {
+                sidebar.classList.add('-translate-x-full', 'absolute');
+                setTimeout(() => { if(window.innerWidth < 768) sidebar.style.display = 'none'; }, 300);
+            }
+        });
+    </script>
+
+</body></html>

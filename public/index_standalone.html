@@ -664,6 +664,331 @@ funcione correctamente.
         grid-template-columns: 1fr;
       }
     }
+
+    /* ÁRBOL DE DECISIÓN INTERACTIVO (PROTOCOLO DE ACCIÓN RÁPIDA) */
+    .tree-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 0 30px;
+    }
+
+    .tree-step-card {
+      display: none;
+      background: #0f1725;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 30px 34px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .tree-step-card.active {
+      display: block;
+      animation: treeFade 0.25s ease-out;
+    }
+
+    @keyframes treeFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tree-badge-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(225, 29, 72, 0.15);
+      color: #fda4af;
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      margin-bottom: 14px;
+    }
+
+    .tree-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .tree-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .tree-question-box {
+      background: #090e17;
+      border-left: 4px solid #d4af37;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 24px;
+    }
+
+    .tree-question-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fce788;
+    }
+
+    .tree-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .tree-option-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      background: #131d2e;
+      border: 1.5px solid #223249;
+      border-radius: 10px;
+      padding: 20px 22px;
+      cursor: pointer;
+      color: #ffffff;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .tree-option-btn:hover {
+      background: #18253b;
+      border-color: #d4af37;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .tree-option-btn.danger-opt:hover {
+      border-color: #f43f5e;
+      background: #23151f;
+    }
+
+    .tree-opt-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tree-option-btn:hover .tree-opt-title {
+      color: #fde047;
+    }
+
+    .tree-option-btn.danger-opt:hover .tree-opt-title {
+      color: #fda4af;
+    }
+
+    .tree-opt-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    .tree-footer-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+      margin-top: 10px;
+    }
+
+    .tree-back-btn {
+      background: transparent;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .tree-back-btn:hover {
+      background: #1e293b;
+      color: #ffffff;
+      border-color: #64748b;
+    }
+
+    /* RESULT SCREENS */
+    .tree-result-header {
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tree-result-header.a1 {
+      background: rgba(234, 179, 8, 0.12);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+    }
+
+    .tree-result-header.a2 {
+      background: rgba(225, 29, 72, 0.15);
+      border: 1px solid rgba(225, 29, 72, 0.45);
+    }
+
+    .tree-result-header.b1 {
+      background: rgba(14, 165, 233, 0.12);
+      border: 1px solid rgba(14, 165, 233, 0.4);
+    }
+
+    .tree-result-header.b2 {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1.5px solid rgba(239, 68, 68, 0.6);
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    }
+
+    .tree-actions-container {
+      margin-bottom: 26px;
+    }
+
+    .tree-action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #090e17;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+    }
+
+    .tree-action-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1e293b;
+      color: #fde047;
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tree-action-content {
+      flex: 1;
+    }
+
+    .tree-action-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tree-action-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .deadline-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .deadline-urgent {
+      background: rgba(225, 29, 72, 0.2);
+      color: #fda4af;
+      border: 1px solid rgba(225, 29, 72, 0.5);
+    }
+
+    .deadline-warning {
+      background: rgba(234, 179, 8, 0.2);
+      color: #fef08a;
+      border: 1px solid rgba(234, 179, 8, 0.5);
+    }
+
+    .deadline-info {
+      background: rgba(56, 189, 248, 0.2);
+      color: #bae6fd;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+    }
+
+    /* REQUIRED FORMS */
+    .tree-forms-section {
+      background: #0b111a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 22px;
+    }
+
+    .tree-forms-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tree-forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .tree-form-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: #131c2a;
+      border: 1px solid #223249;
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .tree-form-btn:hover {
+      background: #192639;
+      border-color: #d4af37;
+      color: #fde047;
+    }
   </style>
 </head>
 <body>
@@ -727,19 +1052,27 @@ funcione correctamente.
       </div>
     </header>
 
-    <!-- MENÚ DE NAVEGACIÓN SUPERIOR (3 PESTAÑAS) -->
+    <!-- MENÚ DE NAVEGACIÓN SUPERIOR (5 PESTAÑAS) -->
     <nav class="tabs-nav">
-      <button class="tab-btn active" onclick="cambiarPestana('anexos', this)">
+      <button class="tab-btn active" data-tab="anexos" onclick="cambiarPestana('anexos', this)">
         <span>Pestaña 1: Anexos</span>
         <span class="tab-badge">9</span>
       </button>
-      <button class="tab-btn" onclick="cambiarPestana('principal', this)">
+      <button class="tab-btn" data-tab="principal" onclick="cambiarPestana('principal', this)">
         <span>Pestaña 2: Carpeta Principal</span>
         <span class="tab-badge">11</span>
       </button>
-      <button class="tab-btn" onclick="cambiarPestana('secundaria', this)">
+      <button class="tab-btn" data-tab="secundaria" onclick="cambiarPestana('secundaria', this)">
         <span>Pestaña 3: Carpeta Secundaria</span>
         <span class="tab-badge">6</span>
+      </button>
+      <button class="tab-btn" data-tab="protocolo" onclick="cambiarPestana('protocolo', this)">
+        <span>Pestaña 4: Protocolo de Acción Rápida</span>
+        <span class="tab-badge" style="background: rgba(225, 29, 72, 0.25); color: #fda4af; border: 1px solid rgba(225, 29, 72, 0.5);">ÁRBOL</span>
+      </button>
+      <button class="tab-btn" data-tab="manual" onclick="cambiarPestana('manual', this)">
+        <span>Pestaña 5: Visor del Manual</span>
+        <span class="tab-badge" style="background: rgba(212, 175, 55, 0.2); color: #fce788; border: 1px solid rgba(212, 175, 55, 0.4);">HTML</span>
       </button>
     </nav>
 
@@ -1388,6 +1721,526 @@ funcione correctamente.
       </div>
     </div>
 
+    <!-- PESTAÑA 4: PROTOCOLO DE ACCIÓN RÁPIDA (ÁRBOL DE DECISIÓN INTERACTIVO) -->
+    <div id="tab-protocolo" class="tab-pane">
+      <div class="tree-container">
+
+        <!-- PANTALLA INICIAL (Paso 1): EVALUACIÓN INICIAL DEL INCIDENTE -->
+        <div id="tree-step-1" class="tree-step-card active">
+          <div class="tree-badge-meta">PASO 1 • SIMULADOR DE TOMA DE DECISIONES</div>
+          <div class="tree-title">EVALUACIÓN INICIAL DEL INCIDENTE</div>
+          <div class="tree-subtitle">
+            Guía de respuesta operativa inmediata para el Oficial de Género y Derechos Humanos ante denuncias en la Unidad Militar. Seleccione la naturaleza del hecho denunciado para determinar el plan de acción, los plazos críticos y los formularios oficiales requeridos.
+          </div>
+
+          <div class="tree-question-box">
+            <div class="tree-question-text">¿Cuál es la naturaleza de la denuncia?</div>
+          </div>
+
+          <div class="tree-options-grid">
+            <button type="button" class="tree-option-btn" onclick="mostrarPasoArbol('step-2a')">
+              <div class="tree-opt-title">
+                <span>🔴 Botón A: Acoso Sexual / Laboral</span>
+              </div>
+              <div class="tree-opt-desc">
+                Conductas de hostigamiento, chantaje, comentarios lascivos, intimidación o abusos de autoridad de carácter sexual o laboral en el entorno de servicio militar.
+              </div>
+            </button>
+
+            <button type="button" class="tree-option-btn danger-opt" onclick="mostrarPasoArbol('step-2b')">
+              <div class="tree-opt-title">
+                <span>🛡️ Botón B: Violencia Intrafamiliar (VIF)</span>
+              </div>
+              <div class="tree-opt-desc">
+                Agresiones físicas, psicológicas, sexuales o patrimoniales que involucren al personal militar en su entorno conyugal o familiar conforme a la Ley 348.
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- PANTALLA 2A (Ruta Acoso) -->
+        <div id="tree-step-2a" class="tree-step-card">
+          <div class="tree-badge-meta">PASO 2A • RUTA: ACOSO SEXUAL / LABORAL</div>
+          <div class="tree-title">VALORACIÓN DE GRAVEDAD DEL ACOSO</div>
+          <div class="tree-subtitle">
+            Clasifique la gravedad de los hechos según la manifestación de la persona afectada y los elementos iniciales de convicción para definir si corresponde trámite disciplinario interno o derivación penal ordinaria.
+          </div>
+
+          <div class="tree-question-box">
+            <div class="tree-question-text">Determine el nivel de gravedad según relato inicial:</div>
+          </div>
+
+          <div class="tree-options-grid">
+            <button type="button" class="tree-option-btn" onclick="mostrarPasoArbol('result-a1')">
+              <div class="tree-opt-title">
+                <span>Botón 2A-1: Nivel 1 o 2 (Verbal / Sin contacto físico)</span>
+              </div>
+              <div class="tree-opt-desc">
+                Comentarios lascivos, insinuaciones verbales, bromas machistas, mensajes reiterados por redes sociales o aislamiento funcional, sin agresión corporal.
+              </div>
+            </button>
+
+            <button type="button" class="tree-option-btn danger-opt" onclick="mostrarPasoArbol('result-a2')">
+              <div class="tree-opt-title">
+                <span>Botón 2A-2: Nivel 3 (Físico / Coercitivo / Condicionamiento)</span>
+              </div>
+              <div class="tree-opt-desc">
+                Tocamientos corporales no consentidos, condicionamiento de ascensos o calificaciones a favores sexuales, intimidación armada o agresión corporal explícita.
+              </div>
+            </button>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-1')">
+              ← Volver al inicio
+            </button>
+            <span style="font-size: 11px; color: #64748b; font-family: monospace;">Ruta Activa: Acoso Sexual / Laboral</span>
+          </div>
+        </div>
+
+        <!-- PANTALLA 2B (Ruta VIF) -->
+        <div id="tree-step-2b" class="tree-step-card">
+          <div class="tree-badge-meta" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.4);">
+            PASO 2B • RUTA: VIOLENCIA INTRAFAMILIAR (VIF)
+          </div>
+          <div class="tree-title">EVALUACIÓN RÁPIDA DE RIESGO VITAL</div>
+          <div class="tree-subtitle">
+            Determine de manera perentoria si concurre peligro inminente contra la vida o integridad física de la víctima o sus familiares (hijos, cónyuge).
+          </div>
+
+          <div class="tree-question-box" style="border-left-color: #ef4444;">
+            <div class="tree-question-text">Evaluación Rápida de Riesgo Vital:</div>
+          </div>
+
+          <div class="tree-options-grid">
+            <button type="button" class="tree-option-btn" onclick="mostrarPasoArbol('result-b1')">
+              <div class="tree-opt-title">
+                <span>Botón 2B-1: Riesgo Moderado (Sin amenazas de muerte / Sin arma)</span>
+              </div>
+              <div class="tree-opt-desc">
+                Disputas con violencia psicológica o agresión física leve a moderada, sin armas de dotación comprometidas y sin amenazas manifiestas de feminicidio.
+              </div>
+            </button>
+
+            <button type="button" class="tree-option-btn danger-opt" onclick="mostrarPasoArbol('result-b2')">
+              <div class="tree-opt-title">
+                <span>🚨 Botón 2B-2: Riesgo Alto/Extremo (Amenazas / Acceso a Arma de Fuego)</span>
+              </div>
+              <div class="tree-opt-desc">
+                Amenazas expresas de muerte, uso de arma blanca o de dotación, lesiones graves, antecedentes de violencia armada o denunciado con acceso inmediato a armamento.
+              </div>
+            </button>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-1')">
+              ← Volver al inicio
+            </button>
+            <span style="font-size: 11px; color: #64748b; font-family: monospace;">Ruta Activa: Violencia Intrafamiliar (VIF)</span>
+          </div>
+        </div>
+
+        <!-- PANTALLA RESULTADO A1: Acoso Leve/Medio -->
+        <div id="tree-result-a1" class="tree-step-card">
+          <div class="tree-badge-meta" style="background: rgba(234, 179, 8, 0.15); color: #fde047; border-color: rgba(234, 179, 8, 0.4);">
+            RESULTADO A1 • FALTA GRAVE DISCIPLINARIA
+          </div>
+          <div class="tree-result-header a1">
+            <div>
+              <div class="tree-title" style="margin-bottom: 2px;">PLAN DE ACCIÓN - FALTA DISCIPLINARIA</div>
+              <div style="font-size: 12px; color: #cbd5e1;">Procedimiento Sumarial Disciplinario Interno de la Unidad Militar</div>
+            </div>
+            <span class="deadline-badge deadline-warning">TRÁMITE DISCIPLINARIO</span>
+          </div>
+
+          <div class="tree-actions-container">
+            <div style="font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 12px; text-transform: uppercase;">
+              Acciones Inmediatas y Plazos Críticos:
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">1</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Recepción y Contención</span>
+                  <span class="deadline-badge deadline-urgent">&lt; 2 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Entrevista inicial en espacio reservado y seguro. Apertura del cuaderno de incidentes y contención psicológica preliminar sin revictimizar.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">2</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Separación de Mando Temporal</span>
+                  <span class="deadline-badge deadline-warning">&lt; 48 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Reubicación preventiva de servicios, guardias o dependencias funcionales para suprimir toda subordinación directa o contacto físico entre las partes.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">3</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Diligencias Preliminares</span>
+                  <span class="deadline-badge deadline-info">&lt; 5 días</span>
+                </div>
+                <div class="tree-action-desc">
+                  Recopilación de declaraciones testificales, partes diarios, registros telefónicos o de mensajería y actas de entrevista.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">4</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Investigación Disciplinaria Interna</span>
+                  <span class="deadline-badge deadline-info">Sumario Castrense</span>
+                </div>
+                <div class="tree-action-desc">
+                  Remisión del informe de conclusiones al Comandante de la Unidad y al Tribunal de Personal para sustanciación sumarial militar.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-forms-section">
+            <div class="tree-forms-title">📄 Formularios Requeridos (Descarga Inmediata):</div>
+            <div class="tree-forms-grid">
+              <button type="button" class="tree-form-btn" data-id="anexo_a" data-code="ANEXO A" data-category="Anexos" data-file="Anexos/ANEXO A.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO A (Formulario de Denuncia)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_e" data-code="ANEXO E" data-category="Anexos" data-file="Anexos/ANEXO E.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO E (Matriz de Riesgo / Medidas)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_c" data-code="ANEXO C" data-category="Anexos" data-file="Anexos/ANEXO C.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO C (Guía de Entrevista)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_d" data-code="ANEXO D" data-category="Anexos" data-file="Anexos/ANEXO D.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO D (Acta Medidas Precautorias)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="db-btn db-btn-gold" onclick="reiniciarArbol()">
+              🔄 Reiniciar Evaluación
+            </button>
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-2a')">
+              ← Modificar Gravedad
+            </button>
+          </div>
+        </div>
+
+        <!-- PANTALLA RESULTADO A2: Acoso Grave / Abuso -->
+        <div id="tree-result-a2" class="tree-step-card">
+          <div class="tree-badge-meta" style="background: rgba(225, 29, 72, 0.2); color: #fda4af; border-color: rgba(225, 29, 72, 0.5);">
+            RESULTADO A2 • DELITO PENAL ORDINARIO
+          </div>
+          <div class="tree-result-header a2">
+            <div>
+              <div class="tree-title" style="margin-bottom: 2px;">PLAN DE ACCIÓN - DELITO PENAL (Art. 312 quater)</div>
+              <div style="font-size: 12px; color: #cbd5e1;">Acoso Sexual Tipificado en Código Penal / Obligación Legal de Denuncia</div>
+            </div>
+            <span class="deadline-badge deadline-urgent">OBLIGACIÓN PENAL EXTERNA</span>
+          </div>
+
+          <div class="tree-actions-container">
+            <div style="font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 12px; text-transform: uppercase;">
+              Acciones Perentorias y Plazos Críticos:
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">1</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Separación Inmediata de Mando</span>
+                  <span class="deadline-badge deadline-urgent">&lt; INMEDIATO</span>
+                </div>
+                <div class="tree-action-desc">
+                  Relevo formal y suspensión inmediata de toda potestad de mando, jefatura, evaluación o supervisión respecto a la persona denunciante.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">2</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Prohibición de Contacto</span>
+                  <span class="deadline-badge deadline-urgent">&lt; INMEDIATO</span>
+                </div>
+                <div class="tree-action-desc">
+                  Notificación formal bajo firma de orden tajante de alejamiento físico, virtual, telefónico o por interpósita persona, con apercibimiento procesal.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">3</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Derivación Jurisdiccional Obligatoria a FELCV / Ministerio Público</span>
+                  <span class="deadline-badge deadline-urgent">&lt; 24 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Remisión formal mediante oficio firmado por el Comandante de Unidad y Oficial de Género a la Fiscalía / FELCV para investigación penal ordinaria.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-forms-section">
+            <div class="tree-forms-title">📄 Formularios Requeridos:</div>
+            <div class="tree-forms-grid">
+              <button type="button" class="tree-form-btn" data-id="anexo_a" data-code="ANEXO A" data-category="Anexos" data-file="Anexos/ANEXO A.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO A (Formulario de Denuncia)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_e" data-code="ANEXO E" data-category="Anexos" data-file="Anexos/ANEXO E.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO E (Matriz de Riesgo)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_g" data-code="ANEXO G" data-category="Anexos" data-file="Anexos/ANEXO G.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO G (Remisión a Ordinaria)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="db-btn db-btn-gold" onclick="reiniciarArbol()">
+              🔄 Reiniciar Evaluación
+            </button>
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-2a')">
+              ← Modificar Gravedad
+            </button>
+          </div>
+        </div>
+
+        <!-- PANTALLA RESULTADO B1: VIF Moderada -->
+        <div id="tree-result-b1" class="tree-step-card">
+          <div class="tree-badge-meta" style="background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border-color: rgba(14, 165, 233, 0.4);">
+            RESULTADO B1 • VIOLENCIA INTRAFAMILIAR MODERADA
+          </div>
+          <div class="tree-result-header b1">
+            <div>
+              <div class="tree-title" style="margin-bottom: 2px;">PLAN DE ACCIÓN - VIF RIESGO MODERADO</div>
+              <div style="font-size: 12px; color: #cbd5e1;">Ley Integral Para Garantizar a las Mujeres una Vida Libre de Violencia (Ley 348)</div>
+            </div>
+            <span class="deadline-badge deadline-info">RUTA DE PROTECCIÓN LEY 348</span>
+          </div>
+
+          <div class="tree-actions-container">
+            <div style="font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 12px; text-transform: uppercase;">
+              Acciones Obligatorias y Plazos:
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">1</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Contención Psicológica</span>
+                  <span class="deadline-badge deadline-urgent">&lt; INMEDIATO</span>
+                </div>
+                <div class="tree-action-desc">
+                  Atención prioritaria, escucha activa, respeto irrestricto a la dignidad y garantía de ambiente neutral y seguro.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">2</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Cuestionario de Valoración de Riesgo</span>
+                  <span class="deadline-badge deadline-warning">&lt; 2 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Aplicación inmediata del test técnico estandarizado de factores de riesgo de escalada de violencia en el hogar.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">3</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Derivación Externa (SLIM / FELCV)</span>
+                  <span class="deadline-badge deadline-warning">&lt; 24 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Canalización formal de la afectada a los Servicios Legales Integrales Municipales (SLIM) o a la FELCV de la jurisdicción territorial.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item">
+              <div class="tree-action-num">4</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Prohibición Categórica de Conciliación</span>
+                  <span class="deadline-badge deadline-urgent">OBLIGATORIO</span>
+                </div>
+                <div class="tree-action-desc">
+                  En cumplimiento del Art. 46 de la Ley 348, queda terminantemente prohibida la mediación o conciliación forzada o voluntaria entre las partes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-forms-section">
+            <div class="tree-forms-title">📄 Formularios Requeridos:</div>
+            <div class="tree-forms-grid">
+              <button type="button" class="tree-form-btn" data-id="anexo_a" data-code="ANEXO A" data-category="Anexos" data-file="Anexos/ANEXO A.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO A (Formulario de Denuncia)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_f" data-code="ANEXO F" data-category="Anexos" data-file="Anexos/ANEXO F.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO F (Evaluación de Riesgo VIF)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="db-btn db-btn-gold" onclick="reiniciarArbol()">
+              🔄 Reiniciar Evaluación
+            </button>
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-2b')">
+              ← Modificar Riesgo Vital
+            </button>
+          </div>
+        </div>
+
+        <!-- PANTALLA RESULTADO B2: VIF Grave / Riesgo Vital -->
+        <div id="tree-result-b2" class="tree-step-card">
+          <div class="tree-badge-meta" style="background: rgba(239, 68, 68, 0.25); color: #fca5a5; border-color: rgba(239, 68, 68, 0.6);">
+            RESULTADO B2 • ALERTA ROJA - RIESGO VITAL EXTREMO
+          </div>
+          <div class="tree-result-header b2">
+            <div>
+              <div class="tree-title" style="margin-bottom: 2px; color: #fecdd3;">EMERGENCIA VITAL - PLAN DE SEGURIDAD MÁXIMA</div>
+              <div style="font-size: 12px; color: #f1f5f9;">Peligro Inminente Contra la Vida con Acceso a Armas de Dotación</div>
+            </div>
+            <span class="deadline-badge deadline-urgent" style="background: #e11d48; color: #ffffff;">MÁXIMA URGENCIA</span>
+          </div>
+
+          <div class="tree-actions-container">
+            <div style="font-size: 13px; font-weight: 800; color: #ffffff; margin-bottom: 12px; text-transform: uppercase;">
+              Medidas de Seguridad Innegociables:
+            </div>
+
+            <div class="tree-action-item" style="border-color: rgba(239, 68, 68, 0.4);">
+              <div class="tree-action-num" style="background: #991b1b; color: #ffffff;">1</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>REQUISA INMEDIATA de Arma de Dotación</span>
+                  <span class="deadline-badge deadline-urgent">&lt; 4 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  Orden inmediata de retiro y depósito forzoso de armas de dotación oficial, cargadores y munición reglamentaria en Sala de Armas de la Unidad bajo acta.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item" style="border-color: rgba(239, 68, 68, 0.4);">
+              <div class="tree-action-num" style="background: #991b1b; color: #ffffff;">2</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Desalojo de Vivienda Fiscal si Aplica</span>
+                  <span class="deadline-badge deadline-warning">&lt; 12 hrs</span>
+                </div>
+                <div class="tree-action-desc">
+                  En caso de habitar vivienda fiscal militar, disponer la exclusión cautelar del denunciado y protección del núcleo familiar.
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item" style="border-color: rgba(239, 68, 68, 0.4);">
+              <div class="tree-action-num" style="background: #991b1b; color: #ffffff;">3</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Asistencia Médica Inmediata</span>
+                  <span class="deadline-badge deadline-urgent">&lt; INMEDIATO</span>
+                </div>
+                <div class="tree-action-desc">
+                  Traslado inmediato a Hospital Militar / Seguro Social Militar (COSSMIL) para atención de emergencia y emisión de certificado médico forense (IDIF).
+                </div>
+              </div>
+            </div>
+
+            <div class="tree-action-item" style="border-color: rgba(239, 68, 68, 0.4);">
+              <div class="tree-action-num" style="background: #991b1b; color: #ffffff;">4</div>
+              <div class="tree-action-content">
+                <div class="tree-action-title">
+                  <span>Remisión a FELCV en el Día y Sumario Castrense</span>
+                  <span class="deadline-badge deadline-urgent">&lt; EN EL DÍA</span>
+                </div>
+                <div class="tree-action-desc">
+                  Oficio inmediato de denuncia formal a la FELCV de turno y apertura simultánea de proceso sumarial informativo en la Unidad por falta gravísima militar.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-forms-section">
+            <div class="tree-forms-title">📄 Formularios de Emergencia:</div>
+            <div class="tree-forms-grid">
+              <button type="button" class="tree-form-btn" data-id="anexo_a" data-code="ANEXO A" data-category="Anexos" data-file="Anexos/ANEXO A.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO A (Formulario de Denuncia)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_f" data-code="ANEXO F" data-category="Anexos" data-file="Anexos/ANEXO F.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO F (Evaluación de Riesgo VIF)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+              <button type="button" class="tree-form-btn" data-id="anexo_g" data-code="ANEXO G" data-category="Anexos" data-file="Anexos/ANEXO G.docx" onclick="ejecutarDescargaSegura(this)">
+                <span>ANEXO G (Remisión a Ordinaria)</span>
+                <span style="color: #d4af37;">Descargar ⬇</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tree-footer-nav">
+            <button type="button" class="db-btn db-btn-gold" onclick="reiniciarArbol()">
+              🔄 Reiniciar Evaluación
+            </button>
+            <button type="button" class="tree-back-btn" onclick="mostrarPasoArbol('step-2b')">
+              ← Modificar Riesgo Vital
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="tab-manual" class="tab-pane" style="width: 100%; min-height: 82vh; padding: 0;">
+      <div style="background: #090e15; border-bottom: 1px solid #1e293b; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #94a3b8; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="background: rgba(212, 175, 55, 0.15); color: #fde047; border: 1px solid rgba(212, 175, 55, 0.4); padding: 3px 8px; border-radius: 4px; font-weight: bold; font-family: monospace;">HTML INTERACTIVO</span>
+          <span style="font-weight: 700; color: #ffffff;">MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DD.HH.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="manual_doctrinario.html" target="_blank" rel="noreferrer" style="background: #d4af37; color: #070b10; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px; display: inline-flex; align-items: center; gap: 6px;">
+            Abrir en pestaña nueva ↗
+          </a>
+        </div>
+      </div>
+      <iframe src="manual_doctrinario.html" style="width: 100%; height: 82vh; min-height: 82vh; border: none; display: block;" title="Visor del Manual Doctrinal de Desempeño del Oficial de Género y DDHH"></iframe>
+    </div>
+
     <!-- PIE INSTITUCIONAL -->
     <footer class="footer-bar">
       <span id="footer-unit-text">ESTADO MAYOR GENERAL — SECCIÓN DE GÉNERO Y DERECHOS HUMANOS</span>
@@ -1751,6 +2604,32 @@ funcione correctamente.
       guardarDB();
     }
 
+    function registrarDescargaManual() {
+      var ahora = new Date();
+      var fechaFormateada = ahora.toLocaleDateString('es-BO') + ' ' + ahora.toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
+
+      db.stats.totalDownloads = (db.stats.totalDownloads || 0) + 1;
+      db.stats.downloadsByDoc['manual_pdf'] = (db.stats.downloadsByDoc['manual_pdf'] || 0) + 1;
+      db.stats.lastDownloadByDoc['manual_pdf'] = fechaFormateada;
+      db.docStatus['manual_pdf'] = 'tramitado';
+
+      db.auditLog.unshift({
+        id: 'log_' + Date.now(),
+        docId: 'manual_pdf',
+        code: 'MANUAL PDF',
+        title: 'MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DD.HH. (46 PÁGS)',
+        filename: 'MANUAL DE DESEMPEÑO DEL OF. GENERO Y DD.HH..pdf',
+        category: 'Doctrina Institucional',
+        timestamp: fechaFormateada
+      });
+
+      if (db.auditLog.length > 100) {
+        db.auditLog = db.auditLog.slice(0, 100);
+      }
+
+      guardarDB();
+    }
+
     // 5. ALTERNAR ESTADO MANUALMENTE (PENDIENTE / TRAMITADO / ARCHIVADO)
     function alternarEstado(id, event) {
       if (event) event.stopPropagation();
@@ -1795,11 +2674,28 @@ funcione correctamente.
       }
     }
 
+    // 7. FUNCIONES DEL ÁRBOL DE DECISIÓN INTERACTIVO (PROTOCOLO DE ACCIÓN RÁPIDA)
+    function mostrarPasoArbol(pasoId) {
+      var pasos = document.querySelectorAll('.tree-step-card');
+      pasos.forEach(function(card) {
+        card.classList.remove('active');
+      });
+      var target = document.getElementById('tree-' + pasoId);
+      if (target) {
+        target.classList.add('active');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function reiniciarArbol() {
+      mostrarPasoArbol('step-1');
+    }
+
     // Inicialización al cargar el DOM
     document.addEventListener('DOMContentLoaded', function() {
       cargarBaseDeDatos();
 
-      // Restaurar pestaña activa según Hash (#principal, #secundaria) o parámetro ?tab=
+      // Restaurar pestaña activa según Hash (#principal, #secundaria, #protocolo) o parámetro ?tab=
       var hash = window.location.hash.replace('#', '').toLowerCase();
       var params = new URLSearchParams(window.location.search);
       var qTab = (params.get('tab') || params.get('p'))?.toLowerCase();
@@ -1809,9 +2705,13 @@ funcione correctamente.
         targetTab = 'principal';
       } else if (hash.indexOf('secundaria') !== -1 || qTab === 'secundaria' || qTab === '3') {
         targetTab = 'secundaria';
+      } else if (hash.indexOf('protocolo') !== -1 || hash.indexOf('arbol') !== -1 || qTab === 'protocolo' || qTab === '4') {
+        targetTab = 'protocolo';
+      } else if (hash.indexOf('manual') !== -1 || hash.indexOf('visor') !== -1 || qTab === 'manual' || qTab === '5') {
+        targetTab = 'manual';
       } else {
         var guardado = localStorage.getItem('gddhh_active_tab');
-        if (guardado === 'principal' || guardado === 'secundaria') {
+        if (guardado === 'principal' || guardado === 'secundaria' || guardado === 'protocolo' || guardado === 'manual') {
           targetTab = guardado;
         }
       }
@@ -1824,6 +2724,8 @@ funcione correctamente.
         var h = window.location.hash.replace('#', '').toLowerCase();
         if (h.indexOf('principal') !== -1) cambiarPestana('principal', null);
         else if (h.indexOf('secundaria') !== -1) cambiarPestana('secundaria', null);
+        else if (h.indexOf('protocolo') !== -1 || h.indexOf('arbol') !== -1) cambiarPestana('protocolo', null);
+        else if (h.indexOf('manual') !== -1 || h.indexOf('visor') !== -1) cambiarPestana('manual', null);
         else if (h.indexOf('anexos') !== -1) cambiarPestana('anexos', null);
       });
 

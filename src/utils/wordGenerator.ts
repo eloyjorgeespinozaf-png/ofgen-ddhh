@@ -34,7 +34,7 @@ export interface DocumentMeta {
   title: string;
   category: string;
   filename: string;
-  tab: 'anexos' | 'principal' | 'secundaria';
+  tab: 'anexos' | 'principal' | 'secundaria' | 'protocolo' | 'manual';
 }
 
 // Constantes exactas solicitadas por el usuario:

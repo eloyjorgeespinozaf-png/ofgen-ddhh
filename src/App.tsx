@@ -28,18 +28,25 @@ import {
   SlidersHorizontal,
   Sparkles,
   Check,
-  Printer
+  Printer,
+  ShieldAlert,
+  ArrowLeft,
+  AlertOctagon,
+  Flame,
+  Zap,
+  BookOpen
 } from 'lucide-react';
 import { generateCompliantWordBlob } from './utils/wordGenerator';
+import { DecisionTreeProtocol } from './components/DecisionTreeProtocol';
 
-interface DirectDocLink {
+export interface DirectDocLink {
   id: string;
   code: string;
   title: string;
   category: string;
   filePath: string;
   filename: string;
-  tab: 'anexos' | 'principal' | 'secundaria';
+  tab: 'anexos' | 'principal' | 'secundaria' | 'protocolo' | 'manual';
 }
 
 interface AuditLogEntry {
@@ -328,18 +335,24 @@ const directDocs: DirectDocLink[] = [
   }
 ];
 
-type TabType = 'anexos' | 'principal' | 'secundaria';
+type TabType = 'anexos' | 'principal' | 'secundaria' | 'protocolo' | 'manual';
 
 function parseTabFromUrl(): TabType {
   if (typeof window === 'undefined') return 'anexos';
 
-  // 1. Check URL Hash: #principal, #secundaria, #anexos, #tab2, #tab3
+  // 1. Check URL Hash: #principal, #secundaria, #anexos, #protocolo, #manual, #tab5
   const hash = window.location.hash.toLowerCase().replace('#', '').trim();
   if (hash === 'principal' || hash === 'carpeta-principal' || hash === 'carpeta_principal' || hash === 'tab2' || hash === '2') {
     return 'principal';
   }
   if (hash === 'secundaria' || hash === 'carpeta-secundaria' || hash === 'carpeta_secundaria' || hash === 'tab3' || hash === '3') {
     return 'secundaria';
+  }
+  if (hash === 'protocolo' || hash === 'arbol' || hash === 'protocolo-accion-rapida' || hash === 'tab4' || hash === '4') {
+    return 'protocolo';
+  }
+  if (hash === 'manual' || hash === 'visor' || hash === 'visor-manual' || hash === 'tab5' || hash === '5') {
+    return 'manual';
   }
   if (hash === 'anexos' || hash === 'tab1' || hash === '1') {
     return 'anexos';
@@ -355,22 +368,30 @@ function parseTabFromUrl(): TabType {
     if (qTab === 'secundaria' || qTab === 'carpeta-secundaria' || qTab === 'carpeta_secundaria' || qTab === '3') {
       return 'secundaria';
     }
+    if (qTab === 'protocolo' || qTab === 'arbol' || qTab === '4') {
+      return 'protocolo';
+    }
+    if (qTab === 'manual' || qTab === 'visor' || qTab === '5') {
+      return 'manual';
+    }
     if (qTab === 'anexos' || qTab === '1') {
       return 'anexos';
     }
   } catch {}
 
-  // 3. Check Pathname: /principal, /secundaria, /carpeta-principal, /carpeta-secundaria
+  // 3. Check Pathname: /principal, /secundaria, /protocolo, /manual
   try {
     const path = window.location.pathname.toLowerCase();
     if (path.includes('principal')) return 'principal';
     if (path.includes('secundaria')) return 'secundaria';
+    if (path.includes('protocolo')) return 'protocolo';
+    if (path.includes('manual') || path.includes('visor')) return 'manual';
   } catch {}
 
   // 4. Check LocalStorage fallback
   try {
     const saved = localStorage.getItem('gddhh_active_tab') as TabType;
-    if (saved === 'principal' || saved === 'secundaria' || saved === 'anexos') {
+    if (saved === 'principal' || saved === 'secundaria' || saved === 'anexos' || saved === 'protocolo' || saved === 'manual') {
       return saved;
     }
   } catch {}
@@ -380,6 +401,9 @@ function parseTabFromUrl(): TabType {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>(parseTabFromUrl);
+  const [treeStep, setTreeStep] = useState<
+    'step-1' | 'step-2a' | 'step-2b' | 'result-a1' | 'result-a2' | 'result-b1' | 'result-b2'
+  >('step-1');
   const [lastDownloaded, setLastDownloaded] = useState<string | null>(null);
   const [isDbModalOpen, setIsDbModalOpen] = useState(false);
 
@@ -1014,47 +1038,160 @@ export default function App() {
               6
             </span>
           </button>
+
+          {/* Tab 4 */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('protocolo')}
+            className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
+              activeTab === 'protocolo'
+                ? 'border-rose-500 text-rose-400 bg-rose-500/10'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            }`}
+          >
+            <ShieldAlert className="w-4 h-4 text-rose-400" />
+            <span>Pestaña 4: Protocolo de Acción Rápida</span>
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-semibold ${
+              activeTab === 'protocolo' ? 'bg-rose-500/25 text-rose-200 border border-rose-500/40' : 'bg-slate-800 text-slate-400'
+            }`}>
+              ÁRBOL
+            </span>
+          </button>
+
+          {/* Tab 5: Visor del Manual */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('manual')}
+            className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
+              activeTab === 'manual'
+                ? 'border-emerald-400 text-emerald-300 bg-emerald-500/10'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            }`}
+          >
+            <BookOpen className="w-4 h-4 text-emerald-400" />
+            <span>Pestaña 5: Visor del Manual</span>
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-semibold ${
+              activeTab === 'manual' ? 'bg-amber-500/25 text-amber-200 border border-amber-500/40' : 'bg-slate-800 text-slate-400'
+            }`}>
+              HTML
+            </span>
+          </button>
         </nav>
 
-        {/* Tab Header Banner with Batch Download Button */}
+        {/* Tab Header Banner with Context Actions */}
         <div className="bg-[#0b1017] px-4 sm:px-6 py-2.5 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-slate-200 uppercase tracking-wider">
               {activeTab === 'anexos' && 'Pestaña 1: Anexos Normativos (9 Documentos A al I)'}
               {activeTab === 'principal' && 'Pestaña 2: Carpeta Principal (11 Archivos Oficiales)'}
               {activeTab === 'secundaria' && 'Pestaña 3: Carpeta Secundaria (6 Registros y Cuadros)'}
+              {activeTab === 'protocolo' && 'Pestaña 4: Protocolo de Acción Rápida — Árbol de Decisión Interactivo'}
+              {activeTab === 'manual' && 'Pestaña 5: Visor del Manual Doctrinal (Documento Interactivo HTML)'}
             </span>
-            <span className="font-mono text-slate-400 hidden sm:inline">
-              ({visibleDocs.length} documentos)
-            </span>
+            {activeTab !== 'protocolo' && activeTab !== 'manual' && (
+              <span className="font-mono text-slate-400 hidden sm:inline">
+                ({visibleDocs.length} documentos)
+              </span>
+            )}
+            {activeTab === 'protocolo' && (
+              <span className="text-rose-400 font-mono text-[11px] bg-rose-950/40 px-2 py-0.5 rounded border border-rose-800/40 hidden sm:inline">
+                OFICIAL DE GÉNERO Y DD.HH.
+              </span>
+            )}
+            {activeTab === 'manual' && (
+              <span className="text-amber-400 font-mono text-[11px] bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/40 hidden sm:inline">
+                DOCTRINA INTERACTIVA HTML
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              disabled={!!batchProgress}
-              onClick={descargarTodoLoteNormado}
-              className="bg-amber-500 hover:bg-amber-400 disabled:bg-slate-700 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-md active:scale-95"
-              title="Descarga en secuencia todos los archivos de esta pestaña con las especificaciones Word de márgenes y sangría francesa"
-            >
-              {batchProgress ? (
-                <>
-                  <div className="w-3 h-3 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
-                  <span>Descargando {batchProgress.current}/{batchProgress.total}...</span>
-                </>
-              ) : (
-                <>
-                  <FileDown className="w-3.5 h-3.5" />
-                  <span>Descargar Todo en Word Normado ({visibleDocs.length})</span>
-                </>
-              )}
-            </button>
+            {activeTab === 'manual' ? (
+              <a
+                href="manual_doctrinario.html"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-md active:scale-95"
+                title="Abrir el Manual Doctrinario interactivo en ventana completa"
+              >
+                <span>Abrir en Pestaña Nueva ↗</span>
+              </a>
+            ) : activeTab === 'protocolo' ? (
+              <button
+                type="button"
+                onClick={() => setTreeStep('step-1')}
+                className="bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-white font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer border border-slate-700 transition-all shadow-sm"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+                <span>Reiniciar Árbol</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={!!batchProgress}
+                onClick={descargarTodoLoteNormado}
+                className="bg-amber-500 hover:bg-amber-400 disabled:bg-slate-700 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-md active:scale-95"
+                title="Descarga en secuencia todos los archivos de esta pestaña con las especificaciones Word de márgenes y sangría francesa"
+              >
+                {batchProgress ? (
+                  <>
+                    <div className="w-3 h-3 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
+                    <span>Descargando {batchProgress.current}/{batchProgress.total}...</span>
+                  </>
+                ) : (
+                  <>
+                    <FileDown className="w-3.5 h-3.5" />
+                    <span>Descargar Todo en Word Normado ({visibleDocs.length})</span>
+                  </>
+                )}
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Central Grid of BUTTON Elements with data-file Attribute */}
-        <main className="p-4 sm:p-6 overflow-y-auto max-h-[66vh]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Central Content Area */}
+        <main className={activeTab === 'manual' ? "p-0 overflow-hidden w-full flex-1" : "p-4 sm:p-6 overflow-y-auto max-h-[66vh]"}>
+          {activeTab === 'manual' ? (
+            <div className="w-full flex flex-col bg-[#080d14]" style={{ width: '100%', minHeight: '82vh' }}>
+              <div className="bg-[#0b121c] border-b border-slate-800 px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                  <span className="font-semibold text-slate-200">
+                    MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DD.HH.
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded font-mono bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                    HTML INTERACTIVO
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="hidden sm:inline text-slate-500">
+                    Navegación por secciones, copia de código/texto e impresión
+                  </span>
+                  <a
+                    href="manual_doctrinario.html"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-amber-400 hover:text-amber-300 underline font-semibold text-xs"
+                  >
+                    Abrir en pestaña nueva ↗
+                  </a>
+                </div>
+              </div>
+              <iframe
+                src="manual_doctrinario.html"
+                title="MANUAL DOCTRINARIO PARA EL DESEMPEÑO EFICAZ DE LA/EL OFICIAL DE GÉNERO Y DERECHOS HUMANOS EN LAS GRANDES UNIDADES DEL EJÉRCITO DE BOLIVIA"
+                className="w-full h-full border-none"
+                style={{ width: '100%', height: '82vh', border: 'none', display: 'block' }}
+              />
+            </div>
+          ) : activeTab === 'protocolo' ? (
+            <DecisionTreeProtocol
+              directDocs={directDocs}
+              onDownloadWordNormado={ejecutarDescargaWordNormado}
+              onDownloadOriginal={ejecutarDescargaSegura}
+            />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {visibleDocs.map((doc) => {
               const isRecent = lastDownloaded === doc.id;
               const isGenerating = generatingDocId === doc.id;
@@ -1173,7 +1310,8 @@ export default function App() {
                 </div>
               );
             })}
-          </div>
+            </div>
+          )}
         </main>
 
         {/* Footer with Institutional Attribution */}
