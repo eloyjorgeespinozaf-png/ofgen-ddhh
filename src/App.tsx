@@ -22,8 +22,15 @@ import {
   Trash2,
   Save,
   X,
-  Share2
+  Share2,
+  FileDown,
+  Info,
+  SlidersHorizontal,
+  Sparkles,
+  Check,
+  Printer
 } from 'lucide-react';
+import { generateCompliantWordBlob } from './utils/wordGenerator';
 
 interface DirectDocLink {
   id: string;
@@ -459,7 +466,91 @@ export default function App() {
   const bgInputRef = useRef<HTMLInputElement>(null);
   const sectionBgInputRef = useRef<HTMLInputElement>(null);
 
-  // Programmatic download with exact original binary fidelity & DB registration
+  // Estado del formato de descarga y modales de especificaciones
+  const [downloadFormat, setDownloadFormat] = useState<'normado' | 'original'>('normado');
+  const [isSpecsOpen, setIsSpecsOpen] = useState<boolean>(false);
+  const [generatingDocId, setGeneratingDocId] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [batchProgress, setBatchProgress] = useState<{ total: number; current: number } | null>(null);
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage((current) => (current === msg ? null : current));
+    }, 4000);
+  };
+
+  // Registro unificado de transacciones en la Base de Datos Local (localStorage)
+  const registrarTransaccionDb = (doc: DirectDocLink, formatoDescarga: string) => {
+    const now = new Date();
+    const formattedDate = `${now.toLocaleDateString('es-BO')} ${now.toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' })}`;
+
+    setDb(prev => {
+      const currentDocCount = (prev.stats.downloadsByDoc[doc.id] || 0) + 1;
+      const newEntry: AuditLogEntry = {
+        id: `log_${Date.now()}`,
+        docId: doc.id,
+        code: doc.code,
+        title: `${doc.title} [${formatoDescarga}]`,
+        filename: doc.filename,
+        category: doc.category,
+        timestamp: formattedDate
+      };
+
+      return {
+        ...prev,
+        stats: {
+          totalDownloads: prev.stats.totalDownloads + 1,
+          downloadsByDoc: {
+            ...prev.stats.downloadsByDoc,
+            [doc.id]: currentDocCount
+          },
+          lastDownloadByDoc: {
+            ...prev.stats.lastDownloadByDoc,
+            [doc.id]: formattedDate
+          }
+        },
+        auditLog: [newEntry, ...prev.auditLog].slice(0, 100),
+        docStatus: {
+          ...prev.docStatus,
+          [doc.id]: 'tramitado'
+        }
+      };
+    });
+  };
+
+  // 1. DESCARGA EN FORMATO WORD OFICIAL NORMADO (.DOCX):
+  // Márgenes: Izq 3cm, Der 2cm, Inf 2cm, Sup 2cm | Encabezado Arial 10 pegado al costado izquierdo
+  // Título Arial 16 con negrilla | Párrafos Arial 12 con negrilla y subrayado | Texto Arial 12 sin negrilla | Sangría francesa
+  const ejecutarDescargaWordNormado = async (doc: DirectDocLink) => {
+    setGeneratingDocId(doc.id);
+    try {
+      const docxBlob = await generateCompliantWordBlob(doc, db.unitData);
+      const blobUrl = URL.createObjectURL(docxBlob);
+      const enlace = document.createElement('a');
+      enlace.href = blobUrl;
+      enlace.setAttribute('download', doc.filename);
+      enlace.style.display = 'none';
+      document.body.appendChild(enlace);
+      enlace.click();
+
+      setTimeout(() => {
+        document.body.removeChild(enlace);
+        URL.revokeObjectURL(blobUrl);
+      }, 1000);
+
+      setLastDownloaded(doc.id);
+      registrarTransaccionDb(doc, 'Word Normado (Márgenes 3-2-2-2 cm, Arial, Sangría Francesa)');
+      showToast(`✓ Documento Word normado "${doc.code}" descargado con éxito`);
+    } catch (err) {
+      console.error('Error generando Word normado, procediendo a respaldo físico:', err);
+      await ejecutarDescargaSegura(doc);
+    } finally {
+      setGeneratingDocId(null);
+    }
+  };
+
+  // 2. DESCARGA DEL ARCHIVO FÍSICO ORIGINAL (.DOCX)
   const ejecutarDescargaSegura = async (doc: DirectDocLink) => {
     const isLocalFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:';
     const cleanPath = isLocalFileProtocol 
@@ -467,7 +558,6 @@ export default function App() {
       : (doc.filePath.startsWith('/') ? doc.filePath : `/${doc.filePath}`);
     const nombreArchivo = doc.filename || doc.filePath.substring(doc.filePath.lastIndexOf('/') + 1);
 
-    // Multi-candidate paths to guarantee retrieval across Vercel static routing and local dev
     const candidatePaths: string[] = [
       encodeURI(cleanPath),
       cleanPath,
@@ -483,14 +573,13 @@ export default function App() {
         const response = await fetch(testPath);
         const contentType = response.headers.get('content-type') || '';
         
-        // Skip invalid responses or SPA html rewrites
         if (!response.ok || contentType.includes('text/html')) {
           continue;
         }
 
         const originalBlob = await response.blob();
         
-        // Verify ZIP / OpenXML Word binary signature (PK = 0x50, 0x4B)
+        // Verificación de firma binaria PK (OpenXML ZIP)
         const headBuf = await originalBlob.slice(0, 4).arrayBuffer();
         const headBytes = new Uint8Array(headBuf);
         const isZipFormat = headBytes[0] === 0x50 && headBytes[1] === 0x4B;
@@ -518,11 +607,10 @@ export default function App() {
         downloadedSuccessfully = true;
         break;
       } catch {
-        // Try next candidate
+        // siguiente intento
       }
     }
 
-    // Direct DOM fallback if fetch was blocked by sandboxing or protocol
     if (!downloadedSuccessfully) {
       const fallbackPath = encodeURI(cleanPath);
       const enlaceFallback = document.createElement('a');
@@ -538,43 +626,36 @@ export default function App() {
     }
 
     setLastDownloaded(doc.id);
+    registrarTransaccionDb(doc, 'Archivo Físico Original');
+    showToast(`✓ Archivo original "${doc.code}" descargado`);
+  };
 
-    // 3. Register transaction into LocalStorage Database
-    const now = new Date();
-    const formattedDate = `${now.toLocaleDateString('es-BO')} ${now.toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' })}`;
+  // Selector de descarga inteligente
+  const handleDescargarDocumento = (doc: DirectDocLink, formato?: 'normado' | 'original') => {
+    const targetFormat = formato || downloadFormat;
+    if (targetFormat === 'normado') {
+      ejecutarDescargaWordNormado(doc);
+    } else {
+      ejecutarDescargaSegura(doc);
+    }
+  };
 
-    setDb(prev => {
-      const currentDocCount = (prev.stats.downloadsByDoc[doc.id] || 0) + 1;
-      const newEntry: AuditLogEntry = {
-        id: `log_${Date.now()}`,
-        docId: doc.id,
-        code: doc.code,
-        title: doc.title,
-        filename: doc.filename,
-        category: doc.category,
-        timestamp: formattedDate
-      };
+  // Descarga en lote de todos los documentos visibles en la pestaña activa
+  const descargarTodoLoteNormado = async () => {
+    const docs = visibleDocs;
+    if (batchProgress) return;
+    setBatchProgress({ total: docs.length, current: 0 });
 
-      return {
-        ...prev,
-        stats: {
-          totalDownloads: prev.stats.totalDownloads + 1,
-          downloadsByDoc: {
-            ...prev.stats.downloadsByDoc,
-            [doc.id]: currentDocCount
-          },
-          lastDownloadByDoc: {
-            ...prev.stats.lastDownloadByDoc,
-            [doc.id]: formattedDate
-          }
-        },
-        auditLog: [newEntry, ...prev.auditLog].slice(0, 100), // Mantener los últimos 100 movimientos
-        docStatus: {
-          ...prev.docStatus,
-          [doc.id]: 'tramitado'
-        }
-      };
-    });
+    for (let i = 0; i < docs.length; i++) {
+      const d = docs[i];
+      setBatchProgress({ total: docs.length, current: i + 1 });
+      await ejecutarDescargaWordNormado(d);
+      // Pequeño intervalo para no saturar el gestor de descargas del navegador
+      await new Promise(res => setTimeout(res, 600));
+    }
+
+    setBatchProgress(null);
+    showToast(`✓ Se descargaron los ${docs.length} documentos con formato Word normado.`);
   };
 
   const toggleDocStatus = (docId: string, e: React.MouseEvent) => {
@@ -829,21 +910,50 @@ export default function App() {
           </div>
         </header>
 
-        {/* Operational Notice Banner */}
-        <div className="bg-amber-950/30 border-b border-amber-500/30 px-6 py-2 flex items-center justify-between gap-3 text-xs text-amber-200">
-          <div className="flex items-center gap-2.5">
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>
-              <strong>Base de Datos Integrada:</strong> Cada descarga y estado se almacena de forma persistente en <code>localStorage</code>.
+        {/* Word Normative Standards & DB Status Banner */}
+        <div className="bg-[#0e1724] border-b border-amber-500/30 px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="flex items-center gap-1.5 font-bold text-amber-300 uppercase tracking-wide bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/30">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Formato Word Normado (.docx):</span>
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
+              Márgenes: <strong>Izq 3cm | Der 2cm | Inf 2cm | Sup 2cm</strong>
+            </span>
+            <span className="hidden md:inline-flex items-center gap-1 text-[11px] bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
+              Encabezado: <strong>Arial 10 Izq</strong>
+            </span>
+            <span className="hidden lg:inline-flex items-center gap-1 text-[11px] bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
+              Título: <strong>Arial 16 Negrilla</strong>
+            </span>
+            <span className="hidden xl:inline-flex items-center gap-1 text-[11px] bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
+              Párrafos: <strong>Arial 12 Negrilla Subrayado</strong>
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30 font-semibold">
+              <Check className="w-3 h-3" /> Sangría Francesa
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => setIsDbModalOpen(true)}
-            className="text-amber-300 hover:text-white underline cursor-pointer font-medium text-[11px]"
-          >
-            Ver Bitácora / Exportar DB
-          </button>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsSpecsOpen(true)}
+              className="text-amber-300 hover:text-white underline cursor-pointer font-medium text-[11px] flex items-center gap-1"
+              title="Ver ficha técnica completa del formato Word exigido"
+            >
+              <Info className="w-3.5 h-3.5" />
+              <span>Ver Ficha Técnica</span>
+            </button>
+            <span className="text-slate-600">|</span>
+            <button
+              type="button"
+              onClick={() => setIsDbModalOpen(true)}
+              className="text-slate-300 hover:text-amber-300 cursor-pointer font-medium text-[11px] flex items-center gap-1"
+            >
+              <Database className="w-3 h-3 text-amber-400" />
+              <span>Bitácora ({db.stats.totalDownloads})</span>
+            </button>
+          </div>
         </div>
 
         {/* 3-TAB SYSTEM (SISTEMA DE PESTAÑAS) */}
@@ -906,41 +1016,62 @@ export default function App() {
           </button>
         </nav>
 
-        {/* Tab Header Banner */}
-        <div className="bg-[#0b1017] px-6 py-3 border-b border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+        {/* Tab Header Banner with Batch Download Button */}
+        <div className="bg-[#0b1017] px-4 sm:px-6 py-2.5 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-300 uppercase tracking-wider">
-              {activeTab === 'anexos' && 'Archivos de la Pestaña 1: Anexos Normativos (A al I)'}
-              {activeTab === 'principal' && 'Archivos de la Pestaña 2: Carpeta Principal (11 Archivos Oficiales)'}
-              {activeTab === 'secundaria' && 'Archivos de la Pestaña 3: Carpeta Secundaria (6 Registros y Cuadros)'}
+            <span className="font-semibold text-slate-200 uppercase tracking-wider">
+              {activeTab === 'anexos' && 'Pestaña 1: Anexos Normativos (9 Documentos A al I)'}
+              {activeTab === 'principal' && 'Pestaña 2: Carpeta Principal (11 Archivos Oficiales)'}
+              {activeTab === 'secundaria' && 'Pestaña 3: Carpeta Secundaria (6 Registros y Cuadros)'}
+            </span>
+            <span className="font-mono text-slate-400 hidden sm:inline">
+              ({visibleDocs.length} documentos)
             </span>
           </div>
-          <span className="font-mono text-slate-400">
-            Total en vista: <strong className="text-white">{visibleDocs.length}</strong> documentos
-          </span>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              disabled={!!batchProgress}
+              onClick={descargarTodoLoteNormado}
+              className="bg-amber-500 hover:bg-amber-400 disabled:bg-slate-700 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-md active:scale-95"
+              title="Descarga en secuencia todos los archivos de esta pestaña con las especificaciones Word de márgenes y sangría francesa"
+            >
+              {batchProgress ? (
+                <>
+                  <div className="w-3 h-3 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
+                  <span>Descargando {batchProgress.current}/{batchProgress.total}...</span>
+                </>
+              ) : (
+                <>
+                  <FileDown className="w-3.5 h-3.5" />
+                  <span>Descargar Todo en Word Normado ({visibleDocs.length})</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Central Grid of BUTTON Elements with data-file Attribute */}
-        <main className="p-5 sm:p-7 overflow-y-auto max-h-[66vh]">
+        <main className="p-4 sm:p-6 overflow-y-auto max-h-[66vh]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {visibleDocs.map((doc) => {
               const isRecent = lastDownloaded === doc.id;
+              const isGenerating = generatingDocId === doc.id;
               const downloadCount = db.stats.downloadsByDoc[doc.id] || 0;
               const status = db.docStatus[doc.id] || 'pendiente';
               const lastDate = db.stats.lastDownloadByDoc[doc.id];
 
               return (
-                <button
+                <div
                   key={doc.id}
-                  type="button"
                   data-file={doc.filePath}
-                  onClick={() => ejecutarDescargaSegura(doc)}
-                  className={`group relative flex flex-col justify-between p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                  className={`group relative flex flex-col justify-between p-4 rounded-xl border text-left transition-all duration-200 select-none ${
                     isRecent
-                      ? 'bg-slate-800/90 border-emerald-500/80 shadow-lg shadow-emerald-500/10 scale-[1.01]'
-                      : 'bg-[#101722] hover:bg-[#151f2e] border-slate-700/70 hover:border-amber-400/80 shadow-md hover:shadow-xl hover:shadow-black/40'
+                      ? 'bg-slate-800/90 border-emerald-500/80 shadow-lg shadow-emerald-500/10'
+                      : 'bg-[#101722] hover:bg-[#131c2b] border-slate-700/70 hover:border-amber-400/80 shadow-md hover:shadow-xl hover:shadow-black/40'
                   }`}
-                  style={{ minHeight: '148px' }}
+                  style={{ minHeight: '172px' }}
                 >
                   {/* Top Row: Code Badge & Status Badges */}
                   <div className="flex items-center justify-between gap-2 mb-2 w-full">
@@ -975,32 +1106,71 @@ export default function App() {
                     <h3 className="text-sm sm:text-[15px] font-bold text-white group-hover:text-amber-200 transition-colors leading-snug line-clamp-2">
                       {doc.title}
                     </h3>
-                    <p className="text-[11px] font-mono text-slate-400 mt-1 truncate">
-                      {doc.filePath}
-                    </p>
+                    
+                    {/* Formatting specs tag */}
+                    <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                      <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/50 border border-emerald-600/30 px-1.5 py-0.5 rounded">
+                        Márgenes 3-2-2-2 cm
+                      </span>
+                      <span className="text-[10px] font-mono text-amber-300 bg-amber-950/50 border border-amber-600/30 px-1.5 py-0.5 rounded">
+                        Arial 10/16/12
+                      </span>
+                      <span className="text-[10px] font-mono text-blue-300 bg-blue-950/50 border border-blue-600/30 px-1.5 py-0.5 rounded">
+                        Sangría Francesa
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Bottom Action Bar with LocalStorage Metrics */}
-                  <div className="mt-3 pt-2.5 border-t border-slate-700/60 flex items-center justify-between w-full text-xs">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-mono text-slate-400 flex items-center gap-1">
-                        <Database className="w-3 h-3 text-amber-500" />
+                  {/* Bottom Action Bar: Dual Download Controls */}
+                  <div className="mt-3 pt-2.5 border-t border-slate-700/60 flex items-center justify-between w-full text-xs gap-2">
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-[10px] font-mono text-slate-400 flex items-center gap-1 truncate">
+                        <Database className="w-3 h-3 text-amber-500 shrink-0" />
                         <span>Descargas: <strong className="text-amber-400">{downloadCount}</strong></span>
                       </span>
                       {lastDate && (
-                        <span className="text-[9px] text-slate-400 flex items-center gap-1">
-                          <Clock className="w-2.5 h-2.5 text-slate-400" />
+                        <span className="text-[9px] text-slate-400 flex items-center gap-1 truncate">
+                          <Clock className="w-2.5 h-2.5 text-slate-400 shrink-0" />
                           <span>{lastDate}</span>
                         </span>
                       )}
                     </div>
 
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 group-hover:bg-amber-400 text-slate-950 font-bold text-xs shadow transition-all group-hover:scale-105">
-                      <Download className="w-3.5 h-3.5 stroke-[2.5]" />
-                      <span>Descargar</span>
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {/* Secondary button: Original raw template file */}
+                      <button
+                        type="button"
+                        data-file={doc.filePath}
+                        onClick={() => ejecutarDescargaSegura(doc)}
+                        className="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-600 text-[11px] font-semibold transition-colors cursor-pointer"
+                        title="Descargar archivo físico original sin reestructuración"
+                      >
+                        Original
+                      </button>
+
+                      {/* Primary button: Exact Word Compliant Document */}
+                      <button
+                        type="button"
+                        disabled={isGenerating}
+                        onClick={() => ejecutarDescargaWordNormado(doc)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow transition-all hover:scale-105 cursor-pointer disabled:opacity-50"
+                        title="Descargar en formato Word (.docx) con márgenes 3/2/2/2 cm, Arial 10/16/12 y sangría francesa"
+                      >
+                        {isGenerating ? (
+                          <>
+                            <div className="w-3 h-3 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                            <span>Creando...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Download className="w-3.5 h-3.5 stroke-[2.5]" />
+                            <span>Word Normado</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
@@ -1212,6 +1382,183 @@ export default function App() {
           </div>
         </div>
       )}
+
+      {/* MODAL DE ESPECIFICACIONES TÉCNICAS DEL FORMATO WORD */}
+      {isSpecsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-3xl max-h-[92vh] bg-[#0c1420] border border-amber-500/50 rounded-xl shadow-2xl flex flex-col overflow-hidden text-slate-100">
+            
+            {/* Modal Header */}
+            <div className="bg-[#080d14] px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-amber-500/20 text-amber-400 rounded-lg border border-amber-500/30">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                    Ficha Técnica: Formato Word Oficial (.docx)
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">
+                      NORMA MILITAR APLICADA
+                    </span>
+                  </h2>
+                  <p className="text-xs text-slate-400">
+                    Reglas estrictas de maquetación, márgenes, tipografía Arial y sangría francesa
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsSpecsOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto space-y-5 text-xs text-slate-300 leading-relaxed">
+              
+              {/* Margins Visual Diagram */}
+              <div className="bg-[#101926] p-4 rounded-xl border border-slate-800">
+                <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                  <SlidersHorizontal className="w-4 h-4 text-amber-400" />
+                  1. Dimensiones de Márgenes en Hoja Carta / A4 (Twips OpenXML)
+                </h4>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                  <div className="bg-[#090e16] p-3 rounded-lg border border-emerald-500/40">
+                    <span className="text-[10px] text-slate-400 block uppercase font-mono">Margen Izquierdo</span>
+                    <strong className="text-base text-emerald-300 font-mono">3.0 cm</strong>
+                    <span className="text-[9px] text-slate-500 block mt-0.5">1701 twips</span>
+                  </div>
+                  <div className="bg-[#090e16] p-3 rounded-lg border border-blue-500/40">
+                    <span className="text-[10px] text-slate-400 block uppercase font-mono">Margen Derecho</span>
+                    <strong className="text-base text-blue-300 font-mono">2.0 cm</strong>
+                    <span className="text-[9px] text-slate-500 block mt-0.5">1134 twips</span>
+                  </div>
+                  <div className="bg-[#090e16] p-3 rounded-lg border border-amber-500/40">
+                    <span className="text-[10px] text-slate-400 block uppercase font-mono">Margen Superior</span>
+                    <strong className="text-base text-amber-300 font-mono">2.0 cm</strong>
+                    <span className="text-[9px] text-slate-500 block mt-0.5">1134 twips</span>
+                  </div>
+                  <div className="bg-[#090e16] p-3 rounded-lg border border-amber-500/40">
+                    <span className="text-[10px] text-slate-400 block uppercase font-mono">Margen Inferior</span>
+                    <strong className="text-base text-amber-300 font-mono">2.0 cm</strong>
+                    <span className="text-[9px] text-slate-500 block mt-0.5">1134 twips</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Typography Rules */}
+              <div className="bg-[#101926] p-4 rounded-xl border border-slate-800 space-y-3">
+                <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-blue-400" />
+                  2. Jerarquía Tipográfica Institucional (Fuente Arial)
+                </h4>
+
+                <div className="space-y-2.5">
+                  <div className="bg-[#080d14] p-3 rounded-lg border border-slate-800 flex items-start justify-between gap-3">
+                    <div>
+                      <span className="font-bold text-white block">Encabezado Institucional:</span>
+                      <p className="text-[11px] text-slate-400">
+                        Arial 10 pt pegado al costado izquierdo (left-aligned) con la jerarquía del Comando General y la Gran Unidad.
+                      </p>
+                    </div>
+                    <span className="px-2 py-0.5 bg-slate-800 rounded font-mono text-[10px] text-amber-300 shrink-0">
+                      Arial 10 pt (Izq)
+                    </span>
+                  </div>
+
+                  <div className="bg-[#080d14] p-3 rounded-lg border border-slate-800 flex items-start justify-between gap-3">
+                    <div>
+                      <span className="font-bold text-white block">Título Principal del Documento:</span>
+                      <p className="text-[11px] text-slate-400">
+                        Arial 16 pt con negrilla, centrado y mayúsculas sostenidas conforme a la carátula y el índice oficial.
+                      </p>
+                    </div>
+                    <span className="px-2 py-0.5 bg-slate-800 rounded font-mono text-[10px] text-amber-300 shrink-0">
+                      Arial 16 pt (Negrilla)
+                    </span>
+                  </div>
+
+                  <div className="bg-[#080d14] p-3 rounded-lg border border-slate-800 flex items-start justify-between gap-3">
+                    <div>
+                      <span className="font-bold text-white block">Títulos de Párrafos / Secciones:</span>
+                      <p className="text-[11px] text-slate-400">
+                        Arial 12 pt con negrilla y subrayado para cada subdivisión temática y artículo de trámite.
+                      </p>
+                    </div>
+                    <span className="px-2 py-0.5 bg-slate-800 rounded font-mono text-[10px] text-amber-300 shrink-0">
+                      Arial 12 pt (Negrilla + Subrayado)
+                    </span>
+                  </div>
+
+                  <div className="bg-[#080d14] p-3 rounded-lg border border-slate-800 flex items-start justify-between gap-3">
+                    <div>
+                      <span className="font-bold text-white block">Cuerpo de Texto y Articulados:</span>
+                      <p className="text-[11px] text-slate-400">
+                        Arial 12 pt sin negrilla (regular), interlineado 1.15 y alineación justificada.
+                      </p>
+                    </div>
+                    <span className="px-2 py-0.5 bg-slate-800 rounded font-mono text-[10px] text-amber-300 shrink-0">
+                      Arial 12 pt (Regular)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sangría Francesa Demonstration */}
+              <div className="bg-[#101926] p-4 rounded-xl border border-slate-800">
+                <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  3. Sangría Francesa (Hanging Indent)
+                </h4>
+                <p className="text-[11px] text-slate-300 mb-3">
+                  La sangría francesa mantiene la primera línea al ras del margen izquierdo y desplaza las líneas subsiguientes 1.25 cm hacia la derecha, facilitando la lectura jerárquica militar:
+                </p>
+
+                <div className="bg-[#080d14] p-4 rounded-lg border border-slate-700/80 font-serif text-[11px] text-slate-200">
+                  <p className="pl-6 -indent-6 leading-relaxed">
+                    <strong>1.1. Artículo Demostrativo:</strong> En estricto apego a las disposiciones de la Constitución Política del Estado y las directivas castrenses, todo trámite se procesará bajo el amparo de la debida diligencia y fe militar.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-[#080d14] px-6 py-3.5 border-t border-slate-800 flex items-center justify-between">
+              <span className="text-[11px] text-slate-400 font-mono">
+                Total 26 documentos compatibles con la norma Word
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsSpecsOpen(false)}
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-1.5 rounded text-xs transition-colors cursor-pointer"
+              >
+                Entendido
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* FLOATING TOAST NOTIFICATION */}
+      {toastMessage && (
+        <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 bg-[#0f241a] border border-emerald-500/70 text-emerald-200 px-4 py-2.5 rounded-xl shadow-2xl animate-in slide-in-from-bottom duration-300 text-xs font-medium">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <span>{toastMessage}</span>
+          <button
+            type="button"
+            onClick={() => setToastMessage(null)}
+            className="ml-2 text-emerald-400/80 hover:text-white"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
     </div>
   );
 }
