@@ -1635,12 +1635,14 @@ funcione correctamente.
 
       if (!rutaArchivo) return;
 
-      var rutaSegura = encodeURI(rutaArchivo);
+      var isFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:';
+      var cleanPath = isFileProtocol ? rutaArchivo : (rutaArchivo.startsWith('/') ? rutaArchivo : '/' + rutaArchivo);
+      var rutaSegura = encodeURI(cleanPath);
       var nombreArchivo = rutaArchivo.substring(rutaArchivo.lastIndexOf('/') + 1);
 
       try {
         var respuesta = await fetch(rutaSegura);
-        if (!respuesta.ok) throw new Error('Servidor local no disponible');
+        if (!respuesta.ok) throw new Error('Servidor o archivo no disponible');
 
         var blobOriginal = await respuesta.blob();
         var blobWord = new Blob([blobOriginal], {

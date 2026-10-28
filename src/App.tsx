@@ -385,13 +385,17 @@ export default function App() {
 
   // Programmatic download with exact original binary fidelity & DB registration
   const ejecutarDescargaSegura = async (doc: DirectDocLink) => {
-    const rutaSegura = encodeURI(doc.filePath);
-    const nombreArchivo = doc.filePath.substring(doc.filePath.lastIndexOf('/') + 1);
+    const isLocalFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:';
+    const cleanPath = isLocalFileProtocol 
+      ? doc.filePath 
+      : (doc.filePath.startsWith('/') ? doc.filePath : `/${doc.filePath}`);
+    const rutaSegura = encodeURI(cleanPath);
+    const nombreArchivo = doc.filename || doc.filePath.substring(doc.filePath.lastIndexOf('/') + 1);
 
     try {
       // 1. Fetch original file as pure binary blob with official OpenXML Word MIME type
       const response = await fetch(rutaSegura);
-      if (!response.ok) throw new Error('Servidor local no disponible');
+      if (!response.ok) throw new Error('Servidor o archivo no disponible');
       
       const originalBlob = await response.blob();
       const docxBlob = new Blob([originalBlob], {
@@ -411,7 +415,7 @@ export default function App() {
         URL.revokeObjectURL(blobUrl);
       }, 1000);
     } catch (err) {
-      // 2. Direct DOM fallback for offline/file:// protocol
+      // 2. Direct DOM fallback for offline/file:// protocol or direct download
       const enlaceFallback = document.createElement('a');
       enlaceFallback.href = rutaSegura;
       enlaceFallback.setAttribute('download', nombreArchivo);
