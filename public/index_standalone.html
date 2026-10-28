@@ -1618,11 +1618,25 @@ funcione correctamente.
       var paneles = document.querySelectorAll('.tab-pane');
       paneles.forEach(function(pane) { pane.classList.remove('active'); });
 
-      elementoBoton.classList.add('active');
+      if (elementoBoton) {
+        elementoBoton.classList.add('active');
+      } else {
+        var btnTarget = document.querySelector('.tab-btn[data-tab="' + idPestana + '"]') ||
+                        document.querySelector('button[onclick*="\'' + idPestana + '\'"]');
+        if (btnTarget) btnTarget.classList.add('active');
+      }
+
       var panelActivo = document.getElementById('tab-' + idPestana);
       if (panelActivo) {
         panelActivo.classList.add('active');
       }
+
+      try {
+        localStorage.setItem('gddhh_active_tab', idPestana);
+        if (window.location.hash !== '#' + idPestana) {
+          window.history.replaceState(null, '', '#' + idPestana);
+        }
+      } catch (e) {}
     }
 
     // 4. DESCARGA PROGRAMÁTICA CON REGISTRO EN BASE DE DATOS LOCALSTORAGE
@@ -1637,33 +1651,57 @@ funcione correctamente.
 
       var isFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:';
       var cleanPath = isFileProtocol ? rutaArchivo : (rutaArchivo.startsWith('/') ? rutaArchivo : '/' + rutaArchivo);
-      var rutaSegura = encodeURI(cleanPath);
       var nombreArchivo = rutaArchivo.substring(rutaArchivo.lastIndexOf('/') + 1);
 
-      try {
-        var respuesta = await fetch(rutaSegura);
-        if (!respuesta.ok) throw new Error('Servidor o archivo no disponible');
+      var candidatos = [
+        encodeURI(cleanPath),
+        cleanPath,
+        encodeURI(cleanPath.replace('Carpeta Principal', 'Carpeta_Principal').replace('Carpeta Secundaria', 'Carpeta_Secundaria')),
+        cleanPath.replace('Carpeta Principal', 'Carpeta_Principal').replace('Carpeta Secundaria', 'Carpeta_Secundaria')
+      ];
 
-        var blobOriginal = await respuesta.blob();
-        var blobWord = new Blob([blobOriginal], {
-          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        });
+      var descargaExitosa = false;
 
-        var blobUrl = URL.createObjectURL(blobWord);
-        var enlace = document.createElement('a');
-        enlace.href = blobUrl;
-        enlace.setAttribute('download', nombreArchivo);
-        enlace.style.display = 'none';
-        document.body.appendChild(enlace);
-        enlace.click();
+      for (var i = 0; i < candidatos.length; i++) {
+        var rutaTest = candidatos[i];
+        try {
+          var respuesta = await fetch(rutaTest);
+          var cType = respuesta.headers.get('content-type') || '';
+          if (!respuesta.ok || cType.indexOf('text/html') !== -1) continue;
 
-        setTimeout(function() {
-          document.body.removeChild(enlace);
-          URL.revokeObjectURL(blobUrl);
-        }, 1000);
-      } catch (err) {
+          var blobOriginal = await respuesta.blob();
+          var headBuf = await blobOriginal.slice(0, 4).arrayBuffer();
+          var headBytes = new Uint8Array(headBuf);
+          var esZip = headBytes[0] === 0x50 && headBytes[1] === 0x4B;
+          if (!esZip) continue;
+
+          var blobWord = new Blob([blobOriginal], {
+            type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+          });
+
+          var blobUrl = URL.createObjectURL(blobWord);
+          var enlace = document.createElement('a');
+          enlace.href = blobUrl;
+          enlace.setAttribute('download', nombreArchivo);
+          enlace.style.display = 'none';
+          document.body.appendChild(enlace);
+          enlace.click();
+
+          setTimeout(function() {
+            document.body.removeChild(enlace);
+            URL.revokeObjectURL(blobUrl);
+          }, 1000);
+
+          descargaExitosa = true;
+          break;
+        } catch (e) {
+          // Intentar siguiente candidato
+        }
+      }
+
+      if (!descargaExitosa) {
         var enlaceFallback = document.createElement('a');
-        enlaceFallback.href = rutaSegura;
+        enlaceFallback.href = encodeURI(cleanPath);
         enlaceFallback.setAttribute('download', nombreArchivo);
         enlaceFallback.style.display = 'none';
         document.body.appendChild(enlaceFallback);
@@ -1747,6 +1785,34 @@ funcione correctamente.
     // Inicialización al cargar el DOM
     document.addEventListener('DOMContentLoaded', function() {
       cargarBaseDeDatos();
+
+      // Restaurar pestaña activa según Hash (#principal, #secundaria) o parámetro ?tab=
+      var hash = window.location.hash.replace('#', '').toLowerCase();
+      var params = new URLSearchParams(window.location.search);
+      var qTab = (params.get('tab') || params.get('p'))?.toLowerCase();
+      var targetTab = 'anexos';
+
+      if (hash.indexOf('principal') !== -1 || qTab === 'principal' || qTab === '2') {
+        targetTab = 'principal';
+      } else if (hash.indexOf('secundaria') !== -1 || qTab === 'secundaria' || qTab === '3') {
+        targetTab = 'secundaria';
+      } else {
+        var guardado = localStorage.getItem('gddhh_active_tab');
+        if (guardado === 'principal' || guardado === 'secundaria') {
+          targetTab = guardado;
+        }
+      }
+
+      if (targetTab !== 'anexos') {
+        cambiarPestana(targetTab, null);
+      }
+
+      window.addEventListener('hashchange', function() {
+        var h = window.location.hash.replace('#', '').toLowerCase();
+        if (h.indexOf('principal') !== -1) cambiarPestana('principal', null);
+        else if (h.indexOf('secundaria') !== -1) cambiarPestana('secundaria', null);
+        else if (h.indexOf('anexos') !== -1) cambiarPestana('anexos', null);
+      });
 
       var botones = document.querySelectorAll('button[data-file]');
       botones.forEach(function(btn) {

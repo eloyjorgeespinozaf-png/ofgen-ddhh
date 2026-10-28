@@ -321,10 +321,86 @@ const directDocs: DirectDocLink[] = [
   }
 ];
 
+type TabType = 'anexos' | 'principal' | 'secundaria';
+
+function parseTabFromUrl(): TabType {
+  if (typeof window === 'undefined') return 'anexos';
+
+  // 1. Check URL Hash: #principal, #secundaria, #anexos, #tab2, #tab3
+  const hash = window.location.hash.toLowerCase().replace('#', '').trim();
+  if (hash === 'principal' || hash === 'carpeta-principal' || hash === 'carpeta_principal' || hash === 'tab2' || hash === '2') {
+    return 'principal';
+  }
+  if (hash === 'secundaria' || hash === 'carpeta-secundaria' || hash === 'carpeta_secundaria' || hash === 'tab3' || hash === '3') {
+    return 'secundaria';
+  }
+  if (hash === 'anexos' || hash === 'tab1' || hash === '1') {
+    return 'anexos';
+  }
+
+  // 2. Check Query Parameters: ?tab=principal, ?p=secundaria, etc.
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const qTab = (params.get('tab') || params.get('p') || params.get('pestana'))?.toLowerCase().trim();
+    if (qTab === 'principal' || qTab === 'carpeta-principal' || qTab === 'carpeta_principal' || qTab === '2') {
+      return 'principal';
+    }
+    if (qTab === 'secundaria' || qTab === 'carpeta-secundaria' || qTab === 'carpeta_secundaria' || qTab === '3') {
+      return 'secundaria';
+    }
+    if (qTab === 'anexos' || qTab === '1') {
+      return 'anexos';
+    }
+  } catch {}
+
+  // 3. Check Pathname: /principal, /secundaria, /carpeta-principal, /carpeta-secundaria
+  try {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('principal')) return 'principal';
+    if (path.includes('secundaria')) return 'secundaria';
+  } catch {}
+
+  // 4. Check LocalStorage fallback
+  try {
+    const saved = localStorage.getItem('gddhh_active_tab') as TabType;
+    if (saved === 'principal' || saved === 'secundaria' || saved === 'anexos') {
+      return saved;
+    }
+  } catch {}
+
+  return 'anexos';
+}
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'anexos' | 'principal' | 'secundaria'>('anexos');
+  const [activeTab, setActiveTab] = useState<TabType>(parseTabFromUrl);
   const [lastDownloaded, setLastDownloaded] = useState<string | null>(null);
   const [isDbModalOpen, setIsDbModalOpen] = useState(false);
+
+  // Sync tab changes to URL hash and localStorage
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    try {
+      localStorage.setItem('gddhh_active_tab', tab);
+      if (typeof window !== 'undefined' && window.location.hash !== `#${tab}`) {
+        window.history.replaceState(null, '', `#${tab}`);
+      }
+    } catch {}
+  };
+
+  // Listen to browser hash changes & popstate (Back/Forward buttons)
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const tab = parseTabFromUrl();
+      setActiveTab(tab);
+    };
+
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
 
   // LocalStorage Database State
   const [db, setDb] = useState<AppDatabase>(() => {
@@ -389,35 +465,68 @@ export default function App() {
     const cleanPath = isLocalFileProtocol 
       ? doc.filePath 
       : (doc.filePath.startsWith('/') ? doc.filePath : `/${doc.filePath}`);
-    const rutaSegura = encodeURI(cleanPath);
     const nombreArchivo = doc.filename || doc.filePath.substring(doc.filePath.lastIndexOf('/') + 1);
 
-    try {
-      // 1. Fetch original file as pure binary blob with official OpenXML Word MIME type
-      const response = await fetch(rutaSegura);
-      if (!response.ok) throw new Error('Servidor o archivo no disponible');
-      
-      const originalBlob = await response.blob();
-      const docxBlob = new Blob([originalBlob], {
-        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      });
-      
-      const blobUrl = URL.createObjectURL(docxBlob);
-      const enlace = document.createElement('a');
-      enlace.href = blobUrl;
-      enlace.setAttribute('download', nombreArchivo);
-      enlace.style.display = 'none';
-      document.body.appendChild(enlace);
-      enlace.click();
+    // Multi-candidate paths to guarantee retrieval across Vercel static routing and local dev
+    const candidatePaths: string[] = [
+      encodeURI(cleanPath),
+      cleanPath,
+      encodeURI(cleanPath.replace('Carpeta Principal', 'Carpeta_Principal').replace('Carpeta Secundaria', 'Carpeta_Secundaria')),
+      cleanPath.replace('Carpeta Principal', 'Carpeta_Principal').replace('Carpeta Secundaria', 'Carpeta_Secundaria'),
+      `/${encodeURIComponent(doc.filePath)}`
+    ];
 
-      setTimeout(() => {
-        document.body.removeChild(enlace);
-        URL.revokeObjectURL(blobUrl);
-      }, 1000);
-    } catch (err) {
-      // 2. Direct DOM fallback for offline/file:// protocol or direct download
+    let downloadedSuccessfully = false;
+
+    for (const testPath of candidatePaths) {
+      try {
+        const response = await fetch(testPath);
+        const contentType = response.headers.get('content-type') || '';
+        
+        // Skip invalid responses or SPA html rewrites
+        if (!response.ok || contentType.includes('text/html')) {
+          continue;
+        }
+
+        const originalBlob = await response.blob();
+        
+        // Verify ZIP / OpenXML Word binary signature (PK = 0x50, 0x4B)
+        const headBuf = await originalBlob.slice(0, 4).arrayBuffer();
+        const headBytes = new Uint8Array(headBuf);
+        const isZipFormat = headBytes[0] === 0x50 && headBytes[1] === 0x4B;
+        if (!isZipFormat) {
+          continue;
+        }
+
+        const docxBlob = new Blob([originalBlob], {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        });
+        
+        const blobUrl = URL.createObjectURL(docxBlob);
+        const enlace = document.createElement('a');
+        enlace.href = blobUrl;
+        enlace.setAttribute('download', nombreArchivo);
+        enlace.style.display = 'none';
+        document.body.appendChild(enlace);
+        enlace.click();
+
+        setTimeout(() => {
+          document.body.removeChild(enlace);
+          URL.revokeObjectURL(blobUrl);
+        }, 1000);
+
+        downloadedSuccessfully = true;
+        break;
+      } catch {
+        // Try next candidate
+      }
+    }
+
+    // Direct DOM fallback if fetch was blocked by sandboxing or protocol
+    if (!downloadedSuccessfully) {
+      const fallbackPath = encodeURI(cleanPath);
       const enlaceFallback = document.createElement('a');
-      enlaceFallback.href = rutaSegura;
+      enlaceFallback.href = fallbackPath;
       enlaceFallback.setAttribute('download', nombreArchivo);
       enlaceFallback.style.display = 'none';
       document.body.appendChild(enlaceFallback);
@@ -742,7 +851,7 @@ export default function App() {
           {/* Tab 1 */}
           <button
             type="button"
-            onClick={() => setActiveTab('anexos')}
+            onClick={() => handleTabChange('anexos')}
             className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
               activeTab === 'anexos'
                 ? 'border-amber-400 text-amber-400 bg-amber-500/5'
@@ -761,7 +870,7 @@ export default function App() {
           {/* Tab 2 */}
           <button
             type="button"
-            onClick={() => setActiveTab('principal')}
+            onClick={() => handleTabChange('principal')}
             className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
               activeTab === 'principal'
                 ? 'border-blue-400 text-blue-400 bg-blue-500/5'
@@ -780,7 +889,7 @@ export default function App() {
           {/* Tab 3 */}
           <button
             type="button"
-            onClick={() => setActiveTab('secundaria')}
+            onClick={() => handleTabChange('secundaria')}
             className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
               activeTab === 'secundaria'
                 ? 'border-emerald-400 text-emerald-400 bg-emerald-500/5'

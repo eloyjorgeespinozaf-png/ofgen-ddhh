@@ -38,7 +38,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|Anexos/|Carpeta%20Principal/|Carpeta%20Secundaria/|Carpeta Principal/|Carpeta Secundaria/|index_standalone\\.html|favicon\\.ico).*)",
+      "source": "/((?!.*\\.(?:docx|doc|pdf|xlsx|xls|png|jpg|jpeg|gif|svg|ico|json|css|js|txt|xml|html)$).*)",
       "destination": "/index.html"
     }
   ]
