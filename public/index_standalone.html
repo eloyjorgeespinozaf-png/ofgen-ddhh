@@ -11,6 +11,7 @@ funcione correctamente.
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Descarga de Documentos Oficiales — Ejército de Bolivia</title>
+  <link rel="icon" type="image/png" href="assets/aistudio/image_75640b81.png">
   <style>
     /* RESET & ESTILOS BASE */
     *, *::before, *::after {
@@ -21,6 +22,10 @@ funcione correctamente.
 
     body {
       background-color: #070b10;
+      background-image: linear-gradient(rgba(7, 11, 16, 0.45), rgba(7, 11, 16, 0.55)), url('assets/aistudio/WhatsApp_Image_2026-10-27_at_12.22.42_9f8d601f.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: #e2e8f0;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       min-height: 100vh;
@@ -37,7 +42,8 @@ funcione correctamente.
       width: 100%;
       max-width: 1440px;
       min-height: 820px;
-      background-color: #0c1219;
+      background-color: rgba(12, 18, 25, 0.86);
+      backdrop-filter: blur(3px);
       border: 1px solid #1e293b;
       border-radius: 12px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
@@ -129,33 +135,25 @@ funcione correctamente.
     }
 
     .shield-badge {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 104px;
       border-radius: 10px;
-      background: #080d14;
+      background: #f6f6f6;
       border: 2px solid #d4af37;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #d4af37;
+      overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       flex-shrink: 0;
     }
 
-    .shield-badge svg {
-      width: 36px;
-      height: 36px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-
-    .shield-badge span {
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-top: 2px;
+    .shield-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 54%;
+      display: block;
     }
 
     .header-titles .sub-tag {
@@ -1148,9 +1146,8 @@ funcione correctamente.
     <!-- CABECERA INSTITUCIONAL -->
     <header class="header-bar">
       <div class="header-left">
-        <div class="shield-badge">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>BOLIVIA</span>
+        <div class="shield-badge" title="Emblema Institucional — Ser Antes Que Parecer">
+          <img src="assets/aistudio/image_75640b81.png" alt="Emblema Institucional — Ser Antes Que Parecer">
         </div>
         <div class="header-titles">
           <div class="sub-tag" id="disp-gran-unidad">ESTADO MAYOR GENERAL — EJÉRCITO DE BOLIVIA</div>

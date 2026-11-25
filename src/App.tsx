@@ -78,6 +78,8 @@ interface AppDatabase {
 }
 
 const DB_KEY = 'ejercito_bolivia_db_v1';
+const PERMANENT_SHIELD_IMG = '/assets/aistudio/image_75640b81.png';
+const PERMANENT_BG_IMG = '/assets/aistudio/WhatsApp_Image_2026-10-27_at_12.22.42_9f8d601f.jpeg';
 
 const defaultDatabase: AppDatabase = {
   unitData: {
@@ -470,23 +472,7 @@ export default function App() {
     setUnitForm(db.unitData);
   }, [db.unitData]);
 
-  // Custom shield image and background states with permanent storage
-  const [shieldImg, setShieldImg] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem('inst_shield_img');
-    } catch {
-      return null;
-    }
-  });
-
-  const [bgImg, setBgImg] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem('inst_app_bg');
-    } catch {
-      return null;
-    }
-  });
-
+  // Custom section background state with permanent storage
   const [sectionBgImg, setSectionBgImg] = useState<string | null>(() => {
     try {
       return localStorage.getItem('inst_sec_bg');
@@ -495,8 +481,6 @@ export default function App() {
     }
   });
 
-  const shieldInputRef = useRef<HTMLInputElement>(null);
-  const bgInputRef = useRef<HTMLInputElement>(null);
   const sectionBgInputRef = useRef<HTMLInputElement>(null);
 
   // Estado del formato de descarga y modales de especificaciones
@@ -768,18 +752,6 @@ export default function App() {
     reader.readAsDataURL(file);
   };
 
-  const handleShieldUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      optimizeAndStore(e.target.files[0], 'inst_shield_img', 400, setShieldImg);
-    }
-  };
-
-  const handleBgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      optimizeAndStore(e.target.files[0], 'inst_app_bg', 1600, setBgImg);
-    }
-  };
-
   const handleSectionBgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
       optimizeAndStore(e.target.files[0], 'inst_sec_bg', 1200, setSectionBgImg);
@@ -793,17 +765,17 @@ export default function App() {
       className="relative min-h-screen text-slate-100 flex flex-col items-center justify-start py-4 px-3 sm:px-6 font-sans selection:bg-amber-500/30 selection:text-amber-200"
       style={{
         backgroundColor: '#070b10',
-        backgroundImage: bgImg ? `url(${bgImg})` : 'radial-gradient(ellipse at 50% 0%, #111a28 0%, #070b10 80%)',
+        backgroundImage: `url(${PERMANENT_BG_IMG})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
       }}
     >
-      {/* Background Dimmer Overlay */}
-      {bgImg && <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px] pointer-events-none z-0" />}
+      {/* Background Dimmer Overlay for Crisp Institutional Legibility */}
+      <div className="fixed inset-0 bg-black/45 pointer-events-none z-0" />
 
       {/* Main 16:9 Institutional Widescreen Container */}
-      <div className="relative z-10 w-full max-w-[1440px] flex flex-col my-auto border border-slate-800/80 rounded-xl shadow-2xl overflow-hidden bg-[#0c1219]/95 backdrop-blur-md">
+      <div className="relative z-10 w-full max-w-[1440px] flex flex-col my-auto border border-slate-800/80 rounded-xl shadow-2xl overflow-hidden bg-[#0c1219]/84 backdrop-blur-[3px]">
         
         {/* Top Control Bar with LocalStorage DB Button */}
         <div className="bg-[#090d14] px-4 py-2 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
@@ -831,15 +803,6 @@ export default function App() {
 
             <button
               type="button"
-              onClick={() => shieldInputRef.current?.click()}
-              className="hover:text-amber-300 flex items-center gap-1.5 transition-colors cursor-pointer bg-slate-800/60 hover:bg-slate-800 px-2 py-1 rounded border border-slate-700/60"
-              title="Cambiar imagen del escudo (ajuste exacto al marco)"
-            >
-              <Camera className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden md:inline">Escudo</span>
-            </button>
-            <button
-              type="button"
               onClick={() => sectionBgInputRef.current?.click()}
               className="hover:text-amber-300 flex items-center gap-1.5 transition-colors cursor-pointer bg-slate-800/60 hover:bg-slate-800 px-2 py-1 rounded border border-slate-700/60"
               title="Insertar fondo en la sección de Género y Derechos Humanos"
@@ -847,30 +810,17 @@ export default function App() {
               <ImageIcon className="w-3.5 h-3.5 text-blue-400" />
               <span className="hidden md:inline">Fondo Sección</span>
             </button>
-            <button
-              type="button"
-              onClick={() => bgInputRef.current?.click()}
-              className="hover:text-amber-300 flex items-center gap-1.5 transition-colors cursor-pointer bg-slate-800/60 hover:bg-slate-800 px-2 py-1 rounded border border-slate-700/60"
-              title="Insertar imagen de fondo general"
-            >
-              <ImageIcon className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="hidden md:inline">Fondo General</span>
-            </button>
-            {(shieldImg || bgImg || sectionBgImg) && (
+            {sectionBgImg && (
               <button
                 type="button"
                 onClick={() => {
                   try {
-                    localStorage.removeItem('inst_shield_img');
-                    localStorage.removeItem('inst_app_bg');
                     localStorage.removeItem('inst_sec_bg');
                   } catch {}
-                  setShieldImg(null);
-                  setBgImg(null);
                   setSectionBgImg(null);
                 }}
                 className="hover:text-red-400 flex items-center gap-1 text-slate-400 transition-colors cursor-pointer px-1 py-1"
-                title="Restablecer imágenes por defecto"
+                title="Restablecer fondo de sección"
               >
                 <RotateCcw className="w-3 h-3" />
               </button>
@@ -879,11 +829,9 @@ export default function App() {
         </div>
 
         {/* Hidden File Inputs */}
-        <input ref={shieldInputRef} type="file" accept="image/*" onChange={handleShieldUpload} className="hidden" />
-        <input ref={bgInputRef} type="file" accept="image/*" onChange={handleBgUpload} className="hidden" />
         <input ref={sectionBgInputRef} type="file" accept="image/*" onChange={handleSectionBgUpload} className="hidden" />
 
-        {/* Institutional Header with Shield Frame (Exact Fit) */}
+        {/* Institutional Header with Permanent Emblem Frame */}
         <header
           className="relative px-6 py-5 border-b border-slate-800 flex flex-col md:flex-row items-center justify-between gap-5 transition-all overflow-hidden"
           style={{
@@ -896,24 +844,16 @@ export default function App() {
           {sectionBgImg && <div className="absolute inset-0 bg-[#0b111a]/85 backdrop-blur-[1px] pointer-events-none" />}
 
           <div className="relative z-10 flex items-center gap-5 text-center md:text-left">
-            {/* Custom Shield Frame - Exact Fit with Zero Red Circles/Badges */}
+            {/* Permanent Institutional Emblem Icon */}
             <div
-              onClick={() => shieldInputRef.current?.click()}
-              className="relative w-20 h-20 rounded-xl overflow-hidden border-2 border-amber-500/50 bg-[#080d14] flex items-center justify-center cursor-pointer shadow-lg hover:border-amber-400 transition-all group shrink-0"
-              title="Haga clic para cambiar la imagen del escudo"
+              className="relative w-20 h-[104px] rounded-xl overflow-hidden border-2 border-amber-500/60 bg-[#f6f6f6] flex items-center justify-center shadow-lg shrink-0"
+              title="Emblema Institucional — Ser Antes Que Parecer"
             >
-              {shieldImg ? (
-                <img
-                  src={shieldImg}
-                  alt="Escudo Institucional"
-                  className="w-full h-full object-cover object-center"
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center text-amber-400/90 group-hover:scale-105 transition-transform">
-                  <Shield className="w-10 h-10 stroke-[1.75]" />
-                  <span className="text-[9px] font-bold tracking-widest text-amber-500 mt-0.5">BOLIVIA</span>
-                </div>
-              )}
+              <img
+                src={PERMANENT_SHIELD_IMG}
+                alt="Emblema Institucional — Ser Antes Que Parecer"
+                className="w-full h-full object-cover object-[50%_54%]"
+              />
             </div>
 
             <div>
