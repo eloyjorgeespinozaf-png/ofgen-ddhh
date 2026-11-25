@@ -989,6 +989,119 @@ funcione correctamente.
       border-color: #d4af37;
       color: #fde047;
     }
+
+    /* PESTAÑA 6: FLUJOGRAMAS ORIGINALES */
+    .flujo-layout {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      min-height: 76vh;
+      background: #070b11;
+    }
+
+    @media (max-width: 960px) {
+      .flujo-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .flujo-sidebar {
+      background: #090e16;
+      border-right: 1px solid #1e293b;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 78vh;
+      overflow-y: auto;
+    }
+
+    .flujo-item-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      background: #0d141f;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 9px 10px;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+
+    .flujo-item-btn:hover {
+      background: #152031;
+      border-color: #38bdf8;
+    }
+
+    .flujo-item-btn.active {
+      background: rgba(6, 182, 212, 0.16);
+      border-color: #22d3ee;
+      color: #cffafe;
+    }
+
+    .flujo-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      background: #1e293b;
+      color: #94a3b8;
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .flujo-item-btn.active .flujo-num {
+      background: #22d3ee;
+      color: #070b10;
+    }
+
+    .flujo-stage {
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .flujo-canvas {
+      flex: 1;
+      background: #0b1018;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: auto;
+    }
+
+    .flujo-canvas img {
+      max-width: 100%;
+      max-height: 66vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .flujo-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid #1e293b;
+      padding-top: 12px;
+    }
   </style>
 </head>
 <body>
@@ -1052,8 +1165,8 @@ funcione correctamente.
       </div>
     </header>
 
-    <!-- MENÚ DE NAVEGACIÓN SUPERIOR (5 PESTAÑAS) -->
-    <nav class="tabs-nav">
+    <!-- MENÚ DE NAVEGACIÓN SUPERIOR (6 PESTAÑAS) -->
+    <nav class="tabs-nav" style="overflow-x: auto;">
       <button class="tab-btn active" data-tab="anexos" onclick="cambiarPestana('anexos', this)">
         <span>Pestaña 1: Anexos</span>
         <span class="tab-badge">9</span>
@@ -1073,6 +1186,10 @@ funcione correctamente.
       <button class="tab-btn" data-tab="manual" onclick="cambiarPestana('manual', this)">
         <span>Pestaña 5: Visor del Manual</span>
         <span class="tab-badge" style="background: rgba(212, 175, 55, 0.2); color: #fce788; border: 1px solid rgba(212, 175, 55, 0.4);">HTML</span>
+      </button>
+      <button class="tab-btn" data-tab="flujogramas" onclick="cambiarPestana('flujogramas', this)">
+        <span>Pestaña 6: Flujogramas</span>
+        <span class="tab-badge" style="background: rgba(6, 182, 212, 0.2); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.45);">13</span>
       </button>
     </nav>
 
@@ -2241,6 +2358,45 @@ funcione correctamente.
       <iframe src="manual_doctrinario.html" style="width: 100%; height: 82vh; min-height: 82vh; border: none; display: block;" title="Visor del Manual Doctrinal de Desempeño del Oficial de Género y DDHH"></iframe>
     </div>
 
+    <!-- PESTAÑA 6: FLUJOGRAMAS ORIGINALES SIN MODIFICACIÓN (13 LÁMINAS) -->
+    <div id="tab-flujogramas" class="tab-pane" style="width: 100%; padding: 0;">
+      <div style="background: #090e15; border-bottom: 1px solid #1e293b; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #94a3b8; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="background: rgba(6, 182, 212, 0.16); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.45); padding: 3px 8px; border-radius: 4px; font-weight: bold; font-family: monospace;">13 LÁMINAS ORIGINALES</span>
+          <span style="font-weight: 700; color: #ffffff;">RUTAS Y FLUJOGRAMAS — PLAN DE GÉNERO EN EL SECTOR DEFENSA (SIN MODIFICACIÓN)</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="assets/aistudio/Plan_de_G_nero_en_Defensa_0d36ef7f.pdf" target="_blank" rel="noreferrer" style="background: #1e293b; color: #e2e8f0; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px;">
+            Abrir PDF ↗
+          </a>
+          <a href="assets/aistudio/Plan_de_G_nero_en_Defensa_0d36ef7f.pdf" download="Plan_de_Genero_en_Defensa_Flujogramas.pdf" style="background: #d4af37; color: #070b10; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 11px;">
+            Descargar PDF Original ⬇
+          </a>
+        </div>
+      </div>
+
+      <div class="flujo-layout">
+        <div class="flujo-sidebar" id="flujo-sidebar-list"></div>
+        <div class="flujo-stage">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+            <div>
+              <span id="flujo-active-code" style="font-family: monospace; font-size: 11px; font-weight: 800; color: #67e8f9; background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.4); padding: 2px 8px; border-radius: 4px;">LÁMINA 01</span>
+              <h3 id="flujo-active-title" style="font-size: 15px; font-weight: 800; color: #ffffff; margin-top: 6px;">Portada: Rutas y Flujogramas — Plan de Género en el Sector Defensa (2026)</h3>
+            </div>
+            <span id="flujo-counter" style="font-family: monospace; font-size: 12px; color: #94a3b8;">1 / 13</span>
+          </div>
+          <div class="flujo-canvas">
+            <img id="flujo-active-img" src="flujogramas/flujograma-01.png" alt="Flujograma 01">
+          </div>
+          <div class="flujo-controls">
+            <button type="button" class="db-btn db-btn-dark" onclick="navegarFlujograma(-1)">← Anterior</button>
+            <span style="font-size: 11px; color: #94a3b8; font-family: monospace;">Reproducción íntegra sin modificaciones</span>
+            <button type="button" class="db-btn db-btn-gold" onclick="navegarFlujograma(1)">Siguiente →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- PIE INSTITUCIONAL -->
     <footer class="footer-bar">
       <span id="footer-unit-text">ESTADO MAYOR GENERAL — SECCIÓN DE GÉNERO Y DERECHOS HUMANOS</span>
@@ -2691,11 +2847,69 @@ funcione correctamente.
       mostrarPasoArbol('step-1');
     }
 
+    // 8. VISOR DE FLUJOGRAMAS ORIGINALES (13 LÁMINAS SIN MODIFICAR)
+    var flujogramasLista = [
+      { num: '01', title: 'Portada: Rutas y Flujogramas — Plan de Género en el Sector Defensa (2026)', img: 'flujogramas/flujograma-01.png' },
+      { num: '02', title: 'El Ecosistema del Plan de Género', img: 'flujogramas/flujograma-02.png' },
+      { num: '03', title: '[1] Consejo de Género en el Sector Defensa', img: 'flujogramas/flujograma-03.png' },
+      { num: '04', title: '[2] Transversalización Ley 348 (Régimen Disciplinario)', img: 'flujogramas/flujograma-04.png' },
+      { num: '05', title: '[3] Protocolo de Acoso Laboral y Sexual', img: 'flujogramas/flujograma-05.png' },
+      { num: '06', title: '[4] Protocolo de Violencia Intrafamiliar (VIF) — Ruta de Acción', img: 'flujogramas/flujograma-06.png' },
+      { num: '07', title: '[4] Protocolo VIF — Matriz de Derivación Médica y Legal', img: 'flujogramas/flujograma-07.png' },
+      { num: '08', title: '[5] Manual Administrativo para Unidades de Género', img: 'flujogramas/flujograma-08.png' },
+      { num: '09', title: '[6] Manual de Buenas Prácticas y Lenguaje Administrativo', img: 'flujogramas/flujograma-09.png' },
+      { num: '10', title: '[7] Guía de Inspección con Enfoque de Género', img: 'flujogramas/flujograma-10.png' },
+      { num: '11', title: 'Inventario Oficial de Formularios de Activación', img: 'flujogramas/flujograma-11.png' },
+      { num: '12', title: 'Guía Fácil: Llenado, Actores y Derivación de Formularios', img: 'flujogramas/flujograma-12.png' },
+      { num: '13', title: 'Conclusión y Garantías de Protección', img: 'flujogramas/flujograma-13.png' }
+    ];
+    var flujoActualIdx = 0;
+
+    function inicializarFlujogramas() {
+      var listEl = document.getElementById('flujo-sidebar-list');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      flujogramasLista.forEach(function(item, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'flujo-item-btn' + (idx === flujoActualIdx ? ' active' : '');
+        btn.setAttribute('data-flujo-idx', idx);
+        btn.innerHTML = '<span class="flujo-num">' + item.num + '</span><span>' + item.title + '</span>';
+        btn.onclick = function() { seleccionarFlujograma(idx); };
+        listEl.appendChild(btn);
+      });
+      seleccionarFlujograma(0);
+    }
+
+    function seleccionarFlujograma(idx) {
+      flujoActualIdx = idx;
+      var item = flujogramasLista[idx];
+      if (!item) return;
+      var imgEl = document.getElementById('flujo-active-img');
+      var titleEl = document.getElementById('flujo-active-title');
+      var codeEl = document.getElementById('flujo-active-code');
+      var counterEl = document.getElementById('flujo-counter');
+      if (imgEl) { imgEl.src = item.img; imgEl.alt = item.title; }
+      if (titleEl) titleEl.textContent = item.title;
+      if (codeEl) codeEl.textContent = 'LÁMINA ' + item.num;
+      if (counterEl) counterEl.textContent = (idx + 1) + ' / ' + flujogramasLista.length;
+      document.querySelectorAll('.flujo-item-btn').forEach(function(b) {
+        b.classList.toggle('active', Number(b.getAttribute('data-flujo-idx')) === idx);
+      });
+    }
+
+    function navegarFlujograma(delta) {
+      var total = flujogramasLista.length;
+      var next = (flujoActualIdx + delta + total) % total;
+      seleccionarFlujograma(next);
+    }
+
     // Inicialización al cargar el DOM
     document.addEventListener('DOMContentLoaded', function() {
       cargarBaseDeDatos();
+      inicializarFlujogramas();
 
-      // Restaurar pestaña activa según Hash (#principal, #secundaria, #protocolo) o parámetro ?tab=
+      // Restaurar pestaña activa según Hash (#principal, #secundaria, #protocolo, #manual, #flujogramas) o parámetro ?tab=
       var hash = window.location.hash.replace('#', '').toLowerCase();
       var params = new URLSearchParams(window.location.search);
       var qTab = (params.get('tab') || params.get('p'))?.toLowerCase();
@@ -2709,9 +2923,11 @@ funcione correctamente.
         targetTab = 'protocolo';
       } else if (hash.indexOf('manual') !== -1 || hash.indexOf('visor') !== -1 || qTab === 'manual' || qTab === '5') {
         targetTab = 'manual';
+      } else if (hash.indexOf('flujograma') !== -1 || hash.indexOf('rutas') !== -1 || qTab === 'flujogramas' || qTab === '6') {
+        targetTab = 'flujogramas';
       } else {
         var guardado = localStorage.getItem('gddhh_active_tab');
-        if (guardado === 'principal' || guardado === 'secundaria' || guardado === 'protocolo' || guardado === 'manual') {
+        if (guardado === 'principal' || guardado === 'secundaria' || guardado === 'protocolo' || guardado === 'manual' || guardado === 'flujogramas') {
           targetTab = guardado;
         }
       }
@@ -2726,6 +2942,7 @@ funcione correctamente.
         else if (h.indexOf('secundaria') !== -1) cambiarPestana('secundaria', null);
         else if (h.indexOf('protocolo') !== -1 || h.indexOf('arbol') !== -1) cambiarPestana('protocolo', null);
         else if (h.indexOf('manual') !== -1 || h.indexOf('visor') !== -1) cambiarPestana('manual', null);
+        else if (h.indexOf('flujograma') !== -1 || h.indexOf('rutas') !== -1) cambiarPestana('flujogramas', null);
         else if (h.indexOf('anexos') !== -1) cambiarPestana('anexos', null);
       });
 

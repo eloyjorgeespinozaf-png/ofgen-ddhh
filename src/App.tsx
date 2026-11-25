@@ -34,10 +34,12 @@ import {
   AlertOctagon,
   Flame,
   Zap,
-  BookOpen
+  BookOpen,
+  GitBranch
 } from 'lucide-react';
 import { generateCompliantWordBlob } from './utils/wordGenerator';
 import { DecisionTreeProtocol } from './components/DecisionTreeProtocol';
+import { FlujogramasViewer, ORIGINAL_PDF_URL } from './components/FlujogramasViewer';
 
 export interface DirectDocLink {
   id: string;
@@ -335,12 +337,12 @@ const directDocs: DirectDocLink[] = [
   }
 ];
 
-type TabType = 'anexos' | 'principal' | 'secundaria' | 'protocolo' | 'manual';
+type TabType = 'anexos' | 'principal' | 'secundaria' | 'protocolo' | 'manual' | 'flujogramas';
 
 function parseTabFromUrl(): TabType {
   if (typeof window === 'undefined') return 'anexos';
 
-  // 1. Check URL Hash: #principal, #secundaria, #anexos, #protocolo, #manual, #tab5
+  // 1. Check URL Hash: #principal, #secundaria, #anexos, #protocolo, #manual, #flujogramas, #tab6
   const hash = window.location.hash.toLowerCase().replace('#', '').trim();
   if (hash === 'principal' || hash === 'carpeta-principal' || hash === 'carpeta_principal' || hash === 'tab2' || hash === '2') {
     return 'principal';
@@ -353,6 +355,9 @@ function parseTabFromUrl(): TabType {
   }
   if (hash === 'manual' || hash === 'visor' || hash === 'visor-manual' || hash === 'tab5' || hash === '5') {
     return 'manual';
+  }
+  if (hash === 'flujogramas' || hash === 'rutas' || hash === 'flujograma' || hash === 'tab6' || hash === '6') {
+    return 'flujogramas';
   }
   if (hash === 'anexos' || hash === 'tab1' || hash === '1') {
     return 'anexos';
@@ -374,24 +379,28 @@ function parseTabFromUrl(): TabType {
     if (qTab === 'manual' || qTab === 'visor' || qTab === '5') {
       return 'manual';
     }
+    if (qTab === 'flujogramas' || qTab === 'rutas' || qTab === '6') {
+      return 'flujogramas';
+    }
     if (qTab === 'anexos' || qTab === '1') {
       return 'anexos';
     }
   } catch {}
 
-  // 3. Check Pathname: /principal, /secundaria, /protocolo, /manual
+  // 3. Check Pathname: /principal, /secundaria, /protocolo, /manual, /flujogramas
   try {
     const path = window.location.pathname.toLowerCase();
     if (path.includes('principal')) return 'principal';
     if (path.includes('secundaria')) return 'secundaria';
     if (path.includes('protocolo')) return 'protocolo';
     if (path.includes('manual') || path.includes('visor')) return 'manual';
+    if (path.includes('flujograma') || path.includes('rutas')) return 'flujogramas';
   } catch {}
 
   // 4. Check LocalStorage fallback
   try {
     const saved = localStorage.getItem('gddhh_active_tab') as TabType;
-    if (saved === 'principal' || saved === 'secundaria' || saved === 'anexos' || saved === 'protocolo' || saved === 'manual') {
+    if (saved === 'principal' || saved === 'secundaria' || saved === 'anexos' || saved === 'protocolo' || saved === 'manual' || saved === 'flujogramas') {
       return saved;
     }
   } catch {}
@@ -1076,6 +1085,25 @@ export default function App() {
               HTML
             </span>
           </button>
+
+          {/* Tab 6: Flujogramas */}
+          <button
+            type="button"
+            onClick={() => handleTabChange('flujogramas')}
+            className={`py-3.5 px-5 font-bold text-sm tracking-wide transition-all border-b-2 flex items-center gap-2.5 cursor-pointer whitespace-nowrap ${
+              activeTab === 'flujogramas'
+                ? 'border-cyan-400 text-cyan-300 bg-cyan-500/10'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+            }`}
+          >
+            <GitBranch className="w-4 h-4 text-cyan-400" />
+            <span>Pestaña 6: Flujogramas</span>
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono font-semibold ${
+              activeTab === 'flujogramas' ? 'bg-cyan-500/25 text-cyan-200 border border-cyan-500/40' : 'bg-slate-800 text-slate-400'
+            }`}>
+              13
+            </span>
+          </button>
         </nav>
 
         {/* Tab Header Banner with Context Actions */}
@@ -1087,8 +1115,9 @@ export default function App() {
               {activeTab === 'secundaria' && 'Pestaña 3: Carpeta Secundaria (6 Registros y Cuadros)'}
               {activeTab === 'protocolo' && 'Pestaña 4: Protocolo de Acción Rápida — Árbol de Decisión Interactivo'}
               {activeTab === 'manual' && 'Pestaña 5: Visor del Manual Doctrinal (Documento Interactivo HTML)'}
+              {activeTab === 'flujogramas' && 'Pestaña 6: Rutas y Flujogramas — Plan de Género en el Sector Defensa (Originales)'}
             </span>
-            {activeTab !== 'protocolo' && activeTab !== 'manual' && (
+            {activeTab !== 'protocolo' && activeTab !== 'manual' && activeTab !== 'flujogramas' && (
               <span className="font-mono text-slate-400 hidden sm:inline">
                 ({visibleDocs.length} documentos)
               </span>
@@ -1103,6 +1132,11 @@ export default function App() {
                 DOCTRINA INTERACTIVA HTML
               </span>
             )}
+            {activeTab === 'flujogramas' && (
+              <span className="text-cyan-300 font-mono text-[11px] bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/50 hidden sm:inline">
+                13 LÁMINAS ORIGINALES
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
@@ -1115,6 +1149,16 @@ export default function App() {
                 title="Abrir el Manual Doctrinario interactivo en ventana completa"
               >
                 <span>Abrir en Pestaña Nueva ↗</span>
+              </a>
+            ) : activeTab === 'flujogramas' ? (
+              <a
+                href={ORIGINAL_PDF_URL}
+                download="Plan_de_Genero_en_Defensa_Flujogramas.pdf"
+                className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-3.5 py-1.5 rounded-lg text-xs flex items-center gap-1.5 cursor-pointer transition-all shadow-md active:scale-95"
+                title="Descargar el PDF original de flujogramas sin modificaciones"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Descargar PDF Original (13 Láminas)</span>
               </a>
             ) : activeTab === 'protocolo' ? (
               <button
@@ -1150,7 +1194,7 @@ export default function App() {
         </div>
 
         {/* Central Content Area */}
-        <main className={activeTab === 'manual' ? "p-0 overflow-hidden w-full flex-1" : "p-4 sm:p-6 overflow-y-auto max-h-[66vh]"}>
+        <main className={activeTab === 'manual' || activeTab === 'flujogramas' ? "p-0 overflow-hidden w-full flex-1" : "p-4 sm:p-6 overflow-y-auto max-h-[66vh]"}>
           {activeTab === 'manual' ? (
             <div className="w-full flex flex-col bg-[#080d14]" style={{ width: '100%', minHeight: '82vh' }}>
               <div className="bg-[#0b121c] border-b border-slate-800 px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
@@ -1184,6 +1228,8 @@ export default function App() {
                 style={{ width: '100%', height: '82vh', border: 'none', display: 'block' }}
               />
             </div>
+          ) : activeTab === 'flujogramas' ? (
+            <FlujogramasViewer />
           ) : activeTab === 'protocolo' ? (
             <DecisionTreeProtocol
               directDocs={directDocs}
